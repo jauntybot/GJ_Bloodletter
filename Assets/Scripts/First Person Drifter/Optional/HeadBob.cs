@@ -7,9 +7,9 @@ using System.Collections;
 
 public class HeadBob : MonoBehaviour
 {	
-	private float bobbingSpeed = 0.25f; 
+	public float bobbingSpeed = 0.25f; 
 	public float bobbingAmount = 0.05f; 
-	public float  midpoint = 0.6f; 
+	public float midpoint = 0.6f; 
 	
 	private float timer = 0.0f; 
  

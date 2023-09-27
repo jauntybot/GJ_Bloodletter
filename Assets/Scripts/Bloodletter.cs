@@ -18,7 +18,7 @@ public class Bloodletter : MonoBehaviour {
         get { return _speedMultiplier; }
     }
 
-    [SerializeField] float staminaDrainRate, staminaRegenRate, bloodDrainRate, bloodRegenRate;
+    [SerializeField] float staminaDrainRate, staminaDelay, staminaRegenRate, sprintDelay, bloodDrainRate, bloodDelay, bloodRegenRate;
 
     [SerializeField] float tickDur;
     float curTick;
@@ -80,6 +80,16 @@ public class Bloodletter : MonoBehaviour {
 
     public IEnumerator Sprint() {
         sprinting = true;
+        float ramp = 0;
+        while (ramp < sprintDelay) {
+            ramp += Time.deltaTime;
+            _speedMultiplier = Mathf.Lerp(1, sprintMultiplier, ramp / sprintDelay);
+            if (!Input.GetButton("Run")) {
+                sprinting = false;
+                break;
+            }
+            yield return null;
+        }
         _speedMultiplier = sprintMultiplier;
         while (staminaLevel > 0 && sprinting) {
             while (!tick) {
@@ -103,9 +113,8 @@ public class Bloodletter : MonoBehaviour {
     public IEnumerator RegainStamina() {
         staminaRegen = true;
 // DELAY START OF STAMINA REGEN
-        float regenDelay = 3f;
         float regen = 0;
-        while (regen < regenDelay) {
+        while (regen < staminaDelay) {
             regen += Time.deltaTime;
             if (Input.GetButton("Run")) {
                 staminaRegen = false;
@@ -150,10 +159,9 @@ public class Bloodletter : MonoBehaviour {
 
     public IEnumerator RegainBlood() {
         bloodRegen = true;
-// DELAY START OF STAMINA REGEN
-        float regenDelay = 3f;
+// DELAY START OF BLOOD REGEN
         float regen = 0;
-        while (regen < regenDelay) {
+        while (regen < bloodDelay) {
             regen += Time.deltaTime;
             if (Input.GetButton("Bloodlet")) {
                 bloodRegen = false;
@@ -161,7 +169,7 @@ public class Bloodletter : MonoBehaviour {
             }
             yield return null;
         }
-// REGENERATE STAMINA
+// REGENERATE BLOOD
         while (bloodRegen && bloodLevel < 100) {
             while (!tick) {
                 if (Input.GetButton("Bloodlet")) {
