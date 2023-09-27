@@ -7,25 +7,41 @@ public class Bloodletter : MonoBehaviour {
 
 // INTERACTION VARIABLES
     [Header("Controller")]	
+    public float walkSpeed;
+    public float standMultiplier, sprintMultiplier;
+    private float _moveSpeed;
+    public float moveSpeed {
+        get { return _moveSpeed; }
+    }
+    private float _speedMultiplier;
+    [SerializeField] public float speedMultiplier {
+        get { return _speedMultiplier; }
+    }
+
+    [SerializeField] float staminaDrainRate, staminaRegenRate, bloodDrainRate, bloodRegenRate;
+
+    [SerializeField] float tickDur;
+    float curTick;
+    bool tick;
+    
 	public Camera cam;
 	public LayerMask interactionMask;
 
+
     [Header("Stats")]
-    public float walkSpeed, moveSpeed;
-    public float speedMultiplier;
     [Range(0,100)]
     public float bloodLevel;
     [Range(0,100)]
     public float infectionLevel, staminaLevel;
     public float infectionPotency, infectionSpeed;
-    [SerializeField]
-    bool sprinting, staminaRegen, bloodletting, bloodRegen;
 
+
+    [Header("States")]
     [SerializeField]
-    float curTick, tickDur;
+    bool sprinting;
     [SerializeField]
-    bool tick;
-    
+    bool staminaRegen, bloodletting, bloodRegen;
+
     [Header("Prefabs")]
     [SerializeField] GameObject bloodDecal;
 
@@ -64,7 +80,7 @@ public class Bloodletter : MonoBehaviour {
 
     public IEnumerator Sprint() {
         sprinting = true;
-        speedMultiplier = 2f;
+        _speedMultiplier = sprintMultiplier;
         while (staminaLevel > 0 && sprinting) {
             while (!tick) {
                 if (!Input.GetButton("Run")) {
@@ -73,14 +89,14 @@ public class Bloodletter : MonoBehaviour {
                 }
                 yield return null;
             }
-            staminaLevel -= 5f;
+            staminaLevel -= staminaDrainRate;
             if (!Input.GetButton("Run")) {
                     staminaRegen = false;
                     break;
             }
             yield return null;
         }
-        speedMultiplier = 1f;
+        _speedMultiplier = 1f;
         sprinting = false;
     }
 
@@ -106,7 +122,7 @@ public class Bloodletter : MonoBehaviour {
                 }
                 yield return null;
             }
-            staminaLevel += 3;
+            staminaLevel += staminaRegenRate;
             yield return null;
         }
         staminaRegen = false;
@@ -122,7 +138,7 @@ public class Bloodletter : MonoBehaviour {
                 }
                 yield return null;
             } 
-            bloodLevel -= 2.2f * speedMultiplier;
+            bloodLevel -= bloodDrainRate * _speedMultiplier;
 // DECAL LOGIC
             GameObject decal = Instantiate(bloodDecal);
             decal.transform.position = transform.position;
@@ -154,7 +170,7 @@ public class Bloodletter : MonoBehaviour {
                 }
                 yield return null;
             }
-            bloodLevel += 0.5f;
+            bloodLevel += bloodRegenRate;
             yield return null;
         }
         bloodRegen = false;
@@ -200,14 +216,14 @@ public class Bloodletter : MonoBehaviour {
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
         if (inputX != 0 || inputY != 0) {
-            if (!sprinting) speedMultiplier = 1f;
+            if (!sprinting) _speedMultiplier = 1f;
 // SPRINT INPUT
             if (Input.GetButton("Run")) {
                 if (staminaLevel > 0 && !sprinting) StartCoroutine(Sprint());
             } else if (staminaLevel < 100 && !staminaRegen) StartCoroutine(RegainStamina());
             
-            moveSpeed = walkSpeed * speedMultiplier;
-        } else if (!sprinting) speedMultiplier = 0.5f;
+            _moveSpeed = walkSpeed * _speedMultiplier;
+        } else if (!sprinting) _speedMultiplier = standMultiplier;
 
 // BLOODLET INPUT
         if (Input.GetButton("Bloodlet")) {
