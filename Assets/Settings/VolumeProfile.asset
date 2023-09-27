@@ -134,10 +134,10 @@ MonoBehaviour:
     m_Value: 20
   fogColor:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    m_Value: {r: 0.32156864, g: 0.078431375, b: 0.078431375, a: 1}
   ambientColor:
     m_OverrideState: 1
-    m_Value: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
+    m_Value: {r: 0.32156864, g: 0.078431375, b: 0.078431375, a: 1}
   fogNear:
     m_OverrideState: 1
     m_Value: 0
