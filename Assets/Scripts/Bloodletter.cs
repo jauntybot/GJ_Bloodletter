@@ -5,6 +5,12 @@ using UnityEngine;
 public class Bloodletter : MonoBehaviour {
 
 
+    public static Bloodletter instance;
+    void Awake() {
+        if (Bloodletter.instance) return;
+        Bloodletter.instance = this;
+    }
+
 // INTERACTION VARIABLES
     [Header("Controller")]	
     public float walkSpeed;
@@ -22,7 +28,7 @@ public class Bloodletter : MonoBehaviour {
 
     [SerializeField] float tickDur;
     float curTick;
-    bool tick;
+    [HideInInspector] public bool tick;
     
 	public Camera cam;
 	public LayerMask interactionMask;
@@ -33,7 +39,7 @@ public class Bloodletter : MonoBehaviour {
     public float bloodLevel;
     [Range(0,100)]
     public float infectionLevel, staminaLevel;
-    public float infectionPotency, infectionSpeed;
+    public float infectionPotency, infectionSpeed, potencyIncrement;
 
 
     [Header("States")]
@@ -72,7 +78,7 @@ public class Bloodletter : MonoBehaviour {
             while (!tick) yield return null;
             infectionSpeed = bloodLevel/100;
 
-
+            infectionPotency += potencyIncrement;
             infectionLevel += infectionPotency * infectionSpeed;
             yield return null;
         }
@@ -184,42 +190,22 @@ public class Bloodletter : MonoBehaviour {
         bloodRegen = false;
     }
 
-    
-    public IEnumerator TransfuseBlood(TransfusionSite site) {
-        site.transfusing = true;
-        while (site.bloodContent > 0 && site.attached) {
-            while (!tick) yield return null;
-            Debug.Log("Transfusing");
-            bloodLevel += 1.5f;
-            site.bloodContent -= 1.5f;
-            if (!site.attached) {
-                site.transfusing = false;
-                break;
-            }
-            yield return null;
-        }
-// USED ALL BLOOD
-        if (site.bloodContent <= 0) {
-            
-        }
-        site.transfusing = false;
-    }
-
-    public void FixedUpdate() {
+    public void Update() {
 // MOUSE INPUT
 // INTERACTION INPUT
-		if(Input.GetMouseButtonDown(0)) {
+		if (Input.GetMouseButtonDown(0)) {
 			Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 // CLICKED ON AN INTERACTABLE
 			if (Physics.Raycast(ray, out hit, 100f, interactionMask)) {
-				Interactable target = hit.collider.GetComponent<Interactable>();
-				if (Vector3.Distance(target.transform.position, transform.position) <= target.interactRadius) {
-					target.OnInteract(transform);
-				}
+                Debug.Log(hit.collider.gameObject.name);
+				Interactable target = hit.collider.GetComponentInParent<Interactable>();
+                target.OnInteract();
 			}
 		}
+    }
 
+    public void FixedUpdate() {
 // MOVE INPUT
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
