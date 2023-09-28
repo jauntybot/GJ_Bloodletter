@@ -53,7 +53,8 @@ public class TransfusionSite : Interactable {
             Debug.Log("Transfusing");
             if (bloodletter.bloodLevel < 100)
                 bloodletter.bloodLevel += transfusionRate;
-            bloodletter.infectionPotency -= infectionDilution;
+            if (bloodletter.infectionPotency > 0)
+                bloodletter.infectionPotency -= infectionDilution;
             if (bloodletter.infectionLevel > 0)
                 bloodletter.infectionLevel -= infectionHeal;
             bloodContent -= transfusionRate;
