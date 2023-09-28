@@ -70,7 +70,7 @@ MonoBehaviour:
     m_Value: 254
   colorPrecision:
     m_OverrideState: 1
-    m_Value: 16
+    m_Value: 56
 --- !u!114 &-758010384845797820
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -128,10 +128,10 @@ MonoBehaviour:
   active: 1
   fogDensity:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: 0.5
   fogDistance:
     m_OverrideState: 1
-    m_Value: 20
+    m_Value: 10
   fogColor:
     m_OverrideState: 1
     m_Value: {r: 0.32156864, g: 0.078431375, b: 0.078431375, a: 1}
@@ -151,8 +151,8 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 458
   noiseScale:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 10
   noiseStrength:
-    m_OverrideState: 0
-    m_Value: 0.64
+    m_OverrideState: 1
+    m_Value: 0
