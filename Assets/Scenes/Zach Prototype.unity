@@ -399,8 +399,18 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 1075676656689261810, guid: 28cac9dd39c13164a9c21251fd909e63,
         type: 3}
+      propertyPath: bloodDelay
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1075676656689261810, guid: 28cac9dd39c13164a9c21251fd909e63,
+        type: 3}
       propertyPath: sprintDelay
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1075676656689261810, guid: 28cac9dd39c13164a9c21251fd909e63,
+        type: 3}
+      propertyPath: staminaDelay
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1075676656689261810, guid: 28cac9dd39c13164a9c21251fd909e63,
         type: 3}
@@ -416,6 +426,11 @@ PrefabInstance:
         type: 3}
       propertyPath: infectionPotency
       value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1075676656689261810, guid: 28cac9dd39c13164a9c21251fd909e63,
+        type: 3}
+      propertyPath: staminaRegenRate
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1075676656689261810, guid: 28cac9dd39c13164a9c21251fd909e63,
         type: 3}
@@ -2733,7 +2748,6 @@ MonoBehaviour:
   bobbingSpeed: 0.04
   bobbingAmount: 0.03
   midpoint: 0.6
-  timer: 0
 --- !u!20 &2111649848 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2000000, guid: 28cac9dd39c13164a9c21251fd909e63,
