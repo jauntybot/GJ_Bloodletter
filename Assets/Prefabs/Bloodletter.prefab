@@ -112,7 +112,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52649ec1c972f4c6ebd9662bd99b56ff, type: 3}
   m_Name: 
@@ -227,7 +227,6 @@ GameObject:
   - component: {fileID: 14300000}
   - component: {fileID: 1075676656689261810}
   - component: {fileID: 530813869}
-  - component: {fileID: 1073924950959371147}
   - component: {fileID: 8416299190368455573}
   m_Layer: 0
   m_Name: Bloodletter
@@ -358,7 +357,7 @@ MonoBehaviour:
   interactionMask:
     serializedVersion: 2
     m_Bits: 64
-  bloodLevel: 100
+  bloodLevel: 0
   infectionLevel: 0
   staminaLevel: 100
   infectionPotency: 0.5
@@ -391,21 +390,6 @@ MonoBehaviour:
   airControl: 1
   antiBumpFactor: 0.75
   antiBunnyHopFactor: 1
---- !u!114 &1073924950959371147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52649ec1c972f4c6ebd9662bd99b56ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bobbingSpeed: 0.04
-  bobbingAmount: 0.03
-  midpoint: 0.6
 --- !u!114 &8416299190368455573
 MonoBehaviour:
   m_ObjectHideFlags: 0
