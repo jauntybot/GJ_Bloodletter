@@ -5,35 +5,48 @@ using UnityEngine;
 [RequireComponent(typeof(InteractableHighlight))]
 public class Interactable : MonoBehaviour {
 
+    [SerializeField] protected Bloodletter bloodletter;
     InteractableHighlight highlight;
     public bool interactOnce;
     bool hasInteracted;
     public float interactRadius = 2.5f;
+    public bool inRange;
     public bool locked = false;
 
 
-    void Start() {
+    protected virtual void Start() {
         Init();
     }
 
     public void Init() {
+        bloodletter = Bloodletter.instance;
         highlight = GetComponent<InteractableHighlight>();
     }
     
+    protected virtual void Update() {
+        if (bloodletter)
+            inRange = Vector3.Distance(transform.position, bloodletter.transform.position) <= interactRadius;
+    }
+
 // CHECK IF INTERACTION WAS SUCCESSFUL
-    public virtual void OnInteract(Transform player) {
+    public virtual void OnInteract() {
 // Check if this can be interacted with
-        if (!interactOnce || (interactOnce && !hasInteracted)) {
+        if (inRange && !interactOnce || (interactOnce && !hasInteracted)) {
 // Check if player can unlock this
             if (locked) {}
             if (!locked) {
-                Interact(player.GetComponent<Bloodletter>());
+                Interact();
             }
         }
     }
 
 // OVERIDE FUNCTIONALITY IN INHERITED CLASSES
-    public virtual void Interact(Bloodletter bloodetter) {}
+    public virtual void Interact() {}
 
+
+    void OnDrawGizmosSelected () {
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawWireSphere(transform.position, interactRadius);
+	}
 
 }
