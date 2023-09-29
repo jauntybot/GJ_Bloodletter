@@ -358,11 +358,12 @@ MonoBehaviour:
   interactionMask:
     serializedVersion: 2
     m_Bits: 64
+  bloodletSFXDelay: 0.75
+  decalSprintDelay: 0.25
+  decalWalkDelay: 0.75
   footstepDelay: 0.75
   footstepRunDelay: 0.4
-  bloodletSFXDelay: 0.75
-  bloodletDecalDelay: 0.6
-  bloodLevel: 0
+  bloodLevel: 100
   infectionLevel: 0
   staminaLevel: 100
   infectionPotency: 0.5
