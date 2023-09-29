@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Bloodletter : MonoBehaviour {
 
 
@@ -10,6 +11,8 @@ public class Bloodletter : MonoBehaviour {
         if (Bloodletter.instance) return;
         Bloodletter.instance = this;
     }
+
+    AudioSource audioSource;
 
 // INTERACTION VARIABLES
     [Header("Controller")]	
@@ -50,12 +53,14 @@ public class Bloodletter : MonoBehaviour {
 
     [Header("Prefabs")]
     [SerializeField] GameObject bloodDecal;
+    [SerializeField] SFX bloodletSFX;
 
     void Start() {
         Init();
     }
 
     public void Init() {
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(InfectionSpread());
         StartCoroutine(BloodletterTick());
     }
@@ -157,8 +162,10 @@ public class Bloodletter : MonoBehaviour {
                     break;
                 yield return null;
             } 
-            if (bloodletting)
+            if (bloodletting) {
                 bloodLevel -= bloodDrainRate * _speedMultiplier;
+                PlaySound(bloodletSFX);
+            }
 
 // DECAL LOGIC
             GameObject decal = Instantiate(bloodDecal);
@@ -229,5 +236,14 @@ public class Bloodletter : MonoBehaviour {
             
             _moveSpeed = walkSpeed * _speedMultiplier;
         } else if (!sprinting) _speedMultiplier = standMultiplier;
+    }
+
+    public virtual void PlaySound(SFX sfx = null) {
+        if (sfx) {
+            if (sfx.outputMixerGroup) 
+                audioSource.outputAudioMixerGroup = sfx.outputMixerGroup;   
+
+            audioSource.PlayOneShot(sfx.Get());
+        }
     }
 }

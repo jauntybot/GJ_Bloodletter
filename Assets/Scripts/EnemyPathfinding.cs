@@ -50,6 +50,19 @@ public class EnemyPathfinding : MonoBehaviour {
         }
     }
 
+    bool CanSeePlayer() {
+        if (Vector3.Distance(transform.position, bloodletter.transform.position) < viewDist) {
+            Vector3 dir = (bloodletter.transform.position - transform.position).normalized;
+            float angleDelta = Vector3.Angle(transform.forward, dir);
+            if (angleDelta < viewAngle /2f) {
+                if (!Physics.Linecast(transform.position, bloodletter.transform.position, viewMask)) {
+                    return true;
+                }
+            } 
+        }
+        return false;
+    }
+
     IEnumerator Lurk() {
         yield return null;
 
@@ -118,7 +131,7 @@ public class EnemyPathfinding : MonoBehaviour {
     void OnDrawGizmos () {
 		Gizmos.color = Color.yellow;
 		Gizmos.DrawWireSphere(transform.position, trackingRadius);
-        Gizmos.color = Color.red;
+        Gizmos.color = CanSeePlayer() ? Color.green : Color.red;
         Gizmos.DrawRay(transform.position, (transform.forward * viewDist));
 	}
 
