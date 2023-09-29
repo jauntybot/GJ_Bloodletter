@@ -11,11 +11,14 @@ public class DebugUI : MonoBehaviour {
         instance = this;
     }    
 
-    public Bloodletter bloodletter;
+    Bloodletter bloodletter;
     public Slider staminaSlider, bloodSlider, infectionSlider;
     [SerializeField] GameObject infectedPanel;
     [SerializeField] Image radialBar;
 
+    void Start() {
+        bloodletter = Bloodletter.instance;
+    }
 
     public void Update() {
         staminaSlider.value = bloodletter.staminaLevel;

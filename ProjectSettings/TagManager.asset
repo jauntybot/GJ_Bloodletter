@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - NavMesh
   - Water
   - UI
   - Interaction
-  - 
+  - Occlussion
   - 
   - 
   - 

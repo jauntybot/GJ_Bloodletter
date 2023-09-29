@@ -100,16 +100,14 @@ public class Bloodletter : MonoBehaviour {
         while (staminaLevel > 0 && sprinting) {
             while (!tick) {
                 if (!Input.GetButton("Run")) {
-                    staminaRegen = false;
+                    sprinting = false;
                     break;
                 }
                 yield return null;
             }
-            staminaLevel -= staminaDrainRate;
-            if (!Input.GetButton("Run")) {
-                    staminaRegen = false;
-                    break;
-            }
+            if (sprinting)
+                staminaLevel -= staminaDrainRate;
+
             yield return null;
         }
         _speedMultiplier = 1f;
@@ -137,54 +135,64 @@ public class Bloodletter : MonoBehaviour {
                 }
                 yield return null;
             }
-            staminaLevel += staminaRegenRate;
+            if (staminaRegen)
+                staminaLevel += staminaRegenRate;
+
             yield return null;
         }
         staminaRegen = false;
     }
 
+    void ToggleBloodletting(bool state) {
+        if (state && bloodLevel > 0) {
+            bloodletting = state;
+            StartCoroutine(Bloodlet());
+        } else bloodletting = false;
+    }
+
     public IEnumerator Bloodlet() {
-        bloodletting = true;
         while (bloodletting && bloodLevel > 0) {
             while (!tick) {
-                if (!Input.GetButton("Bloodlet")) {
-                    bloodletting = false;
+                if (Input.GetButtonDown("Bloodlet")) 
                     break;
-                }
                 yield return null;
             } 
-            bloodLevel -= bloodDrainRate * _speedMultiplier;
+            if (bloodletting)
+                bloodLevel -= bloodDrainRate * _speedMultiplier;
+
 // DECAL LOGIC
             GameObject decal = Instantiate(bloodDecal);
             decal.transform.position = transform.position;
 
             yield return null;
         }
-        bloodletting = false;
+
+        if (bloodLevel <= 0) bloodletting = false;
     }
 
     public IEnumerator RegainBlood() {
         bloodRegen = true;
 // DELAY START OF BLOOD REGEN
         float regen = 0;
-        while (regen < bloodDelay) {
+        while (!bloodletting && regen < bloodDelay) {
             regen += Time.deltaTime;
-            if (Input.GetButton("Bloodlet")) {
+            if (bloodletting) {
                 bloodRegen = false;
                 break;
             }
             yield return null;
         }
 // REGENERATE BLOOD
-        while (bloodRegen && bloodLevel < 100) {
+        while (!bloodletting && bloodRegen && bloodLevel < 100) {
             while (!tick) {
-                if (Input.GetButton("Bloodlet")) {
+                if (bloodletting) {
                     bloodRegen = false;
                     break;
                 }
                 yield return null;
             }
-            bloodLevel += bloodRegenRate;
+            if (!bloodletting)
+                bloodLevel += bloodRegenRate;
             yield return null;
         }
         bloodRegen = false;
@@ -203,9 +211,12 @@ public class Bloodletter : MonoBehaviour {
                 target.OnInteract();
 			}
 		}
-    }
+// BLOODLET INPUT
+        if (Input.GetButtonDown("Bloodlet")) 
+            ToggleBloodletting(!bloodletting);
+        if (bloodLevel < 100 && !bloodRegen && !bloodletting) 
+            StartCoroutine(RegainBlood());
 
-    public void FixedUpdate() {
 // MOVE INPUT
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
@@ -218,11 +229,5 @@ public class Bloodletter : MonoBehaviour {
             
             _moveSpeed = walkSpeed * _speedMultiplier;
         } else if (!sprinting) _speedMultiplier = standMultiplier;
-
-// BLOODLET INPUT
-        if (Input.GetButton("Bloodlet")) {
-            if (bloodLevel > 0 && !bloodletting) StartCoroutine(Bloodlet());
-        } else if (bloodLevel < 100 && !bloodRegen) StartCoroutine(RegainBlood());
-
     }
 }
