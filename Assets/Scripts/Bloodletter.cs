@@ -36,6 +36,10 @@ public class Bloodletter : MonoBehaviour {
 	public Camera cam;
 	public LayerMask interactionMask;
 
+    [Header("Rates")]
+    [SerializeField] float bloodletSFXDelay;
+    [SerializeField] float decalSprintDelay, decalWalkDelay, footstepDelay, footstepRunDelay;
+    
 
     [Header("Stats")]
     [Range(0,100)]
@@ -53,7 +57,7 @@ public class Bloodletter : MonoBehaviour {
 
     [Header("Prefabs")]
     [SerializeField] GameObject bloodDecal;
-    [SerializeField] SFX bloodletSFX;
+    [SerializeField] SFX bloodletSFX, footstepWalkSFX, footstepRunSFX;
 
     void Start() {
         Init();
@@ -63,6 +67,7 @@ public class Bloodletter : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         StartCoroutine(InfectionSpread());
         StartCoroutine(BloodletterTick());
+        StartCoroutine((FootstepCheck()));
     }
 
     IEnumerator BloodletterTick() {
@@ -152,6 +157,8 @@ public class Bloodletter : MonoBehaviour {
         if (state && bloodLevel > 0) {
             bloodletting = state;
             StartCoroutine(Bloodlet());
+            StartCoroutine(BloodletSFX());
+            StartCoroutine(BloodletDecal());
         } else bloodletting = false;
     }
 
@@ -164,17 +171,50 @@ public class Bloodletter : MonoBehaviour {
             } 
             if (bloodletting) {
                 bloodLevel -= bloodDrainRate * _speedMultiplier;
-                PlaySound(bloodletSFX);
             }
-
-// DECAL LOGIC
-            GameObject decal = Instantiate(bloodDecal);
-            decal.transform.position = transform.position;
-
+            
             yield return null;
         }
 
         if (bloodLevel <= 0) bloodletting = false;
+    }
+
+    IEnumerator BloodletSFX() {
+        while (bloodletting) {
+            float timer = 0f;
+
+            while (bloodletSFXDelay > timer) {
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            if (bloodletting) {
+                PlaySound(bloodletSFX);
+            }
+
+            yield return null;
+        }
+    }
+
+    IEnumerator BloodletDecal() {
+        while (bloodletting)
+        {
+            float delay = sprinting ? decalSprintDelay : decalWalkDelay;
+            float timer = 0f;
+
+            while (delay > timer) {
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            if (bloodletting) {
+                // DECAL LOGIC
+                GameObject decal = Instantiate(bloodDecal);
+                decal.transform.position = transform.position;
+            }
+
+            yield return null;
+        }
     }
 
     public IEnumerator RegainBlood() {
@@ -236,6 +276,26 @@ public class Bloodletter : MonoBehaviour {
             
             _moveSpeed = walkSpeed * _speedMultiplier;
         } else if (!sprinting) _speedMultiplier = standMultiplier;
+    }
+
+    IEnumerator FootstepCheck()
+    {
+        while (true) {
+            float delay = sprinting ? footstepRunDelay : footstepDelay;
+            float timer = 0f;
+            
+            while (delay > timer) {
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            if (sprinting) {
+                PlaySound(footstepRunSFX);
+            }
+            else if(_speedMultiplier != standMultiplier) {
+                PlaySound(footstepWalkSFX);
+            }
+            yield return null;
+        }
     }
 
     public virtual void PlaySound(SFX sfx = null) {
