@@ -17,10 +17,13 @@ public class EnemyPathfinding : MonoBehaviour {
 
     [Header("Tracking Vars")]
     [SerializeField] float viewAngle;
-    [SerializeField] float viewDist;
+    [SerializeField] float viewDist, trackingRadius;
+    [SerializeField] Vector2 roamDist;
+    [SerializeField] Vector3 pointOfInterest;
     [SerializeField] LayerMask viewMask;
-    [SerializeField] float trackingRadius;
     [SerializeField] BloodPool currentPool;
+    [SerializeField] LayerMask bloodPoolMask;
+    bool seenByPlayer;
 
     void Start() {
         agent = GetComponent<NavMeshAgent>();
@@ -63,20 +66,50 @@ public class EnemyPathfinding : MonoBehaviour {
         return false;
     }
 
+    bool SeenByPlayer() {
+        if (Vector3.Distance(transform.position, bloodletter.transform.position) < viewDist) {
+            Vector3 dir = (bloodletter.transform.position - transform.position).normalized;
+            float angleDelta = Vector3.Angle(transform.forward, dir);
+            if (angleDelta < viewAngle /2f) {
+                if (!Physics.Linecast(transform.position, bloodletter.transform.position, viewMask)) {
+                    return true;
+                }
+            } 
+        }
+        return false;
+    }
+
+    IEnumerator Idle() {
+        agent.ResetPath();
+        yield return null;
+    }
+
+
     IEnumerator Lurk() {
+        agent.ResetPath();
         yield return null;
 
     }
 
-    IEnumerator RandomRoam() {
-        agent.SetDestination(Random.insideUnitSphere * trackingRadius);
+    IEnumerator Teleport() {
+        agent.ResetPath();
+        yield return null;
+    }
 
+    
+    IEnumerator RandomRoam() {
+        Vector3 pos = Quaternion.AngleAxis(Random.Range(-viewAngle, viewAngle)/2, Vector3.up) * transform.forward * Random.Range(roamDist.x, roamDist.y);
+        agent.SetDestination(transform.position + pos);
 
 
 // WAIT FOR PATH TO FINISH
         bool finished = false;
         if (agent.hasPath) {
             while (!finished) {
+                if (CanSeePlayer()) {
+                    state = EnemyState.Chasing;
+                    break;
+                }
                 if (!agent.pathPending) {
                     if (agent.remainingDistance <= agent.stoppingDistance) {
                         if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) {
@@ -90,11 +123,9 @@ public class EnemyPathfinding : MonoBehaviour {
     }
 
     IEnumerator TrackBlood() {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, trackingRadius);
-        Debug.Log(hitColliders.Length);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, trackingRadius, bloodPoolMask);
         foreach (var hitCollider in hitColliders) {
             if (hitCollider.GetComponent<BloodPool>()) {
-                Debug.Log("Collider is bp");
                 BloodPool bp = hitCollider.GetComponent<BloodPool>();
                 if (currentPool == null || bp.age < currentPool.age) {
                     currentPool = bp;
@@ -124,15 +155,31 @@ public class EnemyPathfinding : MonoBehaviour {
     }
 
     IEnumerator Chase() {
-        yield return null;
-
+        agent.SetDestination(bloodletter.transform.position);
+        
+        // WAIT FOR PATH TO FINISH
+        bool finished = false;
+        if (agent.hasPath) {
+            while (!finished) {
+                if (!agent.pathPending) {
+                    if (agent.remainingDistance <= agent.stoppingDistance) {
+                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) {
+                            finished = true;
+                        }
+                    }
+                }
+                yield return null;
+            }
+        }
     }
 
     void OnDrawGizmos () {
 		Gizmos.color = Color.yellow;
 		Gizmos.DrawWireSphere(transform.position, trackingRadius);
-        Gizmos.color = CanSeePlayer() ? Color.green : Color.red;
-        Gizmos.DrawRay(transform.position, (transform.forward * viewDist));
+        if (Application.isPlaying)
+            Gizmos.color = CanSeePlayer() ? Color.green : Color.red;
+        Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(viewAngle/2, Vector3.up) * transform.forward * viewDist);
+        Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(-viewAngle/2, Vector3.up) * transform.forward * viewDist);
 	}
 
 }

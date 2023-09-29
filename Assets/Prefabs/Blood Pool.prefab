@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7716284047649338594}
   - component: {fileID: 5722726836972988020}
   - component: {fileID: 3901389758989230808}
-  m_Layer: 0
-  m_Name: Blood Decal
+  m_Layer: 8
+  m_Name: Blood Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

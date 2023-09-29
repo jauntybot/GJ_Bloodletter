@@ -13,7 +13,7 @@ public class DebugUI : MonoBehaviour {
 
     Bloodletter bloodletter;
     public Slider staminaSlider, bloodSlider, infectionSlider;
-    [SerializeField] GameObject infectedPanel;
+    [SerializeField] Image infectedPanel;
     [SerializeField] Image radialBar;
 
     void Start() {
@@ -24,7 +24,7 @@ public class DebugUI : MonoBehaviour {
         staminaSlider.value = bloodletter.staminaLevel;
         bloodSlider.value = bloodletter.bloodLevel;
         infectionSlider.value = bloodletter.infectionLevel;
-        if (bloodletter.infectionLevel >= 100 && !infectedPanel.activeSelf) infectedPanel.SetActive(true); 
+        infectedPanel.color = new Color (infectedPanel.color.r, infectedPanel.color.g, infectedPanel.color.b, Mathf.Lerp (0, 0.33f, bloodletter.infectionLevel/100));
     } 
 
     public IEnumerator DisplayTransfusion(TransfusionSite site) {

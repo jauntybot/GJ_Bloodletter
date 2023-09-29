@@ -167,7 +167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2584848649487299981
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1064,10 +1064,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2584848649487299981}
   - {fileID: 6409916790283722262}
   - {fileID: 2705650291977794528}
   - {fileID: 5539104983945627932}
-  - {fileID: 2584848649487299981}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1150,7 +1150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff106f55c4a4a847bd53a25af1b0cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bloodletter: {fileID: 0}
   staminaSlider: {fileID: 1941220346054213486}
   bloodSlider: {fileID: 4827804347965117876}
   infectionSlider: {fileID: 24912281219325923}
