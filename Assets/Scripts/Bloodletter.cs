@@ -38,7 +38,7 @@ public class Bloodletter : MonoBehaviour {
 
     [Header("Rates")]
     [SerializeField] float bloodletSFXDelay;
-    [SerializeField] float decalSprintDelay, decalWalkDelay, footstepDelay, footstepRunDelay;
+    [SerializeField] float decalSprintDelay, decalWalkDelay, footstepDelay, footstepRunDelay, heavyBreathingDelay;
     
 
     [Header("Stats")]
@@ -53,11 +53,11 @@ public class Bloodletter : MonoBehaviour {
     [SerializeField]
     bool sprinting;
     [SerializeField]
-    bool staminaRegen, bloodletting, bloodRegen;
+    bool staminaRegen, heavyBreathing, bloodletting, bloodRegen;
 
     [Header("Prefabs")]
     [SerializeField] GameObject bloodDecal;
-    [SerializeField] SFX bloodletSFX, footstepWalkSFX, footstepRunSFX;
+    [SerializeField] SFX bloodletSFX, footstepWalkSFX, footstepRunSFX, heavyBreathingSFX;
 
     void Start() {
         Init();
@@ -117,6 +117,9 @@ public class Bloodletter : MonoBehaviour {
             }
             if (sprinting)
                 staminaLevel -= staminaDrainRate;
+            if (staminaLevel <= 25 && !heavyBreathing) {
+                StartCoroutine(HeavyBreathing());
+            }
 
             yield return null;
         }
@@ -151,6 +154,16 @@ public class Bloodletter : MonoBehaviour {
             yield return null;
         }
         staminaRegen = false;
+    }
+
+    IEnumerator HeavyBreathing() {
+        heavyBreathing = true;
+        PlaySound(heavyBreathingSFX);
+        while (staminaLevel <= 25) {
+            yield return null;
+        }
+        
+        heavyBreathing = false;
     }
 
     void ToggleBloodletting(bool state) {
@@ -298,12 +311,20 @@ public class Bloodletter : MonoBehaviour {
         }
     }
 
-    public virtual void PlaySound(SFX sfx = null) {
+    public virtual void PlaySound(SFX sfx = null, bool loop = false) {
+        audioSource.loop = loop;
         if (sfx) {
             if (sfx.outputMixerGroup) 
                 audioSource.outputAudioMixerGroup = sfx.outputMixerGroup;   
 
-            audioSource.PlayOneShot(sfx.Get());
+            if(!loop)
+                audioSource.PlayOneShot(sfx.Get());
+            else
+            {
+                audioSource.clip = sfx.Get();
+                audioSource.Play();
+                
+            }
         }
     }
 }

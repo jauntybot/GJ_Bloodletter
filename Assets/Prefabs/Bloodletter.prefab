@@ -363,6 +363,7 @@ MonoBehaviour:
   decalWalkDelay: 0.75
   footstepDelay: 0.75
   footstepRunDelay: 0.4
+  heavyBreathingDelay: 1
   bloodLevel: 100
   infectionLevel: 0
   staminaLevel: 100
@@ -371,6 +372,7 @@ MonoBehaviour:
   potencyIncrement: 0.0075
   sprinting: 0
   staminaRegen: 0
+  heavyBreathing: 0
   bloodletting: 0
   bloodRegen: 0
   bloodDecal: {fileID: 5722726836972988023, guid: f267f9076ce2d32419b58e2431db6523,
@@ -378,6 +380,7 @@ MonoBehaviour:
   bloodletSFX: {fileID: 11400000, guid: 1fe0c394f5ffd3e408ace97abdcd938e, type: 2}
   footstepWalkSFX: {fileID: 11400000, guid: 4987e36bf2c24473c983680d5f9dd0bb, type: 2}
   footstepRunSFX: {fileID: 11400000, guid: 4fb2fda166b67494dae2c77363f6ab12, type: 2}
+  heavyBreathingSFX: {fileID: 11400000, guid: 4579dc8912138488cac6f3b49b2b5ed3, type: 2}
 --- !u!114 &530813869
 MonoBehaviour:
   m_ObjectHideFlags: 0
