@@ -4,15 +4,18 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(AudioSource))]
 public class EnemyPathfinding : MonoBehaviour {
 
     [Header("References")]
     NavMeshAgent agent;
     Bloodletter bloodletter;
+    [SerializeField] AudioSource audioSource, sfxSource;
 
     public enum EnemyState { Lurking, Roaming, Tracking, Chasing };
     [Header("State Machine")]
     public EnemyState state;
+    [SerializeField] SFX idleSFX, chaseStingSFX;
 
 
     [Header("Tracking Vars")]
@@ -27,9 +30,13 @@ public class EnemyPathfinding : MonoBehaviour {
 
     void Start() {
         agent = GetComponent<NavMeshAgent>();
+        //audioSource = GetComponent<AudioSource>();
         bloodletter = Bloodletter.instance;
         
         StartCoroutine(Pathfind());
+
+        audioSource.clip = idleSFX.Get();
+        audioSource.Play();
     }
 
     public IEnumerator Pathfind() {
@@ -108,6 +115,7 @@ public class EnemyPathfinding : MonoBehaviour {
             while (!finished) {
                 if (CanSeePlayer()) {
                     state = EnemyState.Chasing;
+                    sfxSource.PlayOneShot(chaseStingSFX.Get());
                     break;
                 }
                 if (!agent.pathPending) {
@@ -134,6 +142,10 @@ public class EnemyPathfinding : MonoBehaviour {
         }
         if (currentPool)
             agent.SetDestination(currentPool.transform.position);
+        else {
+            state = EnemyState.Roaming;
+            yield return null;
+        }
 
 // WAIT FOR PATH TO FINISH
         bool finished = false;
@@ -151,7 +163,8 @@ public class EnemyPathfinding : MonoBehaviour {
         }
 
 // DELAY TO INSPECT BLOOD POOL
-        yield return new WaitForSecondsRealtime(1f);
+        if (currentPool)
+            yield return new WaitForSecondsRealtime(2.5f);
     }
 
     IEnumerator Chase() {
@@ -171,6 +184,8 @@ public class EnemyPathfinding : MonoBehaviour {
                 yield return null;
             }
         }
+        if (!CanSeePlayer()) state = EnemyState.Tracking;
+        yield return null;
     }
 
     void OnDrawGizmos () {
@@ -181,5 +196,22 @@ public class EnemyPathfinding : MonoBehaviour {
         Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(viewAngle/2, Vector3.up) * transform.forward * viewDist);
         Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(-viewAngle/2, Vector3.up) * transform.forward * viewDist);
 	}
+
+    public virtual void PlaySound(SFX sfx = null, bool loop = false) {
+        audioSource.loop = loop;
+        if (sfx) {
+            if (sfx.outputMixerGroup) 
+                audioSource.outputAudioMixerGroup = sfx.outputMixerGroup;   
+
+            if(!loop)
+                audioSource.PlayOneShot(sfx.Get());
+            else
+            {
+                audioSource.clip = sfx.Get();
+                audioSource.Play();
+                
+            }
+        }
+    }
 
 }

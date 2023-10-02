@@ -11,15 +11,9 @@ public class AmbiantAudio : MonoBehaviour {
 
     void Start() {
         audioSource = GetComponent<AudioSource>(); 
-        PlaySound(audioSource, ambiantSFX);
+        audioSource.clip = ambiantSFX.Get();
+        audioSource.outputAudioMixerGroup = ambiantSFX.outputMixerGroup;
+        audioSource.Play();
     }
 
-    public virtual void PlaySound(AudioSource source, SFX sfx = null) {
-        if (sfx) {
-            if (sfx.outputMixerGroup) 
-                source.outputAudioMixerGroup = sfx.outputMixerGroup;   
-
-            source.PlayOneShot(sfx.Get());
-        }
-    }
 }

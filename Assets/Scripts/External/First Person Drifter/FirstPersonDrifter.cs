@@ -10,6 +10,7 @@ using System.Collections;
 public class FirstPersonDrifter: MonoBehaviour
 {
     Bloodletter bloodletter;
+    [SerializeField] Camera cam;
  
     // If true, diagonal speed (when strafing + moving forward or back) can't exceed normal move speed; otherwise it's about 1.4 times faster
     private bool limitDiagonalSpeed = true;
@@ -20,7 +21,7 @@ public class FirstPersonDrifter: MonoBehaviour
     public float gravity = 10.0f;
  
     // Units that player can fall before a falling damage function is run. To disable, type "infinity" in the inspector
-    private float fallingDamageThreshold = 10.0f;
+    // private float fallingDamageThreshold = 10.0f;
  
     // If the player ends up on a slope which is at least the Slope Limit as set on the character controller, then he will slide down
     public bool slideWhenOverSlopeLimit = false;
@@ -89,8 +90,8 @@ public class FirstPersonDrifter: MonoBehaviour
             // If we were falling, and we fell a vertical distance greater than the threshold, run a falling damage routine
             if (falling) {
                 falling = false;
-                if (myTransform.position.y < fallStartLevel - fallingDamageThreshold)
-                    FallingDamageAlert (fallStartLevel - myTransform.position.y);
+                // if (myTransform.position.y < fallStartLevel - fallingDamageThreshold)
+                //     FallingDamageAlert (fallStartLevel - myTransform.position.y);
             }
  
             // GET SPEED FROM BLOODLETTER
@@ -107,6 +108,7 @@ public class FirstPersonDrifter: MonoBehaviour
             // Otherwise recalculate moveDirection directly from axes, adding a bit of -y to avoid bumping down inclines
             else {
                 moveDirection = new Vector3(inputX * inputModifyFactor, -antiBumpFactor, inputY * inputModifyFactor);
+                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, cam.transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.x);
                 moveDirection = myTransform.TransformDirection(moveDirection) * speed;
                 playerControl = true;
             }
@@ -148,8 +150,8 @@ public class FirstPersonDrifter: MonoBehaviour
  
     // If falling damage occured, this is the place to do something about it. You can make the player
     // have hitpoints and remove some of them based on the distance fallen, add sound effects, etc.
-    void FallingDamageAlert (float fallDistance)
-    {
-        //print ("Ouch! Fell " + fallDistance + " units!");   
-    }
+    // void FallingDamageAlert (float fallDistance)
+    // {
+    //     //print ("Ouch! Fell " + fallDistance + " units!");   
+    // }
 }

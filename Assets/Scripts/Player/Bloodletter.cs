@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
+using System.Threading;
 
 [RequireComponent(typeof(AudioSource))]
 public class Bloodletter : MonoBehaviour {
@@ -14,8 +16,9 @@ public class Bloodletter : MonoBehaviour {
 
     AudioSource audioSource;
 
-// INTERACTION VARIABLES
+
     [Header("Controller")]	
+    [SerializeField] CinemachineVirtualCamera vCam;
     public float walkSpeed;
     public float standMultiplier, sprintMultiplier;
     private float _moveSpeed;
@@ -39,7 +42,16 @@ public class Bloodletter : MonoBehaviour {
     [Header("Rates")]
     [SerializeField] float bloodletSFXDelay;
     [SerializeField] float decalSprintDelay, decalWalkDelay, footstepDelay, footstepRunDelay, heavyBreathingDelay;
-    
+
+    [Header("Cinemachine Values")]
+    [SerializeField] float baseFOV;
+    [SerializeField] float sprintFOVMod, bloodletFOVMod, baseFOVAmplitude, bloodletFOVAmplitude;
+    [SerializeField] float FOV() {
+        float fov = baseFOV;
+        if (sprinting) fov += sprintFOVMod;
+        if (bloodletting) fov += bloodletFOVMod;
+        return fov;
+    }
 
     [Header("Stats")]
     [Range(0,100)]
@@ -87,26 +99,33 @@ public class Bloodletter : MonoBehaviour {
         while (infectionLevel < 100) {
             while (!tick) yield return null;
             infectionSpeed = bloodLevel/100;
-
-            infectionPotency += potencyIncrement;
-            infectionLevel += infectionPotency * infectionSpeed;
+            if (!bloodletting) {
+                infectionPotency += potencyIncrement;
+                infectionLevel += infectionPotency * infectionSpeed;
+            }
             yield return null;
         }
     }
 
     public IEnumerator Sprint() {
         sprinting = true;
-        float ramp = 0;
-        while (ramp < sprintDelay) {
-            ramp += Time.deltaTime;
-            _speedMultiplier = Mathf.Lerp(1, sprintMultiplier, ramp / sprintDelay);
+// RAMP UP TO SPRINT SPEED AND FOV LERP
+        float timer = 0;
+        float curFOV = vCam.m_Lens.FieldOfView;
+        while (timer < sprintDelay) {
+            timer += Time.deltaTime;
+            vCam.m_Lens.FieldOfView = Mathf.Lerp(curFOV, FOV(), timer/sprintDelay);
+            _speedMultiplier = Mathf.Lerp(1, sprintMultiplier, timer / sprintDelay);
             if (!Input.GetButton("Run")) {
                 sprinting = false;
                 break;
             }
             yield return null;
         }
+        vCam.m_Lens.FieldOfView = FOV();
         _speedMultiplier = sprintMultiplier;
+
+// WHILE LOOP OF SPRINTING
         while (staminaLevel > 0 && sprinting) {
             while (!tick) {
                 if (!Input.GetButton("Run")) {
@@ -125,6 +144,16 @@ public class Bloodletter : MonoBehaviour {
         }
         _speedMultiplier = 1f;
         sprinting = false;
+
+// LERP FOV BACK
+        timer = 0;
+        float endFOV = vCam.m_Lens.FieldOfView;
+        while (timer < sprintDelay) {
+            timer += Time.deltaTime;
+            vCam.m_Lens.FieldOfView = Mathf.Lerp(endFOV, FOV(), timer/sprintDelay);
+            yield return null;
+        }
+        vCam.m_Lens.FieldOfView = FOV();
     }
 
     public IEnumerator RegainStamina() {
@@ -172,7 +201,11 @@ public class Bloodletter : MonoBehaviour {
             StartCoroutine(Bloodlet());
             StartCoroutine(BloodletSFX());
             StartCoroutine(BloodletDecal());
-        } else bloodletting = false;
+            StartCoroutine(BloodletLerpFOV(bloodletFOVAmplitude));
+        } else {
+            bloodletting = false;
+            StartCoroutine(BloodletLerpFOV(baseFOVAmplitude));
+        }
     }
 
     public IEnumerator Bloodlet() {
@@ -190,6 +223,19 @@ public class Bloodletter : MonoBehaviour {
         }
 
         if (bloodLevel <= 0) bloodletting = false;
+        StartCoroutine(BloodletLerpFOV(baseFOVAmplitude));
+    }
+
+    IEnumerator BloodletLerpFOV(float target) {
+        float startAmp = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain;
+        float timer = 0;
+        while (timer < bloodDelay) {
+            timer += Time.deltaTime;
+            vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = Mathf.Lerp(startAmp, target, timer/bloodDelay);
+
+            yield return null;
+        }
+        vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = target;
     }
 
     IEnumerator BloodletSFX() {
@@ -210,8 +256,7 @@ public class Bloodletter : MonoBehaviour {
     }
 
     IEnumerator BloodletDecal() {
-        while (bloodletting)
-        {
+        while (bloodletting) {
             float delay = sprinting ? decalSprintDelay : decalWalkDelay;
             float timer = 0f;
 
@@ -221,7 +266,7 @@ public class Bloodletter : MonoBehaviour {
             }
 
             if (bloodletting) {
-                // DECAL LOGIC
+// DECAL LOGIC
                 GameObject decal = Instantiate(bloodDecal);
                 decal.transform.position = transform.position;
             }
