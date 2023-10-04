@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,22 +12,31 @@ public class EnemyPathfinding : MonoBehaviour {
     NavMeshAgent agent;
     Bloodletter bloodletter;
     [SerializeField] AudioSource audioSource, sfxSource;
-
-    public enum EnemyState { Lurking, Roaming, Tracking, Chasing };
-    [Header("State Machine")]
-    public EnemyState state;
     [SerializeField] SFX idleSFX, chaseStingSFX;
 
+    public enum EnemyState { Lurking, Roaming, Ambling, Tracking, Chasing };
+    [Header("State Machine")]
+    public EnemyState state;
 
-    [Header("Tracking Vars")]
-    [SerializeField] float viewAngle;
-    [SerializeField] float viewDist, trackingRadius;
+    [SerializeField] float roamDur;
+
+
+    [Header("Detection Variables")] [Range(0,100)]
+    public float detectionLevel;
+    [SerializeField] List<DetectionCone> detectionCones;
+    [SerializeField] float detectionDrainRate;
+    public bool playerLock;
+    [SerializeField] bool detectionScan;
+
+
+    [Header("Nav Variables")]
     [SerializeField] Vector2 roamDist;
-    [SerializeField] Vector3 pointOfInterest;
+    [SerializeField] Transform pointOfInterest;
     [SerializeField] LayerMask viewMask;
     [SerializeField] BloodPool currentPool;
     [SerializeField] LayerMask bloodPoolMask;
     bool seenByPlayer;
+
 
     void Start() {
         agent = GetComponent<NavMeshAgent>();
@@ -34,6 +44,7 @@ public class EnemyPathfinding : MonoBehaviour {
         bloodletter = Bloodletter.instance;
         
         StartCoroutine(Pathfind());
+        StartCoroutine(PassiveDetection());
 
         audioSource.clip = idleSFX.Get();
         audioSource.Play();
@@ -60,30 +71,42 @@ public class EnemyPathfinding : MonoBehaviour {
         }
     }
 
-    bool CanSeePlayer() {
-        if (Vector3.Distance(transform.position, bloodletter.transform.position) < viewDist) {
-            Vector3 dir = (bloodletter.transform.position - transform.position).normalized;
-            float angleDelta = Vector3.Angle(transform.forward, dir);
-            if (angleDelta < viewAngle /2f) {
-                if (!Physics.Linecast(transform.position, bloodletter.transform.position, viewMask)) {
-                    return true;
+    public IEnumerator PassiveDetection() {
+        while (true) {
+// INCREMENT DETECTION LEVEL
+            bool detecting = false;
+            foreach (DetectionCone cone in detectionCones) {
+                if (Vector3.Distance(transform.position, bloodletter.transform.position) < cone.dist) {
+                    Vector3 dir = (bloodletter.transform.position - transform.position).normalized;
+                    float angleDelta = Vector3.Angle(transform.forward, dir);
+                    if (angleDelta < cone.viewAngle / 2f) {
+                        if (!Physics.Linecast(transform.position, bloodletter.transform.position, viewMask)) {
+                            if (detectionLevel < 100)
+                                detectionLevel += bloodletter.exposureLevel/1000 * cone.detectionMultiplier;
+                            detecting = true;
+                            cone.detecting = true;
+                        } else cone.detecting = false;
+                        cone.inRange = true;
+                    } 
+                    else {
+                        cone.inRange = false;
+                        cone.detecting = false;
+                    }
                 }
-            } 
-        }
-        return false;
-    }
+                else {
+                        cone.inRange = false;
+                        cone.detecting = false;
+                    }
+            }    
 
-    bool SeenByPlayer() {
-        if (Vector3.Distance(transform.position, bloodletter.transform.position) < viewDist) {
-            Vector3 dir = (bloodletter.transform.position - transform.position).normalized;
-            float angleDelta = Vector3.Angle(transform.forward, dir);
-            if (angleDelta < viewAngle /2f) {
-                if (!Physics.Linecast(transform.position, bloodletter.transform.position, viewMask)) {
-                    return true;
-                }
-            } 
+            if (!detecting && detectionLevel > 0) 
+                detectionLevel -= detectionDrainRate;
+    
+// CHANGE BEHAVIOR STATE BOOLS BY DETECTION LEVEL
+        // if ()
+            
+            yield return null;
         }
-        return false;
     }
 
     IEnumerator Idle() {
@@ -104,20 +127,22 @@ public class EnemyPathfinding : MonoBehaviour {
     }
 
     
-    IEnumerator RandomRoam() {
-        Vector3 pos = Quaternion.AngleAxis(Random.Range(-viewAngle, viewAngle)/2, Vector3.up) * transform.forward * Random.Range(roamDist.x, roamDist.y);
-        agent.SetDestination(transform.position + pos);
+    IEnumerator AmbleToPOI(Vector3 pos) {
+        Debug.Log("Start Amble");
+        NavMeshHit hit;
+        
+        NavMesh.SamplePosition(pos, out hit, 1.0f, NavMesh.AllAreas);
+        agent.SetDestination(hit.position);
+        Debug.Log("Set amble dest");
 
-
+        if (agent.hasPath) {
+            Debug.Log(agent.path.corners.Length);
+            agent.SetDestination(agent.path.corners[25]);
+        }
 // WAIT FOR PATH TO FINISH
         bool finished = false;
         if (agent.hasPath) {
             while (!finished) {
-                if (CanSeePlayer()) {
-                    state = EnemyState.Chasing;
-                    sfxSource.PlayOneShot(chaseStingSFX.Get());
-                    break;
-                }
                 if (!agent.pathPending) {
                     if (agent.remainingDistance <= agent.stoppingDistance) {
                         if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) {
@@ -128,10 +153,39 @@ public class EnemyPathfinding : MonoBehaviour {
                 yield return null;
             }
         }
+        Debug.Log("End Amble");
+    }
+
+    IEnumerator RandomRoam() {
+        float timer = 0;
+        while (timer <= roamDur) {
+            Vector3 pos = Quaternion.AngleAxis(Random.Range(-detectionCones[0].viewAngle, detectionCones[0].viewAngle)/2, Vector3.up) * transform.forward * Random.Range(roamDist.x, roamDist.y);
+            Debug.Log("Set roam dest");
+            agent.SetDestination(transform.position + pos);
+
+
+// WAIT FOR PATH TO FINISH
+            bool finished = false;
+            if (agent.hasPath) {
+                while (!finished) {
+                    if (!agent.pathPending) {
+                        if (agent.remainingDistance <= agent.stoppingDistance) {
+                            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) {
+                                finished = true;
+                            }
+                        }
+                    }
+                    timer += Time.deltaTime;
+                    yield return null;
+                }
+            }
+            yield return null;
+        }
+        yield return StartCoroutine(AmbleToPOI(pointOfInterest.position));
     }
 
     IEnumerator TrackBlood() {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, trackingRadius, bloodPoolMask);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionCones[2].dist, bloodPoolMask);
         foreach (var hitCollider in hitColliders) {
             if (hitCollider.GetComponent<BloodPool>()) {
                 BloodPool bp = hitCollider.GetComponent<BloodPool>();
@@ -184,18 +238,23 @@ public class EnemyPathfinding : MonoBehaviour {
                 yield return null;
             }
         }
-        if (!CanSeePlayer()) state = EnemyState.Tracking;
+        //if (!CanSeePlayer()) state = EnemyState.Tracking;
         yield return null;
     }
 
     void OnDrawGizmos () {
 		Gizmos.color = Color.yellow;
-		Gizmos.DrawWireSphere(transform.position, trackingRadius);
-        if (Application.isPlaying)
-            Gizmos.color = CanSeePlayer() ? Color.green : Color.red;
-        Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(viewAngle/2, Vector3.up) * transform.forward * viewDist);
-        Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(-viewAngle/2, Vector3.up) * transform.forward * viewDist);
-	}
+        foreach (DetectionCone cone in detectionCones) {
+            if (Application.isPlaying)
+                Gizmos.color = cone.detecting ? Color.green : cone.inRange ? Color.yellow : Color.red;;
+            if (cone.coneShape == DetectionCone.ConeShape.Cone) {
+                Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(cone.viewAngle/2, Vector3.up) * transform.forward * cone.dist);
+                Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(-cone.viewAngle/2, Vector3.up) * transform.forward * cone.dist);
+            } else 
+        		Gizmos.DrawWireSphere(transform.position, cone.dist);
+
+        }
+    }
 
     public virtual void PlaySound(SFX sfx = null, bool loop = false) {
         audioSource.loop = loop;
@@ -213,5 +272,22 @@ public class EnemyPathfinding : MonoBehaviour {
             }
         }
     }
+}
+
+[System.Serializable]
+public class DetectionCone {
+
+    public string name;
+
+    [Header("Cone Properties")]
+    public float dist;
+    public float viewAngle, detectionMultiplier;
+    public enum ConeShape { Cone, Sphere };
+    public ConeShape coneShape;
+
+    public bool detecting, inRange;
+
+
+
 
 }

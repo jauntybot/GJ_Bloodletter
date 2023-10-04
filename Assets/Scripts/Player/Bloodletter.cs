@@ -19,6 +19,10 @@ public class Bloodletter : MonoBehaviour {
 
     [Header("Controller")]	
     [SerializeField] CinemachineVirtualCamera vCam;
+    [SerializeField] Transform cameraRoot;
+    [SerializeField] Vector2 cameraHeight = new Vector2(0.5f, -0.5f);
+    [SerializeField] AnimationCurve crouchCurve;
+    [SerializeField] float crouchDur;
     public float walkSpeed;
     public float standMultiplier, sprintMultiplier;
     private float _moveSpeed;
@@ -42,6 +46,13 @@ public class Bloodletter : MonoBehaviour {
     [Header("Rates")]
     [SerializeField] float bloodletSFXDelay;
     [SerializeField] float decalSprintDelay, decalWalkDelay, footstepDelay, footstepRunDelay, heavyBreathingDelay;
+    
+    
+    [Header("Exposure")]
+    [Range(0,100)]
+    public float exposureLevel;
+    [SerializeField] AnimationCurve exposureCurve;
+    [SerializeField] float expBase, expStill, expCrouch, expWalk, expSprint, expBloodletting, expInfected;
 
     [Header("Cinemachine Values")]
     [SerializeField] float baseFOV;
@@ -58,14 +69,16 @@ public class Bloodletter : MonoBehaviour {
     public float bloodLevel;
     [Range(0,100)]
     public float infectionLevel, staminaLevel;
-    public float infectionPotency, infectionSpeed, potencyIncrement;
+    [Range(0.125f, 1)]
+    public float infectionPotency;
+    public float infectionSpeed, potencyIncrement;
 
 
     [Header("States")]
     [SerializeField]
     bool sprinting;
     [SerializeField]
-    bool staminaRegen, heavyBreathing, bloodletting, bloodRegen;
+    bool crouching, staminaRegen, heavyBreathing, bloodletting, bloodRegen;
 
     [Header("Prefabs")]
     [SerializeField] GameObject bloodDecal;
@@ -79,7 +92,8 @@ public class Bloodletter : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         StartCoroutine(InfectionSpread());
         StartCoroutine(BloodletterTick());
-        StartCoroutine((FootstepCheck()));
+        StartCoroutine(Exposure());
+        StartCoroutine(FootstepCheck());
     }
 
     IEnumerator BloodletterTick() {
@@ -303,6 +317,47 @@ public class Bloodletter : MonoBehaviour {
         bloodRegen = false;
     }
 
+    public IEnumerator Crouch() {
+        crouching = true;
+        Vector3 startPos = cameraRoot.localPosition;
+        float timer = 0;
+        while (timer < crouchDur && Input.GetButton("Crouch")) {
+            if (!Input.GetButton("Crouch")) break;
+            timer += Time.deltaTime;
+            cameraRoot.localPosition = Vector3.Lerp(startPos, new Vector3(cameraRoot.localPosition.x, cameraHeight.y, cameraRoot.localPosition.z), crouchCurve.Evaluate(timer/crouchDur));
+            yield return null;
+        }
+        cameraRoot.localPosition = new Vector3(cameraRoot.localPosition.x, cameraHeight.y, cameraRoot.localPosition.z);
+        while (Input.GetButton("Crouch")) {
+            if (!Input.GetButton("Crouch")) break;
+            yield return null;
+        }   
+        startPos = cameraRoot.localPosition;
+        timer = 0;
+        while (timer < crouchDur) {
+            timer += Time.deltaTime;
+            cameraRoot.localPosition = Vector3.Lerp(startPos, new Vector3(0, cameraHeight.x, 0), crouchCurve.Evaluate(timer/crouchDur));
+            yield return null;
+        }
+        cameraRoot.localPosition = new Vector3(0, cameraHeight.x, 0);
+        crouching = false;
+    }
+
+    IEnumerator Exposure() {
+        while (true) {
+            while (!tick) yield return null;
+            exposureLevel = expBase;
+            if (sprinting) exposureLevel += expSprint;
+            else if (speedMultiplier > standMultiplier) exposureLevel += expWalk;
+            else exposureLevel += expStill;
+            if (crouching) exposureLevel += expCrouch;
+            if (bloodletting) exposureLevel += expBloodletting;
+            exposureLevel += expInfected * infectionLevel/100;
+            exposureLevel = exposureCurve.Evaluate(exposureLevel/100) * 100;
+            yield return null;
+        }
+    }
+
     public void Update() {
 // MOUSE INPUT
 // INTERACTION INPUT
@@ -321,6 +376,11 @@ public class Bloodletter : MonoBehaviour {
             ToggleBloodletting(!bloodletting);
         if (bloodLevel < 100 && !bloodRegen && !bloodletting) 
             StartCoroutine(RegainBlood());
+
+// CROUCH INPUT
+        if (Input.GetButtonDown("Crouch") && !crouching) {
+            StartCoroutine(Crouch());
+        }
 
 // MOVE INPUT
         float inputX = Input.GetAxis("Horizontal");

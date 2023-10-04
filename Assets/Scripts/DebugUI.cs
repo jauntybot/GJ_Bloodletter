@@ -12,7 +12,8 @@ public class DebugUI : MonoBehaviour {
     }    
 
     Bloodletter bloodletter;
-    public Slider staminaSlider, bloodSlider, infectionSlider;
+    [SerializeField] EnemyPathfinding enemy;
+    public Slider staminaSlider, bloodSlider, infectionSlider, exposureSlider, detectionSlider, terrorSlider;
     [SerializeField] Image infectedPanel;
     [SerializeField] Image radialBar;
 
@@ -24,6 +25,8 @@ public class DebugUI : MonoBehaviour {
         staminaSlider.value = bloodletter.staminaLevel;
         bloodSlider.value = bloodletter.bloodLevel;
         infectionSlider.value = bloodletter.infectionLevel;
+        exposureSlider.value = bloodletter.exposureLevel;
+        detectionSlider.value = enemy.detectionLevel;
         infectedPanel.color = new Color (infectedPanel.color.r, infectedPanel.color.g, infectedPanel.color.b, Mathf.Lerp (0, 0.33f, bloodletter.infectionLevel/100));
     } 
 
