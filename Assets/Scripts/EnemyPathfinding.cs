@@ -134,10 +134,11 @@ public class EnemyPathfinding : MonoBehaviour {
         NavMesh.SamplePosition(pos, out hit, 1.0f, NavMesh.AllAreas);
         agent.SetDestination(hit.position);
         Debug.Log("Set amble dest");
+        yield return null;
 
         if (agent.hasPath) {
             Debug.Log(agent.path.corners.Length);
-            agent.SetDestination(agent.path.corners[25]);
+            agent.SetDestination(agent.path.corners.Length > 5 ? agent.path.corners[4] : agent.path.corners[agent.path.corners.Length - 1]);
         }
 // WAIT FOR PATH TO FINISH
         bool finished = false;
