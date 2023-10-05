@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using System.Threading;
+using UnityEngine.Rendering.Universal;
+using UnityEditor.UIElements;
 
 [RequireComponent(typeof(AudioSource))]
 public class Bloodletter : MonoBehaviour {
@@ -72,6 +74,8 @@ public class Bloodletter : MonoBehaviour {
     [Range(0.125f, 1)]
     public float infectionPotency;
     public float infectionSpeed, potencyIncrement;
+    [SerializeField] List<FullscreenEffect> infectionEffects;
+    [SerializeField] FullscreenEffect bloodEffect;
 
 
     [Header("States")]
@@ -110,9 +114,22 @@ public class Bloodletter : MonoBehaviour {
     }
 
     public IEnumerator InfectionSpread() {
-        while (infectionLevel < 100) {
+        while (true) {
             while (!tick) yield return null;
             infectionSpeed = bloodLevel/100;
+            //infectionMaterial.SetFloat(_voronoiIntensity, infectionLevel/100);
+
+            foreach (FullscreenEffect fx in infectionEffects) {
+                foreach (EffectProperty prop in fx.properties) {
+                    if (prop.threshold.x <= infectionLevel/100 && prop.threshold.y >= infectionLevel/100) {
+                        fx.material.SetFloat(prop.shaderProperty, prop.curve.Evaluate((infectionLevel - prop.threshold.x * 100) / (prop.threshold.y * 100)) * prop.range.y);
+                    }
+                }
+            }
+
+            bloodEffect.material.SetFloat(bloodEffect.properties[0].shaderProperty, bloodEffect.properties[0].range.x + bloodEffect.properties[0].curve.Evaluate(1 - (bloodLevel/100)) * (bloodEffect.properties[0].range.y - bloodEffect.properties[0].range.x));
+
+
             if (!bloodletting) {
                 infectionPotency += potencyIncrement;
                 infectionLevel += infectionPotency * infectionSpeed;

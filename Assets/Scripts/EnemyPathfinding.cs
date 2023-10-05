@@ -133,7 +133,6 @@ public class EnemyPathfinding : MonoBehaviour {
         
         NavMesh.SamplePosition(pos, out hit, 1.0f, NavMesh.AllAreas);
         agent.SetDestination(hit.position);
-        Debug.Log("Set amble dest");
         yield return null;
 
         if (agent.hasPath) {
@@ -143,25 +142,29 @@ public class EnemyPathfinding : MonoBehaviour {
 // WAIT FOR PATH TO FINISH
         bool finished = false;
         if (agent.hasPath) {
+            float distance = agent.remainingDistance;
             while (!finished) {
                 if (!agent.pathPending) {
-                    if (agent.remainingDistance <= agent.stoppingDistance) {
-                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) {
-                            finished = true;
-                        }
+                    if (agent.remainingDistance <= distance - Random.Range(2, 10) || agent.remainingDistance <= agent.stoppingDistance) {
+                        finished = true;
                     }
                 }
                 yield return null;
             }
         }
-        Debug.Log("End Amble");
+    }
+
+
+    IEnumerator ScanArea() {
+
+        yield return null;
+
     }
 
     IEnumerator RandomRoam() {
         float timer = 0;
         while (timer <= roamDur) {
             Vector3 pos = Quaternion.AngleAxis(Random.Range(-detectionCones[0].viewAngle, detectionCones[0].viewAngle)/2, Vector3.up) * transform.forward * Random.Range(roamDist.x, roamDist.y);
-            Debug.Log("Set roam dest");
             agent.SetDestination(transform.position + pos);
 
 
