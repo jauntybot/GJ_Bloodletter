@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.InputSystem;
+
 
 public class FullScreenEffectController : MonoBehaviour
 {
@@ -35,7 +35,7 @@ public class FullScreenEffectController : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.eKey.wasPressedThisFrame)
+        if (Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(Hurt());
         }
@@ -43,6 +43,7 @@ public class FullScreenEffectController : MonoBehaviour
 
     private IEnumerator Hurt()
     {
+        print("Coroutine start");
         _fullScreenBlood.SetActive(true);
         _material.SetFloat(_voronoiIntensity, _voronoiIntensityStat);
         _material.SetFloat(_vignetteIntensity, _vignetteIntensityStat);
@@ -85,5 +86,7 @@ public class FullScreenEffectController : MonoBehaviour
         }
         
         _fullScreenBlood.SetActive(false);
+        print("Coroutine end");
     }
+
 }

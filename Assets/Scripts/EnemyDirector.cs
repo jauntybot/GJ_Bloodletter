@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MazeCell : MonoBehaviour
-{
+public class EnemyDirector : MonoBehaviour {
+
+    public EnemyPathfinding enemy;
+
 
     
 
