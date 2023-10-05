@@ -15,6 +15,8 @@ public class FullScreenEffectController : MonoBehaviour
     [Header("Intensity")]
     [SerializeField] private float _voronoiIntensityStat;
     [SerializeField] private float _vignetteIntensityStat;
+    [SerializeField] private float _distortionStrengthStat;
+    [SerializeField] private float _hueStrengthStat;
     
     [Header("References")]
     [SerializeField] private ScriptableRendererFeature _fullScreenBlood;
@@ -22,6 +24,9 @@ public class FullScreenEffectController : MonoBehaviour
 
     private int _voronoiIntensity = Shader.PropertyToID(("_VoronoIntensity"));
     private int _vignetteIntensity = Shader.PropertyToID(("_VignetteIntensity"));
+    private int _distortionStrength = Shader.PropertyToID(("_DistortionStrength"));
+    private int _hueStrength = Shader.PropertyToID(("_HueStrength"));
+    
 
     private void Start()
     {
@@ -41,6 +46,9 @@ public class FullScreenEffectController : MonoBehaviour
         _fullScreenBlood.SetActive(true);
         _material.SetFloat(_voronoiIntensity, _voronoiIntensityStat);
         _material.SetFloat(_vignetteIntensity, _vignetteIntensityStat);
+        
+        _material.SetFloat(_distortionStrength, _distortionStrengthStat);
+        _material.SetFloat(_hueStrength, _hueStrengthStat);
 
         float elapsedTime = 0f;
         while (elapsedTime < _bloodFadeOutTime)
@@ -49,9 +57,13 @@ public class FullScreenEffectController : MonoBehaviour
 
             float lerpedVornoi = Mathf.Lerp(0f, _voronoiIntensityStat, (elapsedTime / _bloodFadeOutTime));
             float lerpedVignette = Mathf.Lerp(0f, _vignetteIntensityStat, (elapsedTime / _bloodFadeOutTime));
+
+            float lerpedHue = Mathf.Lerp(0f, _hueStrengthStat, (elapsedTime / _bloodFadeOutTime));
             
             _material.SetFloat(_voronoiIntensity, lerpedVornoi);
             _material.SetFloat(_vignetteIntensity, lerpedVignette);
+            
+            _material.SetFloat(_hueStrength, lerpedHue);
             
             yield return null;
         }
