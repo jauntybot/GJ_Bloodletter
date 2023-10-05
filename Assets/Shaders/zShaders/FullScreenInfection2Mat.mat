@@ -42,7 +42,7 @@ Material:
     - _VignetteIntensity: 1.454
     - _VignettePower: 3.21
     - _VoronoiDensity: 18.3
-    - _VoronoiIntensity: 0.36539838
+    - _VoronoiIntensity: 1
     - _VoronoiPower: 3.62
     - _VoronoiSpeed: 1.14
     m_Colors:

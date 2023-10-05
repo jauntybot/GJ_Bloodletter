@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7500,96 +7500,6 @@ PrefabInstance:
       propertyPath: vCam
       value: 
       objectReference: {fileID: 1537660267}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: bloodEffect
-      value: 
-      objectReference: {fileID: 11400000, guid: e627bb89bddb3344ba876ae6bdd2a5bd,
-        type: 2}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: bloodMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: d5d7cc48dcc294cafb1cdc1da83f9c47, type: 2}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: fullscreenBlood
-      value: 
-      objectReference: {fileID: -3882953748893234477, guid: a9d0ca00fc878004da3ab8acee74949e,
-        type: 2}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: infectionMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: f575dad7025954525b874b70ef10ba37, type: 2}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: fullscreenInfection
-      value: 
-      objectReference: {fileID: 5195105783734661948, guid: a9d0ca00fc878004da3ab8acee74949e,
-        type: 2}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: infectionEffects.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: infectionEffects.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: d00ccc84279733441a3e30493a58bc08,
-        type: 2}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: infectionEffects.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 59d1aadb778ae9249a73b1f3e1e6aadc,
-        type: 2}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: infectionEffectCurve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: infectionEffectCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: infectionEffectCurve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: infectionEffectCurve.m_Curve.Array.data[0].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: infectionEffectCurve.m_Curve.Array.data[1].inSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: infectionEffectCurve.m_Curve.Array.data[0].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: infectionEffectCurve.m_Curve.Array.data[1].outSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: infectionEffectCurve.m_Curve.Array.data[0].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 28cac9dd39c13164a9c21251fd909e63,
-        type: 3}
-      propertyPath: infectionEffectCurve.m_Curve.Array.data[1].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3840052362551888005, guid: 28cac9dd39c13164a9c21251fd909e63,
         type: 3}
       propertyPath: m_LocalPosition.x

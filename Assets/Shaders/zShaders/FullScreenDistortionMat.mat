@@ -42,6 +42,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DistortionStrength: 1
+    - _BlendFactor: 1
+    - _DistortionStrength: 10
+    - _HueStrength: 100
+    - _MasterMultiply: 0
+    - _VignetteIntensity: 0.25
+    - _VignettePower: 2
     m_Colors: []
   m_BuildTextureStacks: []

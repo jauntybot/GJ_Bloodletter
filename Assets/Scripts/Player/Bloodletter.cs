@@ -121,9 +121,8 @@ public class Bloodletter : MonoBehaviour {
 
             foreach (FullscreenEffect fx in infectionEffects) {
                 foreach (EffectProperty prop in fx.properties) {
-                    if (prop.threshold.x <= infectionLevel/100 && prop.threshold.y >= infectionLevel/100) {
-                        fx.material.SetFloat(prop.shaderProperty, prop.curve.Evaluate((infectionLevel - prop.threshold.x * 100) / (prop.threshold.y * 100)) * prop.range.y);
-                    }
+                    fx.material.SetFloat(prop.shaderProperty, prop.range.x + prop.curve.Evaluate((infectionLevel - prop.threshold.x * 100) / ((prop.threshold.y - prop.threshold.x) * 100)) * prop.range.y);
+                    
                 }
             }
 

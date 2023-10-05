@@ -678,6 +678,59 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 28827711}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &247933255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 247933257}
+  - component: {fileID: 247933256}
+  m_Layer: 0
+  m_Name: FullTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &247933256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247933255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ae4e8b13d0144cb836d952db93842f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bloodDisplayTime: 10
+  _bloodFadeOutTime: 5
+  _voronoiIntensityStat: 2.5
+  _vignetteIntensityStat: 1.25
+  _distortionStrengthStat: 3
+  _hueStrengthStat: 10
+  _fullScreenBlood: {fileID: -8866668631133749917, guid: a9d0ca00fc878004da3ab8acee74949e,
+    type: 2}
+  _material: {fileID: 2100000, guid: c4f7c2bc05e31449ab5f549ba2953cd7, type: 2}
+--- !u!4 &247933257
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247933255}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &249493661
 GameObject:
   m_ObjectHideFlags: 0
@@ -5305,7 +5358,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: a45192d1823e6804b8ee82baa258832b, type: 2}
+  m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
 --- !u!4 &1653206651 stripped
 Transform:
@@ -7561,3 +7614,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 1880765481410222630}
   - {fileID: 2045900031}
+  - {fileID: 247933257}

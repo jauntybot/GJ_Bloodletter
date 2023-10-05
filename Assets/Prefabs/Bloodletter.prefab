@@ -339,6 +339,11 @@ MonoBehaviour:
   infectionPotency: 0.5
   infectionSpeed: 1
   potencyIncrement: 0.0025
+  infectionEffects:
+  - {fileID: 11400000, guid: d00ccc84279733441a3e30493a58bc08, type: 2}
+  - {fileID: 11400000, guid: 59d1aadb778ae9249a73b1f3e1e6aadc, type: 2}
+  - {fileID: 11400000, guid: 0f2bc9071cdb0440ba5d98fcb7a017fb, type: 2}
+  bloodEffect: {fileID: 11400000, guid: e627bb89bddb3344ba876ae6bdd2a5bd, type: 2}
   sprinting: 0
   crouching: 0
   staminaRegen: 0
