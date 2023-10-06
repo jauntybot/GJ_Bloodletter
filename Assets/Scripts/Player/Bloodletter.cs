@@ -117,12 +117,10 @@ public class Bloodletter : MonoBehaviour {
         while (true) {
             while (!tick) yield return null;
             infectionSpeed = bloodLevel/100;
-            //infectionMaterial.SetFloat(_voronoiIntensity, infectionLevel/100);
 
             foreach (FullscreenEffect fx in infectionEffects) {
                 foreach (EffectProperty prop in fx.properties) {
                     fx.material.SetFloat(prop.shaderProperty, prop.range.x + prop.curve.Evaluate((infectionLevel - prop.threshold.x * 100) / ((prop.threshold.y - prop.threshold.x) * 100)) * prop.range.y);
-                    
                 }
             }
 

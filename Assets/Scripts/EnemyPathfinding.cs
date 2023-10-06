@@ -9,6 +9,7 @@ using UnityEngine.AI;
 public class EnemyPathfinding : MonoBehaviour {
 
     [Header("References")]
+    EnemyDirector director;
     NavMeshAgent agent;
     Bloodletter bloodletter;
     [SerializeField] AudioSource audioSource, sfxSource;
@@ -17,33 +18,45 @@ public class EnemyPathfinding : MonoBehaviour {
     public enum EnemyState { Lurking, Roaming, Ambling, Tracking, Chasing };
     [Header("State Machine")]
     public EnemyState state;
+    [SerializeField] float stateChangeNRGReq;
 
-    [SerializeField] float roamDur;
+    public enum EnemyLookDir { Static, Search, Lock };
+    public EnemyLookDir lookDir;
+    [Range(0,100)]
+    public float energyLevel;
+
+    public List<EnemyBehavior> behaviors;
+
 
 
     [Header("Detection Variables")] [Range(0,100)]
     public float detectionLevel;
     [SerializeField] List<DetectionCone> detectionCones;
+    [SerializeField] LayerMask viewMask;
     [SerializeField] float detectionDrainRate;
     public bool playerLock;
-    [SerializeField] bool detectionScan;
+    [SerializeField] bool scanning;
 
 
     [Header("Nav Variables")]
-    [SerializeField] Vector2 roamDist;
     [SerializeField] Transform pointOfInterest;
-    [SerializeField] LayerMask viewMask;
     [SerializeField] BloodPool currentPool;
     [SerializeField] LayerMask bloodPoolMask;
     bool seenByPlayer;
 
+    [Header("ROAM VARS")]
+    [SerializeField] Vector2 roamDist;
+    [SerializeField] float roamDur;
+    [SerializeField] float roamNRGReq;
 
     void Start() {
         agent = GetComponent<NavMeshAgent>();
         //audioSource = GetComponent<AudioSource>();
         bloodletter = Bloodletter.instance;
+        director = EnemyDirector.instance;
         
         StartCoroutine(Pathfind());
+        StartCoroutine(LookAt());
         StartCoroutine(PassiveDetection());
 
         audioSource.clip = idleSFX.Get();
@@ -69,6 +82,26 @@ public class EnemyPathfinding : MonoBehaviour {
 
             yield return null;
         }
+    }
+
+    public IEnumerator LookAt() {
+        while (true) {
+            switch(lookDir) {
+                case EnemyLookDir.Static:
+                    agent.angularSpeed = 120f;
+                break;
+                case EnemyLookDir.Search:
+                    agent.angularSpeed = 0f;
+                    if (!scanning) yield return StartCoroutine(ScanArea());
+                break;
+                case EnemyLookDir.Lock:
+                    agent.angularSpeed = 0f;
+                break;
+            }
+
+            yield return null;
+        }
+
     }
 
     public IEnumerator PassiveDetection() {
@@ -128,7 +161,6 @@ public class EnemyPathfinding : MonoBehaviour {
 
     
     IEnumerator AmbleToPOI(Vector3 pos) {
-        Debug.Log("Start Amble");
         NavMeshHit hit;
         
         NavMesh.SamplePosition(pos, out hit, 1.0f, NavMesh.AllAreas);
@@ -156,9 +188,24 @@ public class EnemyPathfinding : MonoBehaviour {
 
 
     IEnumerator ScanArea() {
-
+        scanning = true;
+        for (int i = 0; i <= 6; i++) {
+            print("new dir");
+            float timer = 0;
+            float rnd = Random.Range(20, 100);
+            print(rnd);
+            if (Random.Range(0, 1) != 0) rnd = -rnd;
+            Quaternion rot = Quaternion.AngleAxis(rnd, Vector3.up);
+            while (timer < 1f) {
+                timer += Time.deltaTime;
+                transform.rotation = rot;
+                yield return null;
+            }    
+        }
         yield return null;
 
+
+        scanning = false;
     }
 
     IEnumerator RandomRoam() {
@@ -183,6 +230,9 @@ public class EnemyPathfinding : MonoBehaviour {
                     yield return null;
                 }
             }
+
+            energyLevel -= roamNRGReq;
+
             yield return null;
         }
         yield return StartCoroutine(AmbleToPOI(pointOfInterest.position));
