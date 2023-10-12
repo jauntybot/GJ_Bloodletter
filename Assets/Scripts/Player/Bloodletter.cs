@@ -71,7 +71,10 @@ public class Bloodletter : MonoBehaviour {
     public float bloodLevel;
     [Range(0,100)]
     public float infectionLevel, staminaLevel;
-    [Range(0.125f, 1)]
+    public int tollCount;
+    public const float potencyMin = 0.125f, potencyMax = 1f;
+    public Vector2 potencyRange { get { return new Vector2(potencyMin, potencyMax); } }
+    [Range(potencyMin, potencyMax)]
     public float infectionPotency;
     public float infectionSpeed, potencyIncrement;
     [SerializeField] List<FullscreenEffect> infectionEffects;
@@ -108,6 +111,15 @@ public class Bloodletter : MonoBehaviour {
                 curTick = 0;
                 tick = true;
             }
+// SNEAK IN SHADER GRAPH SETTING
+            foreach (FullscreenEffect fx in infectionEffects) {
+                foreach (EffectProperty prop in fx.properties) {
+                    fx.material.SetFloat(prop.shaderProperty, prop.range.x + prop.curve.Evaluate((infectionLevel - prop.threshold.x * 100) / ((prop.threshold.y - prop.threshold.x) * 100)) * prop.range.y);
+                }
+            }
+
+            bloodEffect.material.SetFloat(bloodEffect.properties[0].shaderProperty, bloodEffect.properties[0].range.x + bloodEffect.properties[0].curve.Evaluate(1 - (bloodLevel/100)) * (bloodEffect.properties[0].range.y - bloodEffect.properties[0].range.x));
+            
             yield return null;
         }
 
@@ -118,18 +130,13 @@ public class Bloodletter : MonoBehaviour {
             while (!tick) yield return null;
             infectionSpeed = bloodLevel/100;
 
-            foreach (FullscreenEffect fx in infectionEffects) {
-                foreach (EffectProperty prop in fx.properties) {
-                    fx.material.SetFloat(prop.shaderProperty, prop.range.x + prop.curve.Evaluate((infectionLevel - prop.threshold.x * 100) / ((prop.threshold.y - prop.threshold.x) * 100)) * prop.range.y);
-                }
-            }
-
-            bloodEffect.material.SetFloat(bloodEffect.properties[0].shaderProperty, bloodEffect.properties[0].range.x + bloodEffect.properties[0].curve.Evaluate(1 - (bloodLevel/100)) * (bloodEffect.properties[0].range.y - bloodEffect.properties[0].range.x));
 
 
             if (!bloodletting) {
-                infectionPotency += potencyIncrement;
-                infectionLevel += infectionPotency * infectionSpeed;
+                if (infectionPotency < potencyMax)
+                    infectionPotency += potencyIncrement;
+                if (infectionLevel < 100)
+                    infectionLevel += infectionPotency * infectionSpeed;
             }
             yield return null;
         }
