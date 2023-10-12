@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5736265570290675092
+--- !u!1 &5177463267665112069
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8879908867812919856}
-  - component: {fileID: 5918591383647952476}
-  - component: {fileID: 4911271204289958044}
-  - component: {fileID: 2432606537277938483}
+  - component: {fileID: 5387249934728104827}
+  - component: {fileID: 4909437235984310370}
+  - component: {fileID: 8152322818494033893}
+  - component: {fileID: 7101722610647036109}
+  - component: {fileID: 3451375877126647489}
   m_Layer: 0
-  m_Name: tower
+  m_Name: Wood_House_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8879908867812919856
+--- !u!4 &5387249934728104827
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5736265570290675092}
+  m_GameObject: {fileID: 5177463267665112069}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0175, y: 0.0175, z: 0.0175}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 16.501568, y: 0, z: -209.88905}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5918591383647952476
+--- !u!33 &4909437235984310370
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5736265570290675092}
-  m_Mesh: {fileID: -1309463313950424264, guid: 6aa0725940a0e4193a8390e66099615a, type: 3}
---- !u!23 &4911271204289958044
+  m_GameObject: {fileID: 5177463267665112069}
+  m_Mesh: {fileID: 5286787839852483951, guid: 53b0cf016794645198fd816cb220a578, type: 3}
+--- !u!23 &8152322818494033893
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5736265570290675092}
+  m_GameObject: {fileID: 5177463267665112069}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5865586234719623449, guid: 6aa0725940a0e4193a8390e66099615a, type: 3}
+  - {fileID: 2100000, guid: e37751fd0de824a9f9debf995682c6af, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,13 +85,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2432606537277938483
+--- !u!65 &7101722610647036109
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5736265570290675092}
+  m_GameObject: {fileID: 5177463267665112069}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -103,5 +104,26 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 583.6057, y: 2135.5037, z: 629.69543}
-  m_Center: {x: -0.00012207031, y: 1067.7518, z: -0.00019836426}
+  m_Size: {x: 13.581436, y: 8.713083, z: 11.90441}
+  m_Center: {x: -1.8713169, y: -3.4288826, z: 5.9472685}
+--- !u!65 &3451375877126647489
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177463267665112069}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8.564624, y: 5.102076, z: 11.90441}
+  m_Center: {x: 0.60952425, y: 3.4485626, z: 5.9472685}
