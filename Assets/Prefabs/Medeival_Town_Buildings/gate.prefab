@@ -139,7 +139,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7236905953655649798}
+  - {fileID: 7963616603725290352}
   m_Father: {fileID: 1848333212977093530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1125231028377634564
@@ -202,75 +202,28 @@ MonoBehaviour:
   consumptionRate: 2.5
   interacting: 0
   doorType: 2
---- !u!1 &3153895495737897397
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7236905953655649798}
-  m_Layer: 6
-  m_Name: Door Pivot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7236905953655649798
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3153895495737897397}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.00000008146033, y: -0, z: 3.5527137e-15, w: 1}
-  m_LocalPosition: {x: 7.5342255, y: 0.11875544, z: -141.16852}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7963616603725290352}
-  m_Father: {fileID: 9133384944785090429}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &9185496178545119659
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 7236905953655649798}
+    m_TransformParent: {fileID: 9133384944785090429}
     m_Modifications:
     - target: {fileID: 1296195567085488859, guid: ebd8a05779afa42949b621c6fb7f956b,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.9499998
-      objectReference: {fileID: 0}
-    - target: {fileID: 1296195567085488859, guid: ebd8a05779afa42949b621c6fb7f956b,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.98
-      objectReference: {fileID: 0}
-    - target: {fileID: 1296195567085488859, guid: ebd8a05779afa42949b621c6fb7f956b,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.9499998
-      objectReference: {fileID: 0}
-    - target: {fileID: 1296195567085488859, guid: ebd8a05779afa42949b621c6fb7f956b,
-        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.3334684
+      value: 6.200592
       objectReference: {fileID: 0}
     - target: {fileID: 1296195567085488859, guid: ebd8a05779afa42949b621c6fb7f956b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.11868137
+      value: 0.000053346143
       objectReference: {fileID: 0}
     - target: {fileID: 1296195567085488859, guid: ebd8a05779afa42949b621c6fb7f956b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 127.16818
+      value: -14.000455
       objectReference: {fileID: 0}
     - target: {fileID: 1296195567085488859, guid: ebd8a05779afa42949b621c6fb7f956b,
         type: 3}
@@ -280,17 +233,17 @@ PrefabInstance:
     - target: {fileID: 1296195567085488859, guid: ebd8a05779afa42949b621c6fb7f956b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00000032584154
+      value: -0.0000002443812
       objectReference: {fileID: 0}
     - target: {fileID: 1296195567085488859, guid: ebd8a05779afa42949b621c6fb7f956b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000028014183
+      value: 0.000002801418
       objectReference: {fileID: 0}
     - target: {fileID: 1296195567085488859, guid: ebd8a05779afa42949b621c6fb7f956b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -4.5474735e-13
+      value: -2.2382093e-13
       objectReference: {fileID: 0}
     - target: {fileID: 1296195567085488859, guid: ebd8a05779afa42949b621c6fb7f956b,
         type: 3}
@@ -311,11 +264,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: gatedoor
-      objectReference: {fileID: 0}
-    - target: {fileID: 6327721741398488396, guid: ebd8a05779afa42949b621c6fb7f956b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
