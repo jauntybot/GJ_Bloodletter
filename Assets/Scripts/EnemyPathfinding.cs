@@ -4,93 +4,97 @@ using System.Linq;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Playables;
 
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(EnemyDirector))]
 public class EnemyPathfinding : MonoBehaviour {
 
-    [Header("References")]
+    [HideInInspector] public EnemyDirector director;
+    PlayableDirector cutsceneDirector;
     NavMeshAgent agent;
-    Bloodletter bloodletter;
+    [HideInInspector] public Bloodletter bloodletter;
+    
+    [Header("References")]
     [SerializeField] AudioSource audioSource, sfxSource;
-    [SerializeField] SFX idleSFX, chaseStingSFX;
+    [SerializeField] SFX idleSFX, chaseStingSFX, killStingSFX;
 
     public enum EnemyState { Lurking, Roaming, Ambling, Tracking, Chasing };
     [Header("State Machine")]
     public EnemyState state;
 
-    [SerializeField] float roamDur;
-
 
     [Header("Detection Variables")] [Range(0,100)]
     public float detectionLevel;
-    [SerializeField] List<DetectionCone> detectionCones;
-    [SerializeField] float detectionDrainRate;
-    public bool playerLock;
-    [SerializeField] bool detectionScan;
-
-
-    [Header("Nav Variables")]
-    [SerializeField] Vector2 roamDist;
-    [SerializeField] Transform pointOfInterest;
+    public float detectionDelta;
+    public List<DetectionCone> detectionCones;
     [SerializeField] LayerMask viewMask;
+    [SerializeField] float detectionDrainRate;
+
+
+    
+    [Header("Nav Variables")] [Range(0,100)]
+    public float energyLevel;
+    public float energyRegenRate, energyRegenDelay, energyDrainRate;
+    [SerializeField] Transform pointOfInterest;
     [SerializeField] BloodPool currentPool;
     [SerializeField] LayerMask bloodPoolMask;
-    bool seenByPlayer;
+    
+
+    [Header("Kill Variables")]
+    public float killRadius;
+
 
 
     void Start() {
         agent = GetComponent<NavMeshAgent>();
         //audioSource = GetComponent<AudioSource>();
         bloodletter = Bloodletter.instance;
+        director = GetComponent<EnemyDirector>();
+        cutsceneDirector = GetComponent<PlayableDirector>();
         
-        StartCoroutine(Pathfind());
+        // StartCoroutine(Pathfind());
+        // StartCoroutine(LookAt());
         StartCoroutine(PassiveDetection());
 
         audioSource.clip = idleSFX.Get();
         audioSource.Play();
     }
 
-    public IEnumerator Pathfind() {
-        while (true) {
-            switch (state) {
-                case EnemyState.Lurking:
-                    yield return StartCoroutine(Lurk());
-                break;
-                case EnemyState.Roaming:
-                    yield return StartCoroutine(RandomRoam());
-                break;
-                case EnemyState.Tracking:
-                    yield return StartCoroutine(TrackBlood());
-                break;
-                case EnemyState.Chasing:
-                    yield return StartCoroutine(Chase());
-                break;
-            }
-
-            yield return null;
-        }
-    }
 
     public IEnumerator PassiveDetection() {
+        StartCoroutine(DetectionDelta());
         while (true) {
 // INCREMENT DETECTION LEVEL
             bool detecting = false;
             foreach (DetectionCone cone in detectionCones) {
                 if (Vector3.Distance(transform.position, bloodletter.transform.position) < cone.dist) {
                     Vector3 dir = (bloodletter.transform.position - transform.position).normalized;
-                    float angleDelta = Vector3.Angle(transform.forward, dir);
-                    if (angleDelta < cone.viewAngle / 2f) {
+                    if (cone.coneShape == DetectionCone.ConeShape.Sphere) {
                         if (!Physics.Linecast(transform.position, bloodletter.transform.position, viewMask)) {
                             if (detectionLevel < 100)
                                 detectionLevel += bloodletter.exposureLevel/1000 * cone.detectionMultiplier;
                             detecting = true;
                             cone.detecting = true;
-                        } else cone.detecting = false;
-                        cone.inRange = true;
-                    } 
-                    else {
-                        cone.inRange = false;
-                        cone.detecting = false;
+                        } else {
+                            cone.inRange = false;
+                            cone.detecting = false;
+                        }
+                    } else {
+                        float angleDelta = Vector3.Angle(transform.forward, dir);
+                        if (angleDelta < cone.viewAngle / 2f) {
+                            if (!Physics.Linecast(transform.position, bloodletter.transform.position, viewMask)) {
+                                if (detectionLevel < 100)
+                                    detectionLevel += bloodletter.exposureLevel/1000 * cone.detectionMultiplier;
+                                detecting = true;
+                                cone.detecting = true;
+                            } else cone.detecting = false;
+                            cone.inRange = true;
+                        } 
+                        else {
+                            cone.inRange = false;
+                            cone.detecting = false;
+                        }
                     }
                 }
                 else {
@@ -102,33 +106,28 @@ public class EnemyPathfinding : MonoBehaviour {
             if (!detecting && detectionLevel > 0) 
                 detectionLevel -= detectionDrainRate;
     
-// CHANGE BEHAVIOR STATE BOOLS BY DETECTION LEVEL
-        // if ()
-            
             yield return null;
         }
     }
 
-    IEnumerator Idle() {
-        agent.ResetPath();
-        yield return null;
+    public IEnumerator DetectionDelta() {
+        float timer;
+        float prevDetection;
+        while (true) {
+            timer = 0;
+            prevDetection = detectionLevel;
+            while (timer < 0.5f) {
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            detectionDelta = detectionLevel - prevDetection;
+            yield return null;
+        }
+
+
     }
 
-
-    IEnumerator Lurk() {
-        agent.ResetPath();
-        yield return null;
-
-    }
-
-    IEnumerator Teleport() {
-        agent.ResetPath();
-        yield return null;
-    }
-
-    
     IEnumerator AmbleToPOI(Vector3 pos) {
-        Debug.Log("Start Amble");
         NavMeshHit hit;
         
         NavMesh.SamplePosition(pos, out hit, 1.0f, NavMesh.AllAreas);
@@ -156,36 +155,24 @@ public class EnemyPathfinding : MonoBehaviour {
 
 
     IEnumerator ScanArea() {
-
+        //scanning = true;
+        for (int i = 0; i <= 6; i++) {
+            print("new dir");
+            float timer = 0;
+            float rnd = Random.Range(20, 100);
+            print(rnd);
+            if (Random.Range(0, 1) != 0) rnd = -rnd;
+            Quaternion rot = Quaternion.AngleAxis(rnd, Vector3.up);
+            while (timer < 1f) {
+                timer += Time.deltaTime;
+                transform.rotation = rot;
+                yield return null;
+            }    
+        }
         yield return null;
 
-    }
 
-    IEnumerator RandomRoam() {
-        float timer = 0;
-        while (timer <= roamDur) {
-            Vector3 pos = Quaternion.AngleAxis(Random.Range(-detectionCones[0].viewAngle, detectionCones[0].viewAngle)/2, Vector3.up) * transform.forward * Random.Range(roamDist.x, roamDist.y);
-            agent.SetDestination(transform.position + pos);
-
-
-// WAIT FOR PATH TO FINISH
-            bool finished = false;
-            if (agent.hasPath) {
-                while (!finished) {
-                    if (!agent.pathPending) {
-                        if (agent.remainingDistance <= agent.stoppingDistance) {
-                            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) {
-                                finished = true;
-                            }
-                        }
-                    }
-                    timer += Time.deltaTime;
-                    yield return null;
-                }
-            }
-            yield return null;
-        }
-        yield return StartCoroutine(AmbleToPOI(pointOfInterest.position));
+        //scanning = false;
     }
 
     IEnumerator TrackBlood() {
@@ -225,35 +212,24 @@ public class EnemyPathfinding : MonoBehaviour {
             yield return new WaitForSecondsRealtime(2.5f);
     }
 
-    IEnumerator Chase() {
-        agent.SetDestination(bloodletter.transform.position);
-        
-        // WAIT FOR PATH TO FINISH
-        bool finished = false;
-        if (agent.hasPath) {
-            while (!finished) {
-                if (!agent.pathPending) {
-                    if (agent.remainingDistance <= agent.stoppingDistance) {
-                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) {
-                            finished = true;
-                        }
-                    }
-                }
-                yield return null;
-            }
-        }
-        //if (!CanSeePlayer()) state = EnemyState.Tracking;
+    public IEnumerator KillPlayer() {
+        GameManager.instance.KillPlayer();
+        bloodletter.Perish(transform);
+        PlaySound(killStingSFX);
+
         yield return null;
     }
 
+
     void OnDrawGizmos () {
 		Gizmos.color = Color.yellow;
+        Vector3 coneOffset = new Vector3(0, 1.5f, 0);
         foreach (DetectionCone cone in detectionCones) {
             if (Application.isPlaying)
                 Gizmos.color = cone.detecting ? Color.green : cone.inRange ? Color.yellow : Color.red;;
             if (cone.coneShape == DetectionCone.ConeShape.Cone) {
-                Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(cone.viewAngle/2, Vector3.up) * transform.forward * cone.dist);
-                Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(-cone.viewAngle/2, Vector3.up) * transform.forward * cone.dist);
+                Gizmos.DrawRay(transform.position + coneOffset, Quaternion.AngleAxis(cone.viewAngle/2, Vector3.up) * transform.forward * cone.dist);
+                Gizmos.DrawRay(transform.position + coneOffset, Quaternion.AngleAxis(-cone.viewAngle/2, Vector3.up) * transform.forward * cone.dist);
             } else 
         		Gizmos.DrawWireSphere(transform.position, cone.dist);
 
@@ -261,17 +237,17 @@ public class EnemyPathfinding : MonoBehaviour {
     }
 
     public virtual void PlaySound(SFX sfx = null, bool loop = false) {
-        audioSource.loop = loop;
+        sfxSource.loop = loop;
         if (sfx) {
             if (sfx.outputMixerGroup) 
-                audioSource.outputAudioMixerGroup = sfx.outputMixerGroup;   
+                sfxSource.outputAudioMixerGroup = sfx.outputMixerGroup;   
 
             if(!loop)
-                audioSource.PlayOneShot(sfx.Get());
+                sfxSource.PlayOneShot(sfx.Get());
             else
             {
-                audioSource.clip = sfx.Get();
-                audioSource.Play();
+                sfxSource.clip = sfx.Get();
+                sfxSource.Play();
                 
             }
         }
