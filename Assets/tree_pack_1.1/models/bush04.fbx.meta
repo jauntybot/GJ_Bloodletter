@@ -3,7 +3,12 @@ guid: f078c31871310fc4792683ae1bd23563
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bush04
+    second: {fileID: 2100000, guid: 825b5890897a64ed2a0850fb65a673a7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
