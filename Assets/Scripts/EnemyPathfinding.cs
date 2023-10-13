@@ -214,7 +214,7 @@ public class EnemyPathfinding : MonoBehaviour {
 
     public IEnumerator KillPlayer() {
         GameManager.instance.KillPlayer();
-        bloodletter.Perish();
+        bloodletter.Perish(transform);
         PlaySound(killStingSFX);
 
         yield return null;
@@ -223,12 +223,13 @@ public class EnemyPathfinding : MonoBehaviour {
 
     void OnDrawGizmos () {
 		Gizmos.color = Color.yellow;
+        Vector3 coneOffset = new Vector3(0, 1.5f, 0);
         foreach (DetectionCone cone in detectionCones) {
             if (Application.isPlaying)
                 Gizmos.color = cone.detecting ? Color.green : cone.inRange ? Color.yellow : Color.red;;
             if (cone.coneShape == DetectionCone.ConeShape.Cone) {
-                Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(cone.viewAngle/2, Vector3.up) * transform.forward * cone.dist);
-                Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(-cone.viewAngle/2, Vector3.up) * transform.forward * cone.dist);
+                Gizmos.DrawRay(transform.position + coneOffset, Quaternion.AngleAxis(cone.viewAngle/2, Vector3.up) * transform.forward * cone.dist);
+                Gizmos.DrawRay(transform.position + coneOffset, Quaternion.AngleAxis(-cone.viewAngle/2, Vector3.up) * transform.forward * cone.dist);
             } else 
         		Gizmos.DrawWireSphere(transform.position, cone.dist);
 

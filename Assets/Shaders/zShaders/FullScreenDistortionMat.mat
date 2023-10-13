@@ -46,7 +46,7 @@ Material:
     - _DistortionStrength: 10
     - _HueStrength: 100
     - _MasterMultiply: 0
-    - _VignetteIntensity: 0.10563701
+    - _VignetteIntensity: 0.25
     - _VignettePower: 2
     m_Colors: []
   m_BuildTextureStacks: []

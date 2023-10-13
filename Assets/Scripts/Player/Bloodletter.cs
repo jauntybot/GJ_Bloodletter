@@ -23,7 +23,7 @@ public class Bloodletter : MonoBehaviour {
 
     [Header("Controller")]	
     [SerializeField] bool alive;
-    [SerializeField] CinemachineVirtualCamera vCam;
+    [SerializeField] CinemachineVirtualCamera fpsCam, killCam;
     [SerializeField] Transform cameraRoot;
     [SerializeField] Vector2 cameraHeight = new Vector2(0.5f, -0.5f);
     [SerializeField] AnimationCurve crouchCurve;
@@ -152,10 +152,10 @@ public class Bloodletter : MonoBehaviour {
         sprinting = true;
 // RAMP UP TO SPRINT SPEED AND FOV LERP
         float timer = 0;
-        float curFOV = vCam.m_Lens.FieldOfView;
+        float curFOV = fpsCam.m_Lens.FieldOfView;
         while (timer < sprintDelay) {
             timer += Time.deltaTime;
-            vCam.m_Lens.FieldOfView = Mathf.Lerp(curFOV, FOV(), timer/sprintDelay);
+            fpsCam.m_Lens.FieldOfView = Mathf.Lerp(curFOV, FOV(), timer/sprintDelay);
             _speedMultiplier = Mathf.Lerp(1, sprintMultiplier, timer / sprintDelay);
             if (!Input.GetButton("Run")) {
                 sprinting = false;
@@ -163,7 +163,7 @@ public class Bloodletter : MonoBehaviour {
             }
             yield return null;
         }
-        vCam.m_Lens.FieldOfView = FOV();
+        fpsCam.m_Lens.FieldOfView = FOV();
         _speedMultiplier = sprintMultiplier;
 
 // WHILE LOOP OF SPRINTING
@@ -188,13 +188,13 @@ public class Bloodletter : MonoBehaviour {
 
 // LERP FOV BACK
         timer = 0;
-        float endFOV = vCam.m_Lens.FieldOfView;
+        float endFOV = fpsCam.m_Lens.FieldOfView;
         while (timer < sprintDelay) {
             timer += Time.deltaTime;
-            vCam.m_Lens.FieldOfView = Mathf.Lerp(endFOV, FOV(), timer/sprintDelay);
+            fpsCam.m_Lens.FieldOfView = Mathf.Lerp(endFOV, FOV(), timer/sprintDelay);
             yield return null;
         }
-        vCam.m_Lens.FieldOfView = FOV();
+        fpsCam.m_Lens.FieldOfView = FOV();
     }
 
     public IEnumerator RegainStamina() {
@@ -268,15 +268,15 @@ public class Bloodletter : MonoBehaviour {
     }
 
     IEnumerator BloodletLerpFOV(float target) {
-        float startAmp = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain;
+        float startAmp = fpsCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain;
         float timer = 0;
         while (timer < bloodDelay) {
             timer += Time.deltaTime;
-            vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = Mathf.Lerp(startAmp, target, timer/bloodDelay);
+            fpsCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = Mathf.Lerp(startAmp, target, timer/bloodDelay);
 
             yield return null;
         }
-        vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = target;
+        fpsCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = target;
     }
 
     IEnumerator BloodletSFX() {
@@ -385,7 +385,8 @@ public class Bloodletter : MonoBehaviour {
         }
     }
 
-    public void Perish() {
+    public void Perish(Transform killer) {
+        killCam.m_LookAt = killer;
         cutsceneDirector.Play();
         bloodLevel = 0f;
         alive = false;
