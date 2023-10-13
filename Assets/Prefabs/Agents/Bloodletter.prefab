@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 8169058468484386903}
   - component: {fileID: 1808239837428549413}
   - component: {fileID: 4135780480321125180}
+  - component: {fileID: 9195053579588875345}
   - component: {fileID: 5786886704274700375}
   - component: {fileID: 7389527517728659835}
   m_Layer: 0
@@ -247,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d63dd6d81e50548bb090a42c923bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alive: 0
   vCam: {fileID: 0}
   cameraRoot: {fileID: 5858822562685353770}
   cameraHeight: {x: 0.5, y: -0.35}
@@ -283,8 +285,8 @@ MonoBehaviour:
   staminaRegenRate: 3
   sprintDelay: 1
   bloodDrainRate: 2.2
-  bloodDelay: 0.5
-  bloodRegenRate: 0.5
+  bloodDelay: 5
+  bloodRegenRate: 0.1
   tickDur: 0.75
   tick: 0
   cam: {fileID: 1041412191401356060}
@@ -337,6 +339,7 @@ MonoBehaviour:
   bloodLevel: 100
   infectionLevel: 0
   staminaLevel: 100
+  tollCount: 0
   infectionPotency: 0.5
   infectionSpeed: 1
   potencyIncrement: 0.0025
@@ -379,6 +382,28 @@ MonoBehaviour:
   airControl: 1
   antiBumpFactor: 0.75
   antiBunnyHopFactor: 1
+--- !u!320 &9195053579588875345
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5038823845995218877}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: c5eac28a74f868546920f3d0f836476c, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 0
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 8876858688249060641, guid: c5eac28a74f868546920f3d0f836476c, type: 2}
+    value: {fileID: 7843852958215357799}
+  - key: {fileID: 5014705649752869482, guid: c5eac28a74f868546920f3d0f836476c, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References:
+    - 1b1a0a531228da04797b1f0f105d29e4: {fileID: 0}
 --- !u!208 &5786886704274700375
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -567,7 +592,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 255
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

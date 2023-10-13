@@ -3,15 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyPathfinding))]
 public class EnemyDirector : MonoBehaviour {
 
-    public static EnemyDirector instance;
-    void Awake() {
-        if (EnemyDirector.instance) return;
-        instance = this;
-    }
-
-    public EnemyPathfinding enemy;
+    [HideInInspector] public EnemyPathfinding enemy;
     Bloodletter bloodletter;
 
 
@@ -26,7 +21,7 @@ public class EnemyDirector : MonoBehaviour {
 
     void Start() {
         bloodletter = Bloodletter.instance;
-
+        enemy = GetComponent<EnemyPathfinding>();
         
     }
 

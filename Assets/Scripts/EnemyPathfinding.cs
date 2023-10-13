@@ -7,15 +7,15 @@ using UnityEngine.AI;
 using UnityEngine.Playables;
 
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(EnemyDirector))]
 public class EnemyPathfinding : MonoBehaviour {
 
-    [Header("References")]
-    [HideInInspector]
-    public EnemyDirector director;
+    [HideInInspector] public EnemyDirector director;
     PlayableDirector cutsceneDirector;
     NavMeshAgent agent;
-    [HideInInspector]
-    public Bloodletter bloodletter;
+    [HideInInspector] public Bloodletter bloodletter;
+    
+    [Header("References")]
     [SerializeField] AudioSource audioSource, sfxSource;
     [SerializeField] SFX idleSFX, chaseStingSFX, killStingSFX;
 
@@ -50,7 +50,7 @@ public class EnemyPathfinding : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
         //audioSource = GetComponent<AudioSource>();
         bloodletter = Bloodletter.instance;
-        director = EnemyDirector.instance;
+        director = GetComponent<EnemyDirector>();
         cutsceneDirector = GetComponent<PlayableDirector>();
         
         // StartCoroutine(Pathfind());
@@ -214,9 +214,7 @@ public class EnemyPathfinding : MonoBehaviour {
 
     public IEnumerator KillPlayer() {
         GameManager.instance.KillPlayer();
-        
-        cutsceneDirector.Play();
-        bloodletter.bloodLevel = 0f;
+        bloodletter.Perish();
         PlaySound(killStingSFX);
 
         yield return null;

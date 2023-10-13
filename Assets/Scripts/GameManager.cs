@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    Bloodletter bloodletter;
+
     public enum GameState { Menu, Running, Paused, Gameover };
     public GameState gameState;
 
@@ -58,15 +60,12 @@ public class GameManager : MonoBehaviour
         DebugUI.instance.EnableGameover();
         gameState = GameState.Gameover;
         LockCursor(false);
-
-
-
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         gameState = GameState.Running;
         LockCursor(true);
-
+        bloodletter = Bloodletter.instance;
     }
 
 

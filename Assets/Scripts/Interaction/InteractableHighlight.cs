@@ -11,7 +11,7 @@ public class InteractableHighlight : MonoBehaviour {
     List<SkinnedMeshRenderer> smrs = new List<SkinnedMeshRenderer>();
     bool active;
     [SerializeField] bool displayMessage;
-    [SerializeField] string message;
+    public string message;
 
     void Start() {
         if (!skinnedMesh) {

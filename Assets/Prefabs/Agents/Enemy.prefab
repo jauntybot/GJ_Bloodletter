@@ -9,11 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1239387913424700001}
-  - component: {fileID: 7032424007378542159}
+  - component: {fileID: 4789012549952368147}
   - component: {fileID: 2090922146709798870}
+  - component: {fileID: 4217456658478783787}
+  - component: {fileID: 7032424007378542159}
+  - component: {fileID: 1781721993898731023}
   - component: {fileID: 3046512182611839232}
   - component: {fileID: 699619039724576305}
-  - component: {fileID: 9008617703510672970}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -38,6 +40,107 @@ Transform:
   - {fileID: 7222208017352814707}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4789012549952368147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2160673951556383848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e6b651e4f96533479cf331291af3e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  terrorLevel: 0
+  hostilityLevel: 100
+  poi: {fileID: 0}
+--- !u!114 &2090922146709798870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2160673951556383848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0752d40dfb63c84c891ad695f3e5959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  director: {fileID: 0}
+  bloodletter: {fileID: 0}
+  audioSource: {fileID: 3046512182611839232}
+  sfxSource: {fileID: 699619039724576305}
+  idleSFX: {fileID: 11400000, guid: 56109061aa827de40a70fbaf20496076, type: 2}
+  chaseStingSFX: {fileID: 11400000, guid: b62710e1cb9b3eb4593fb32c72aad909, type: 2}
+  killStingSFX: {fileID: 11400000, guid: a965494d91753471bac41da354dafd94, type: 2}
+  state: 0
+  detectionLevel: 0
+  detectionDelta: 0
+  detectionCones:
+  - name: Primary Cone
+    dist: 25
+    viewAngle: 60
+    detectionMultiplier: 4
+    coneShape: 0
+    detecting: 0
+    inRange: 0
+  - name: Far Cone
+    dist: 40
+    viewAngle: 85
+    detectionMultiplier: 0.1
+    coneShape: 0
+    detecting: 0
+    inRange: 0
+  - name: Peripheral Cone
+    dist: 40
+    viewAngle: 220
+    detectionMultiplier: 0.05
+    coneShape: 0
+    detecting: 0
+    inRange: 0
+  - name: Immediate Radius
+    dist: 5
+    viewAngle: 0
+    detectionMultiplier: 4
+    coneShape: 1
+    detecting: 0
+    inRange: 0
+  - name: Immediate Radius
+    dist: 15
+    viewAngle: 15
+    detectionMultiplier: 4
+    coneShape: 0
+    detecting: 0
+    inRange: 0
+  viewMask:
+    serializedVersion: 2
+    m_Bits: 192
+  detectionDrainRate: 0.0125
+  energyLevel: 100
+  energyRegenRate: 0.2
+  energyRegenDelay: 2
+  energyDrainRate: 0.025
+  pointOfInterest: {fileID: 0}
+  currentPool: {fileID: 0}
+  bloodPoolMask:
+    serializedVersion: 2
+    m_Bits: 256
+  killRadius: 2.75
+--- !u!114 &4217456658478783787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2160673951556383848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c6f9b140a52a14881ec09eaebb66eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tree: {fileID: 11400000, guid: 4c75fec3b556eca4b9362928a5fae75e, type: 2}
 --- !u!195 &7032424007378542159
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -60,77 +163,29 @@ NavMeshAgent:
   m_BaseOffset: -0.3
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2090922146709798870
-MonoBehaviour:
+--- !u!136 &1781721993898731023
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2160673951556383848}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0752d40dfb63c84c891ad695f3e5959, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 3046512182611839232}
-  sfxSource: {fileID: 9008617703510672970}
-  idleSFX: {fileID: 11400000, guid: 56109061aa827de40a70fbaf20496076, type: 2}
-  chaseStingSFX: {fileID: 11400000, guid: b62710e1cb9b3eb4593fb32c72aad909, type: 2}
-  state: 0
-  stateChangeNRGReq: 0
-  lookDir: 0
-  energyLevel: 100
-  detectionLevel: 0
-  detectionCones:
-  - name: Primary Cone
-    dist: 25
-    viewAngle: 60
-    detectionMultiplier: 2
-    coneShape: 0
-    detecting: 0
-    inRange: 0
-  - name: Far Cone
-    dist: 40
-    viewAngle: 85
-    detectionMultiplier: 0.1
-    coneShape: 0
-    detecting: 0
-    inRange: 0
-  - name: Peripheral Cone
-    dist: 40
-    viewAngle: 220
-    detectionMultiplier: 0.05
-    coneShape: 0
-    detecting: 0
-    inRange: 0
-  - name: Immediate Radius
-    dist: 5
-    viewAngle: 0
-    detectionMultiplier: 3
-    coneShape: 1
-    detecting: 0
-    inRange: 0
-  - name: Immediate Radius
-    dist: 15
-    viewAngle: 15
-    detectionMultiplier: 3
-    coneShape: 0
-    detecting: 0
-    inRange: 0
-  viewMask:
-    serializedVersion: 2
-    m_Bits: 192
-  detectionDrainRate: 0.0125
-  playerLock: 0
-  scanning: 0
-  pointOfInterest: {fileID: 0}
-  currentPool: {fileID: 0}
-  bloodPoolMask:
-    serializedVersion: 2
-    m_Bits: 256
-  roamDist: {x: 2, y: 4}
-  roamDur: 5
-  roamNRGReq: 0.02
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Height: 0
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!82 &3046512182611839232
 AudioSource:
   m_ObjectHideFlags: 0
@@ -241,103 +296,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 0
-  MaxDistance: 50
-  Pan2D: 0
-  rolloffMode: 2
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!82 &9008617703510672970
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2160673951556383848}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -528,52 +487,52 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.017
+      value: 0.22134829
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.231
+      value: 0.23976839
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.1
+      value: 0.111406446
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.002912119
+      value: 0.005233386
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.122782
+      value: 0.013787391
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.02353163
+      value: -0.006257217
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.99215037
+      value: 0.99987173
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 2.717
+      value: 0.725
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 14.109
+      value: 1.576
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 180
+      value: 179.41
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}

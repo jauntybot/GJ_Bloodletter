@@ -44,6 +44,7 @@ public class TollSite : HoldInteractable {
     protected override void ExhaustSite() {
         base.ExhaustSite();
         bloodletter.tollCount += Random.Range(1,2);
+        DebugUI.instance.textPopUp.DismissMessage();
     }
 
 }
