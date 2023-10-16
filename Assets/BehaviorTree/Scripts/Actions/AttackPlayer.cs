@@ -7,7 +7,9 @@ using System;
 public class AttackPlayer : ActionNode
 {
 
-    public bool attacked = false;
+    public enum AttackType { Terrorize, Kill };
+    public AttackType attackType;
+    
 
     protected override void OnStart() {
     }
@@ -17,9 +19,8 @@ public class AttackPlayer : ActionNode
 
     protected override State OnUpdate() {
         if (Vector3.Distance(context.transform.position, context.enemy.bloodletter.transform.position) <= context.enemy.killRadius) {
-            if (!attacked) {
+            if (context.enemy.attacking && context.enemy.bloodletter.alive) {
                 context.enemy.StartCoroutine(context.enemy.KillPlayer());
-                attacked = true;
                 Debug.Log("Attack co");
             }
             if (context.enemy.bloodletter.gameObject.activeSelf) return State.Running;

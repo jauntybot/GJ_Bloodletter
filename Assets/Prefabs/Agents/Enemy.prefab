@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   terrorLevel: 0
-  hostilityLevel: 100
+  hostilityLevel: 0
   poi: {fileID: 0}
 --- !u!114 &2090922146709798870
 MonoBehaviour:
@@ -72,10 +72,13 @@ MonoBehaviour:
   bloodletter: {fileID: 0}
   audioSource: {fileID: 3046512182611839232}
   sfxSource: {fileID: 699619039724576305}
+  gfx: []
   idleSFX: {fileID: 11400000, guid: 56109061aa827de40a70fbaf20496076, type: 2}
   chaseStingSFX: {fileID: 11400000, guid: b62710e1cb9b3eb4593fb32c72aad909, type: 2}
   killStingSFX: {fileID: 11400000, guid: a965494d91753471bac41da354dafd94, type: 2}
   state: 0
+  hidden: 0
+  hideDur: 0
   detectionLevel: 0
   detectionDelta: 0
   detectionCones:

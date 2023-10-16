@@ -249,7 +249,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alive: 0
-  vCam: {fileID: 0}
+  fpsCam: {fileID: 0}
+  killCam: {fileID: 0}
   cameraRoot: {fileID: 5858822562685353770}
   cameraHeight: {x: 0.5, y: -0.35}
   crouchCurve:
@@ -414,7 +415,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_Extents: {x: 0.25, y: 1, z: 0.25}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 0
@@ -546,7 +547,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5815837429782692197}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.8801088, z: -0, w: 0.4747722}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

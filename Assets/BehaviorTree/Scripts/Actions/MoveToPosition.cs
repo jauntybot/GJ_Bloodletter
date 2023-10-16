@@ -42,11 +42,15 @@ public class MoveToPosition : ActionNode
             return State.Success;
         }
 
-        if (context.agent.pathStatus == UnityEngine.AI.NavMeshPathStatus.PathInvalid || context.enemy.energyLevel < context.enemy.energyDrainRate * speed) {
+        if (context.agent.pathStatus == UnityEngine.AI.NavMeshPathStatus.PathInvalid || 
+        context.enemy.energyLevel < context.enemy.energyDrainRate * speed) {
             return State.Failure;
         }
 
-        context.enemy.energyLevel -= context.enemy.energyDrainRate * speed;
+        if (context.enemy.energyLevel >= context.enemy.energyDrainRate * speed)
+            context.enemy.energyLevel -= context.enemy.energyDrainRate * speed;
+        else return State.Failure;
+        
         return State.Running;
     }
 }

@@ -22,7 +22,7 @@ public class Bloodletter : MonoBehaviour {
 
 
     [Header("Controller")]	
-    [SerializeField] bool alive;
+    public bool alive;
     [SerializeField] CinemachineVirtualCamera fpsCam, killCam;
     [SerializeField] Transform cameraRoot;
     [SerializeField] Vector2 cameraHeight = new Vector2(0.5f, -0.5f);
@@ -70,11 +70,10 @@ public class Bloodletter : MonoBehaviour {
     }
 
     [Header("Stats")]
-    [Range(0,100)]
-    public float bloodLevel;
-    [Range(0,100)]
-    public float infectionLevel, staminaLevel;
+    [Range(0,100)] public float bloodLevel;
+    [Range(0,100)] public float infectionLevel, staminaLevel;
     public int tollCount;
+    [HideInInspector] public float enemyTerror;
     public const float potencyMin = 0.125f, potencyMax = 1f;
     public Vector2 potencyRange { get { return new Vector2(potencyMin, potencyMax); } }
     [Range(potencyMin, potencyMax)]
@@ -123,12 +122,13 @@ public class Bloodletter : MonoBehaviour {
                     fx.material.SetFloat(prop.shaderProperty, prop.range.x + prop.curve.Evaluate((infectionLevel - prop.threshold.x * 100) / ((prop.threshold.y - prop.threshold.x) * 100)) * prop.range.y);
                 }
             }
+// SNEAK IN TERROR LEVEL
+
 
             bloodEffect.material.SetFloat(bloodEffect.properties[0].shaderProperty, bloodEffect.properties[0].range.x + bloodEffect.properties[0].curve.Evaluate(1 - (bloodLevel/100)) * (bloodEffect.properties[0].range.y - bloodEffect.properties[0].range.x));
             
             yield return null;
         }
-
     }
 
     public IEnumerator InfectionSpread() {

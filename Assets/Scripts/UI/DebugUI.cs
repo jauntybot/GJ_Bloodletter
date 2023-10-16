@@ -14,8 +14,7 @@ public class DebugUI : MonoBehaviour {
 
     Bloodletter bloodletter;
     [SerializeField] EnemyPathfinding enemy;
-    public Slider staminaSlider, bloodSlider, infectionSlider, exposureSlider, detectionSlider, terrorSlider, energySlider;
-    [SerializeField] Image infectedPanel;
+    public Slider staminaSlider, bloodSlider, infectionSlider, exposureSlider, detectionSlider, terrorSlider, hostilitySlider, energySlider, downtimeSlider;
     [SerializeField] Image radialBar;
     [SerializeField] TMP_Text tollCount;
 
@@ -34,8 +33,10 @@ public class DebugUI : MonoBehaviour {
         exposureSlider.value = bloodletter.exposureLevel;
         detectionSlider.value = enemy.detectionLevel;
         energySlider.value = enemy.energyLevel;
+        terrorSlider.value = enemy.director.terrorLevel;
+        hostilitySlider.value = enemy.director.hostilityLevel;
+        downtimeSlider.value = enemy.director.downTime;
         tollCount.text = bloodletter.tollCount.ToString();
-        infectedPanel.color = new Color (infectedPanel.color.r, infectedPanel.color.g, infectedPanel.color.b, Mathf.Lerp (0, 0.33f, bloodletter.infectionLevel/100));
     } 
 
     public IEnumerator DisplayHoldInteract(HoldInteractable interact) {
