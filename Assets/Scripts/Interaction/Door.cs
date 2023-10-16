@@ -65,12 +65,12 @@ public class Door : HoldInteractable
                     interacting = false;
                     break;
                 }
-                yield return null;
             }
     // USED ALL BLOOD
             if (content <= 0) {
                 ExhaustSite();
             }
+            yield return null;
         }
         interacting = false;    
     }
