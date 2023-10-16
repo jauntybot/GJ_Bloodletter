@@ -44,9 +44,9 @@ Material:
     m_Floats:
     - _BlendFactor: 1
     - _DistortionStrength: 10
-    - _HueStrength: 99.72961
+    - _HueStrength: 9.892444
     - _MasterMultiply: 0
-    - _VignetteIntensity: 0.011548212
+    - _VignetteIntensity: 0
     - _VignettePower: 2
     m_Colors: []
   m_BuildTextureStacks: []
