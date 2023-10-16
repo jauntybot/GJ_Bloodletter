@@ -73,7 +73,7 @@ public class Bloodletter : MonoBehaviour {
     [Range(0,100)] public float bloodLevel;
     [Range(0,100)] public float infectionLevel, staminaLevel;
     public int tollCount;
-    [HideInInspector] public float enemyTerror;
+    [HideInInspector] [Range(0, 60)] public float enemyTerror;
     public const float potencyMin = 0.125f, potencyMax = 1f;
     public Vector2 potencyRange { get { return new Vector2(potencyMin, potencyMax); } }
     [Range(potencyMin, potencyMax)]

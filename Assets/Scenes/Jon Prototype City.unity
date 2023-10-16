@@ -3746,12 +3746,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9b2f8e8166d21146bd8fa829f92a477, type: 3}
---- !u!1 &1066935269 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2293993216453592507, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
-    type: 3}
-  m_PrefabInstance: {fileID: 1216531877}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1074874489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4171,29 +4165,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
         type: 3}
-      propertyPath: hideDur
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
-        type: 3}
-      propertyPath: gfx.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
-        type: 3}
-      propertyPath: energyDrainRate
-      value: 0.005
-      objectReference: {fileID: 0}
-    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
-        type: 3}
       propertyPath: pointOfInterest
       value: 
       objectReference: {fileID: 615606932}
-    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
-        type: 3}
-      propertyPath: gfx.Array.data[0]
-      value: 
-      objectReference: {fileID: 1066935269}
     - target: {fileID: 2160673951556383848, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
         type: 3}
       propertyPath: m_Name
@@ -4204,56 +4178,6 @@ PrefabInstance:
       propertyPath: poi
       value: 
       objectReference: {fileID: 615606932}
-    - target: {fileID: 4789012549952368147, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
-        type: 3}
-      propertyPath: downTimeMod
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4789012549952368147, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
-        type: 3}
-      propertyPath: downTimeRate
-      value: 0.005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4789012549952368147, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
-        type: 3}
-      propertyPath: hostilityLevel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4789012549952368147, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
-        type: 3}
-      propertyPath: downTimeThreshold
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4789012549952368147, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
-        type: 3}
-      propertyPath: hostilityGainRate
-      value: 0.0001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4789012549952368147, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
-        type: 3}
-      propertyPath: downTimeCurve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4789012549952368147, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
-        type: 3}
-      propertyPath: downTimeCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4789012549952368147, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
-        type: 3}
-      propertyPath: downTimeCurve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4789012549952368147, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
-        type: 3}
-      propertyPath: downTimeCurve.m_Curve.Array.data[1].inSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4789012549952368147, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
-        type: 3}
-      propertyPath: downTimeCurve.m_Curve.Array.data[1].outSlope
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8382,11 +8306,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4401999732278987953, guid: 777e85965b358d14f936406135e1ab39,
-        type: 3}
-      propertyPath: field of view
-      value: 65
-      objectReference: {fileID: 0}
     - target: {fileID: 4542215002466608544, guid: 777e85965b358d14f936406135e1ab39,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8437,11 +8356,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4581628561963182597, guid: 777e85965b358d14f936406135e1ab39,
-        type: 3}
-      propertyPath: m_AmplitudeGain
-      value: 2.436918
-      objectReference: {fileID: 0}
     - target: {fileID: 7415100406228873278, guid: 777e85965b358d14f936406135e1ab39,
         type: 3}
       propertyPath: m_LookAt
@@ -8486,11 +8400,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.5000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 9208191885953115330, guid: 777e85965b358d14f936406135e1ab39,
-        type: 3}
-      propertyPath: m_Lens.FieldOfView
-      value: 65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

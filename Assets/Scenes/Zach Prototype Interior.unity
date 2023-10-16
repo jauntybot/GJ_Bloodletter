@@ -59533,11 +59533,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4581628561963182597, guid: 777e85965b358d14f936406135e1ab39,
-        type: 3}
-      propertyPath: m_AmplitudeGain
-      value: 1.876553
-      objectReference: {fileID: 0}
     - target: {fileID: 7468426084257711982, guid: 777e85965b358d14f936406135e1ab39,
         type: 3}
       propertyPath: m_LocalPosition.x
