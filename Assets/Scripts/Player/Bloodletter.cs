@@ -5,8 +5,10 @@ using Cinemachine;
 using System.Threading;
 using UnityEngine.Rendering.Universal;
 using UnityEditor.UIElements;
+using UnityEngine.Playables;
 
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(PlayableDirector))]
 public class Bloodletter : MonoBehaviour {
 
 
@@ -20,7 +22,8 @@ public class Bloodletter : MonoBehaviour {
 
 
     [Header("Controller")]	
-    [SerializeField] CinemachineVirtualCamera vCam;
+    [SerializeField] bool alive;
+    [SerializeField] CinemachineVirtualCamera fpsCam, killCam;
     [SerializeField] Transform cameraRoot;
     [SerializeField] Vector2 cameraHeight = new Vector2(0.5f, -0.5f);
     [SerializeField] AnimationCurve crouchCurve;
@@ -71,7 +74,10 @@ public class Bloodletter : MonoBehaviour {
     public float bloodLevel;
     [Range(0,100)]
     public float infectionLevel, staminaLevel;
-    [Range(0.125f, 1)]
+    public int tollCount;
+    public const float potencyMin = 0.125f, potencyMax = 1f;
+    public Vector2 potencyRange { get { return new Vector2(potencyMin, potencyMax); } }
+    [Range(potencyMin, potencyMax)]
     public float infectionPotency;
     public float infectionSpeed, potencyIncrement;
     [SerializeField] List<FullscreenEffect> infectionEffects;
@@ -87,13 +93,16 @@ public class Bloodletter : MonoBehaviour {
     [Header("Prefabs")]
     [SerializeField] GameObject bloodDecal;
     [SerializeField] SFX bloodletSFX, footstepWalkSFX, footstepRunSFX, heavyBreathingSFX;
+    PlayableDirector cutsceneDirector;
 
     void Start() {
         Init();
     }
 
     public void Init() {
+        alive = true;
         audioSource = GetComponent<AudioSource>();
+        cutsceneDirector = GetComponent<PlayableDirector>();
         StartCoroutine(InfectionSpread());
         StartCoroutine(BloodletterTick());
         StartCoroutine(Exposure());
@@ -108,6 +117,15 @@ public class Bloodletter : MonoBehaviour {
                 curTick = 0;
                 tick = true;
             }
+// SNEAK IN SHADER GRAPH SETTING
+            foreach (FullscreenEffect fx in infectionEffects) {
+                foreach (EffectProperty prop in fx.properties) {
+                    fx.material.SetFloat(prop.shaderProperty, prop.range.x + prop.curve.Evaluate((infectionLevel - prop.threshold.x * 100) / ((prop.threshold.y - prop.threshold.x) * 100)) * prop.range.y);
+                }
+            }
+
+            bloodEffect.material.SetFloat(bloodEffect.properties[0].shaderProperty, bloodEffect.properties[0].range.x + bloodEffect.properties[0].curve.Evaluate(1 - (bloodLevel/100)) * (bloodEffect.properties[0].range.y - bloodEffect.properties[0].range.x));
+            
             yield return null;
         }
 
@@ -117,21 +135,14 @@ public class Bloodletter : MonoBehaviour {
         while (true) {
             while (!tick) yield return null;
             infectionSpeed = bloodLevel/100;
-            //infectionMaterial.SetFloat(_voronoiIntensity, infectionLevel/100);
 
-            foreach (FullscreenEffect fx in infectionEffects) {
-                foreach (EffectProperty prop in fx.properties) {
-                    fx.material.SetFloat(prop.shaderProperty, prop.range.x + prop.curve.Evaluate((infectionLevel - prop.threshold.x * 100) / ((prop.threshold.y - prop.threshold.x) * 100)) * prop.range.y);
-                    
-                }
-            }
-
-            bloodEffect.material.SetFloat(bloodEffect.properties[0].shaderProperty, bloodEffect.properties[0].range.x + bloodEffect.properties[0].curve.Evaluate(1 - (bloodLevel/100)) * (bloodEffect.properties[0].range.y - bloodEffect.properties[0].range.x));
 
 
             if (!bloodletting) {
-                infectionPotency += potencyIncrement;
-                infectionLevel += infectionPotency * infectionSpeed;
+                if (infectionPotency < potencyMax)
+                    infectionPotency += potencyIncrement;
+                if (infectionLevel < 100)
+                    infectionLevel += infectionPotency * infectionSpeed;
             }
             yield return null;
         }
@@ -141,10 +152,10 @@ public class Bloodletter : MonoBehaviour {
         sprinting = true;
 // RAMP UP TO SPRINT SPEED AND FOV LERP
         float timer = 0;
-        float curFOV = vCam.m_Lens.FieldOfView;
+        float curFOV = fpsCam.m_Lens.FieldOfView;
         while (timer < sprintDelay) {
             timer += Time.deltaTime;
-            vCam.m_Lens.FieldOfView = Mathf.Lerp(curFOV, FOV(), timer/sprintDelay);
+            fpsCam.m_Lens.FieldOfView = Mathf.Lerp(curFOV, FOV(), timer/sprintDelay);
             _speedMultiplier = Mathf.Lerp(1, sprintMultiplier, timer / sprintDelay);
             if (!Input.GetButton("Run")) {
                 sprinting = false;
@@ -152,7 +163,7 @@ public class Bloodletter : MonoBehaviour {
             }
             yield return null;
         }
-        vCam.m_Lens.FieldOfView = FOV();
+        fpsCam.m_Lens.FieldOfView = FOV();
         _speedMultiplier = sprintMultiplier;
 
 // WHILE LOOP OF SPRINTING
@@ -177,13 +188,13 @@ public class Bloodletter : MonoBehaviour {
 
 // LERP FOV BACK
         timer = 0;
-        float endFOV = vCam.m_Lens.FieldOfView;
+        float endFOV = fpsCam.m_Lens.FieldOfView;
         while (timer < sprintDelay) {
             timer += Time.deltaTime;
-            vCam.m_Lens.FieldOfView = Mathf.Lerp(endFOV, FOV(), timer/sprintDelay);
+            fpsCam.m_Lens.FieldOfView = Mathf.Lerp(endFOV, FOV(), timer/sprintDelay);
             yield return null;
         }
-        vCam.m_Lens.FieldOfView = FOV();
+        fpsCam.m_Lens.FieldOfView = FOV();
     }
 
     public IEnumerator RegainStamina() {
@@ -257,15 +268,15 @@ public class Bloodletter : MonoBehaviour {
     }
 
     IEnumerator BloodletLerpFOV(float target) {
-        float startAmp = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain;
+        float startAmp = fpsCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain;
         float timer = 0;
         while (timer < bloodDelay) {
             timer += Time.deltaTime;
-            vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = Mathf.Lerp(startAmp, target, timer/bloodDelay);
+            fpsCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = Mathf.Lerp(startAmp, target, timer/bloodDelay);
 
             yield return null;
         }
-        vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = target;
+        fpsCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = target;
     }
 
     IEnumerator BloodletSFX() {
@@ -374,42 +385,52 @@ public class Bloodletter : MonoBehaviour {
         }
     }
 
+    public void Perish(Transform killer) {
+        killCam.m_LookAt = killer;
+        cutsceneDirector.Play();
+        bloodLevel = 0f;
+        alive = false;
+        _moveSpeed = 0;
+        walkSpeed = 0;
+    }
+
     public void Update() {
+        if (alive) {
 // MOUSE INPUT
 // INTERACTION INPUT
-		if (Input.GetMouseButtonDown(0)) {
-			Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-			RaycastHit hit;
+            if (Input.GetMouseButtonDown(0)) {
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
 // CLICKED ON AN INTERACTABLE
-			if (Physics.Raycast(ray, out hit, 100f, interactionMask)) {
-                Debug.Log(hit.collider.gameObject.name);
-				Interactable target = hit.collider.GetComponentInParent<Interactable>();
-                target.OnInteract();
-			}
-		}
+                if (Physics.Raycast(ray, out hit, 100f, interactionMask)) {
+                    Interactable target = hit.collider.GetComponentInParent<Interactable>();
+                    target.OnInteract();
+                }
+            }
 // BLOODLET INPUT
-        if (Input.GetButtonDown("Bloodlet")) 
-            ToggleBloodletting(!bloodletting);
-        if (bloodLevel < 100 && !bloodRegen && !bloodletting) 
-            StartCoroutine(RegainBlood());
+            if (Input.GetButtonDown("Bloodlet")) 
+                ToggleBloodletting(!bloodletting);
+            if (bloodLevel < 100 && !bloodRegen && !bloodletting) 
+                StartCoroutine(RegainBlood());
 
 // CROUCH INPUT
-        if (Input.GetButtonDown("Crouch") && !crouching) {
-            StartCoroutine(Crouch());
-        }
+            if (Input.GetButtonDown("Crouch") && !crouching) {
+                StartCoroutine(Crouch());
+            }
 
 // MOVE INPUT
-        float inputX = Input.GetAxis("Horizontal");
-        float inputY = Input.GetAxis("Vertical");
-        if (inputX != 0 || inputY != 0) {
-            if (!sprinting) _speedMultiplier = 1f;
+            float inputX = Input.GetAxis("Horizontal");
+            float inputY = Input.GetAxis("Vertical");
+            if (inputX != 0 || inputY != 0) {
+                if (!sprinting) _speedMultiplier = 1f;
 // SPRINT INPUT
-            if (Input.GetButton("Run")) {
-                if (staminaLevel > 0 && !sprinting) StartCoroutine(Sprint());
-            } else if (staminaLevel < 100 && !staminaRegen) StartCoroutine(RegainStamina());
-            
-            _moveSpeed = walkSpeed * _speedMultiplier;
-        } else if (!sprinting) _speedMultiplier = standMultiplier;
+                if (Input.GetButton("Run")) {
+                    if (staminaLevel > 0 && !sprinting) StartCoroutine(Sprint());
+                } else if (staminaLevel < 100 && !staminaRegen) StartCoroutine(RegainStamina());
+                
+                _moveSpeed = walkSpeed * _speedMultiplier;
+            } else if (!sprinting) _speedMultiplier = standMultiplier;
+        }
     }
 
     IEnumerator FootstepCheck()
