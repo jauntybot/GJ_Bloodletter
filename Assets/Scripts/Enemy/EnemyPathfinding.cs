@@ -48,7 +48,7 @@ public class EnemyPathfinding : MonoBehaviour {
 
     [Header("Kill Variables")]
     public float killRadius;
-    public float attacking;
+    public bool attacking;
 
 
 
@@ -274,6 +274,7 @@ public class EnemyPathfinding : MonoBehaviour {
 
 
     public IEnumerator KillPlayer() {
+        attacking = true;
         GameManager.instance.KillPlayer();
         bloodletter.Perish(transform);
         PlaySound(killStingSFX);
