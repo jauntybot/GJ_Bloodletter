@@ -235,7 +235,6 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   attackType: 1
-  attacked: 0
 --- !u!114 &-6607718148167060999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1754,7 +1753,6 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   attackType: 0
-  attacked: 0
 --- !u!114 &8796600813716963432
 MonoBehaviour:
   m_ObjectHideFlags: 0
