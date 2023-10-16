@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 5786886704274700375}
   - component: {fileID: 7389527517728659835}
   m_Layer: 0
-  m_Name: Bloodletter
+  m_Name: Bloodletter_
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
