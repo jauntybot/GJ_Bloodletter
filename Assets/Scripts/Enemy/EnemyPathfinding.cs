@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Playables;
+using UnityEngine.VFX;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(EnemyDirector))]
@@ -273,6 +274,22 @@ public class EnemyPathfinding : MonoBehaviour {
     }
 
 
+    public IEnumerator TerrorizePlayer() {
+        attacking = true;
+        PlaySound(killStingSFX);
+        bloodletter.enemyTerror += 25;
+        if (bloodletter.enemyTerror > 60) bloodletter.enemyTerror = 60;
+
+        float timer = 0f;
+        while (timer < 5f) {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        yield return null;
+        attacking = false;
+    }
+
     public IEnumerator KillPlayer() {
         attacking = true;
         GameManager.instance.KillPlayer();
@@ -280,6 +297,7 @@ public class EnemyPathfinding : MonoBehaviour {
         PlaySound(killStingSFX);
 
         yield return null;
+        attacking = false;
     }
 
 

@@ -184,7 +184,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   relative: 3
-  range: {x: 5, y: 5}
+  range: {x: 15, y: 25}
 --- !u!114 &-7056217138205358663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +235,6 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   attackType: 1
-  attacked: 0
 --- !u!114 &-6607718148167060999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,6 +340,31 @@ MonoBehaviour:
   - {fileID: -7910286858310108857}
   - {fileID: 8414535468090758748}
   - {fileID: -1955820312224659974}
+--- !u!114 &-5767723198442852274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a055ff4bd9e6642b3f0dff32a86e1d, type: 3}
+  m_Name: RandomPosition
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: e11bddfd0cc36324488c69e4998e0e63
+  position: {x: 1078.3999, y: 313.6}
+  blackboard:
+    lookDir: 0
+    moveToPosition: {x: 0, y: 0, z: 0}
+    waitDur: 0
+    enemyCheck: 0
+  description: 
+  drawGizmos: 0
+  relative: 0
+  range: {x: 15, y: 25}
 --- !u!114 &-5658668964165109251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,6 +389,30 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   disappear: 0
+--- !u!114 &-5569705417874098170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd73b19e8f5ce6409d7270c891bca95, type: 3}
+  m_Name: UpdatePOI
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: f2b09b022b1a9e74d9ed92c5f6f1df6d
+  position: {x: 927.9999, y: 313.59998}
+  blackboard:
+    lookDir: 0
+    moveToPosition: {x: 0, y: 0, z: 0}
+    waitDur: 0
+    enemyCheck: 0
+  description: 
+  drawGizmos: 0
+  poiType: 1
 --- !u!114 &-4733894971639797387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,7 +480,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 7cc0cd721916caa4f84625a14b209221
-  position: {x: -1160.8, y: 832.39996}
+  position: {x: -1160.8, y: 962.4}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -507,7 +555,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c17f4a0305ecab04aab8d3ae81c871db
-  position: {x: -1010.39996, y: 832.39996}
+  position: {x: -1010.4, y: 962.4}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -535,7 +583,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c1821bc52b897a04e92d9e542d0f668e
-  position: {x: -1160.8, y: 703.6}
+  position: {x: -1160.8, y: 833.60004}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -802,9 +850,7 @@ MonoBehaviour:
   - {fileID: -8312329775798677533}
   - {fileID: 7008110752145183142}
   - {fileID: 8819633853756662380}
-  - {fileID: 71677389008793717}
   - {fileID: 6685588903559948558}
-  - {fileID: 4446898997327387240}
   - {fileID: -3074952183049216077}
   - {fileID: -1880053953308822671}
   - {fileID: 5513073412547093787}
@@ -848,7 +894,6 @@ MonoBehaviour:
   - {fileID: -7404256888345397688}
   - {fileID: -388284578310345422}
   - {fileID: 1364477136953588924}
-  - {fileID: 3161690320759741867}
   - {fileID: 3844401351593037628}
   - {fileID: 2130552915561097833}
   - {fileID: -2398874017478567439}
@@ -861,39 +906,16 @@ MonoBehaviour:
   - {fileID: 2334335689730139372}
   - {fileID: -6192064948927499123}
   - {fileID: -6834558433728463768}
+  - {fileID: 3556301892830941512}
+  - {fileID: -5767723198442852274}
+  - {fileID: -5569705417874098170}
+  - {fileID: 1796979714371215314}
+  - {fileID: 8487982151009659541}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
     waitDur: 0
     enemyCheck: 0
---- !u!114 &71677389008793717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dee755714b83f34388f0a00bfa0a70f, type: 3}
-  m_Name: EnemyThreshold
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 94bc144892b04cd4c8b0a53770e1c18c
-  position: {x: -1161.6, y: 575}
-  blackboard:
-    lookDir: 0
-    moveToPosition: {x: 0, y: 0, z: 0}
-    waitDur: 0
-    enemyCheck: 0
-  description: DETECTION CHECK
-  drawGizmos: 0
-  compareTo: 0
-  enemyVar: 1
-  compareVar: 0
-  op: 3
-  value: 90
 --- !u!114 &245120344886407162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1010,7 +1032,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 35d04613c8efa0e44923703b46745a5b
-  position: {x: -1311.2, y: 832.39996}
+  position: {x: -1311.2, y: 962.4}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -1023,6 +1045,32 @@ MonoBehaviour:
   compareVar: 3
   op: 3
   value: 0
+--- !u!114 &1796979714371215314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7bf77e26564daa41815cba042a730aa, type: 3}
+  m_Name: InterruptSelector
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: c31520ebbdaf55f49adcdd1dfe85d4b6
+  position: {x: -1011.2, y: 704}
+  blackboard:
+    lookDir: 0
+    moveToPosition: {x: 0, y: 0, z: 0}
+    waitDur: 0
+    enemyCheck: 0
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: -2472586652551348392}
+  - {fileID: 6685588903559948558}
 --- !u!114 &2130552915561097833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1254,7 +1302,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   poiType: 0
---- !u!114 &3161690320759741867
+--- !u!114 &3556301892830941512
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1263,22 +1311,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0a055ff4bd9e6642b3f0dff32a86e1d, type: 3}
-  m_Name: RandomPosition
+  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
+  m_Name: Sequencer
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 3ba53fcedf5653349874ff9feb843da3
-  position: {x: 1228.7998, y: 184.79999}
+  guid: 6593321b049a4cd46a9d135c6b4bd4c6
+  position: {x: 1078.4, y: 184.8}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
     waitDur: 0
     enemyCheck: 0
-  description: RANDOM AROUND PLAYER
+  description: 'RANDOM POI CLOSE TO '
   drawGizmos: 0
-  relative: 2
-  range: {x: 5, y: 5}
+  children:
+  - {fileID: -5569705417874098170}
+  - {fileID: -5767723198442852274}
 --- !u!114 &3792448575689594757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1439,32 +1488,6 @@ MonoBehaviour:
     enemyCheck: 0
   description: 
   drawGizmos: 0
---- !u!114 &4446898997327387240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 460be9e34c566ea45b9e282b1adcb028, type: 3}
-  m_Name: Selector
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 76022619ff138f54b940becad64741fe
-  position: {x: -1010.39996, y: 575}
-  blackboard:
-    lookDir: 0
-    moveToPosition: {x: 0, y: 0, z: 0}
-    waitDur: 0
-    enemyCheck: 0
-  description: 
-  drawGizmos: 0
-  children:
-  - {fileID: -2472586652551348392}
-  - {fileID: 6685588903559948558}
 --- !u!114 &5513073412547093787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1532,7 +1555,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 52ac36b665ad1c24284d0966f657953d
-  position: {x: -1010.39996, y: 703.6}
+  position: {x: -1010.4, y: 833.60004}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -1730,6 +1753,35 @@ MonoBehaviour:
   - {fileID: 8912458354038828859}
   - {fileID: 3931955101818821127}
   - {fileID: -783890742674479818}
+--- !u!114 &8487982151009659541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbee7a696dc744944a3b0b181a81ae5d, type: 3}
+  m_Name: EnemyCheck
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 94eab08fdd861834c805d81941bd2244
+  position: {x: -1011.1999, y: 575.2}
+  blackboard:
+    lookDir: 0
+    moveToPosition: {x: 0, y: 0, z: 0}
+    waitDur: 0
+    enemyCheck: 0
+  description: 
+  drawGizmos: 0
+  child: {fileID: 1796979714371215314}
+  compareTo: 0
+  enemyVar: 1
+  compareVar: 0
+  op: 3
+  value: 90
 --- !u!114 &8753759352351160166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1754,7 +1806,6 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   attackType: 0
-  attacked: 0
 --- !u!114 &8796600813716963432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1807,8 +1858,7 @@ MonoBehaviour:
   description: CHASE PLAYER
   drawGizmos: 0
   children:
-  - {fileID: 71677389008793717}
-  - {fileID: 4446898997327387240}
+  - {fileID: 8487982151009659541}
 --- !u!114 &8912458354038828859
 MonoBehaviour:
   m_ObjectHideFlags: 0
