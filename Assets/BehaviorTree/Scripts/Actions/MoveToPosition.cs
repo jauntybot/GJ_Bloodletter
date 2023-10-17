@@ -53,4 +53,21 @@ public class MoveToPosition : ActionNode
         
         return State.Running;
     }
+
+
+// WAIT FOR PATH TO FINISH
+        // bool finished = false;
+        // if (agent.hasPath) {
+        //     while (!finished) {
+        //         if (!agent.pathPending) {
+        //             if (agent.remainingDistance <= agent.stoppingDistance) {
+        //                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) {
+        //                     finished = true;
+        //                 }
+        //             }
+        //         }
+        //         yield return null;
+        //     }
+        // }
+
 }

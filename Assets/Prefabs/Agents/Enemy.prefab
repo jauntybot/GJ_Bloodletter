@@ -55,7 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   terrorLevel: 0
-  hostilityLevel: 1
+  hostilityLevel: 0
   hostilityGainRate: 0.0001
   downtime: 0
   downtimeTimer: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
     m_Bits: 192
   detectionDrainRate: 0.0125
   energyLevel: 100
-  energyRegenRate: 0.2
+  energyRegenRate: 0.1
   energyRegenDelay: 2
   energyDrainRate: 0.005
   pointOfInterest: {fileID: 0}

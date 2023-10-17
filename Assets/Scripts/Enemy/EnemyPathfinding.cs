@@ -79,7 +79,7 @@ public class EnemyPathfinding : MonoBehaviour {
                 director.downtimeThreshold = Random.Range(10f, 30f);
             break;
             case EnemyState.Roaming:
-                director.downtimeThreshold = Random.Range(10f, 30f);
+                director.downtimeThreshold = Random.Range(30f, 60f);
             break;
         }
         state = _state;
@@ -188,28 +188,6 @@ public class EnemyPathfinding : MonoBehaviour {
         }
     }
 
-
-    IEnumerator ScanArea() {
-        //scanning = true;
-        for (int i = 0; i <= 6; i++) {
-            print("new dir");
-            float timer = 0;
-            float rnd = Random.Range(20, 100);
-            print(rnd);
-            if (Random.Range(0, 1) != 0) rnd = -rnd;
-            Quaternion rot = Quaternion.AngleAxis(rnd, Vector3.up);
-            while (timer < 1f) {
-                timer += Time.deltaTime;
-                transform.rotation = rot;
-                yield return null;
-            }    
-        }
-        yield return null;
-
-
-        //scanning = false;
-    }
-
     IEnumerator TrackBlood() {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionCones[2].dist, bloodPoolMask);
         foreach (var hitCollider in hitColliders) {
@@ -226,25 +204,6 @@ public class EnemyPathfinding : MonoBehaviour {
             state = EnemyState.Roaming;
             yield return null;
         }
-
-// WAIT FOR PATH TO FINISH
-        bool finished = false;
-        if (agent.hasPath) {
-            while (!finished) {
-                if (!agent.pathPending) {
-                    if (agent.remainingDistance <= agent.stoppingDistance) {
-                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) {
-                            finished = true;
-                        }
-                    }
-                }
-                yield return null;
-            }
-        }
-
-// DELAY TO INSPECT BLOOD POOL
-        if (currentPool)
-            yield return new WaitForSecondsRealtime(2.5f);
     }
 
     bool hiding;
