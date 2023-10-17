@@ -12,7 +12,7 @@ namespace KiwiBT {
         Context context;
 
         // Start is called before the first frame update
-        void Start() {
+        public void Init() {
             context = CreateBehaviourTreeContext();
             tree = tree.Clone();
             tree.Bind(context);

@@ -40,7 +40,7 @@ public class EnemyCheck : DecoratorNode
                 _var = context.enemy.director.hostilityLevel;
             break;
             case EnemyVar.DownTime:
-                _var = context.enemy.director.downTime;
+                _var = context.enemy.director.downtime;
             break;
             case EnemyVar.Hidden:
                 _var = context.enemy.hidden ? 1 : 0;
@@ -64,7 +64,7 @@ public class EnemyCheck : DecoratorNode
                 _var2 = context.enemy.director.hostilityLevel;
             break;
             case EnemyVar.DownTime:
-                _var2 = context.enemy.director.downTime;
+                _var2 = context.enemy.director.downtime;
             break;
             case EnemyVar.Hidden:
                 _var2 = context.enemy.hidden ? 1 : 0;

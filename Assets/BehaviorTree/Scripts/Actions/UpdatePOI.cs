@@ -23,11 +23,12 @@ public class UpdatePOI : ActionNode
             case POIType.RandomCloseToPlayer:
                 List<Interactable> inters = new List<Interactable>();
                 foreach (Interactable inter in context.enemy.director.interactables) {
-                    if (inters.Count < 4) { inters.Add(inter); continue; }
-                    foreach(Interactable _inter in inters) {
-                        if (Vector3.Distance(context.bloodletter.transform.position, _inter.transform.position) >
+                    if (inters.Count < 5) { inters.Add(inter); continue; }
+                    
+                    for (int i = inters.Count - 1; i >= 0; i--) {
+                        if (Vector3.Distance(context.bloodletter.transform.position, inters[i].transform.position) >
                         Vector3.Distance(context.bloodletter.transform.position, inter.transform.position)) {
-                            inters.Remove(_inter);
+                            inters.RemoveAt(i);
                             inters.Add(inter);
                         }
                     }

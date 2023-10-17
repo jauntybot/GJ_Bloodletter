@@ -38,6 +38,7 @@ Transform:
   m_Children:
   - {fileID: 1485684307240361729}
   - {fileID: 7222208017352814707}
+  - {fileID: 5042490113056762364}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4789012549952368147
@@ -56,9 +57,10 @@ MonoBehaviour:
   terrorLevel: 0
   hostilityLevel: 1
   hostilityGainRate: 0.0001
-  downTime: 0
-  downTimeThreshold: 5
-  downTimeCurve:
+  downtime: 0
+  downtimeTimer: 0
+  downtimeThreshold: 0
+  downtimeCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -83,7 +85,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   interactables: []
-  poi: {fileID: 0}
+  poi: {fileID: 5042490113056762364}
 --- !u!114 &2090922146709798870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,10 +109,10 @@ MonoBehaviour:
   killStingSFX: {fileID: 11400000, guid: a965494d91753471bac41da354dafd94, type: 2}
   state: 0
   hidden: 0
-  visible: 0
   visibleTerror: 0
   hideDur: 1
   detectionLevel: 0
+  detecting: 0
   detectionDelta: 0
   detectionCones:
   - name: Primary Cone
@@ -497,6 +499,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4176055872332830972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5042490113056762364}
+  m_Layer: 0
+  m_Name: POI
+  m_TagString: Untagged
+  m_Icon: {fileID: 2800000, guid: 642f7453935154b44afc516c07b1d009, type: 3}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5042490113056762364
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4176055872332830972}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 52.033752, y: 1.25, z: 158.54854}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1239387913424700001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1374881553218435306
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -523,7 +556,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.22134829
+      value: -0.007
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
@@ -533,27 +566,27 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.111406446
+      value: 0.203
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.005233386
+      value: 0.005322943
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.013787391
+      value: 0.028183313
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.006257217
+      value: -0.006181213
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.99987173
+      value: 0.99956954
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
@@ -563,7 +596,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 1.576
+      value: 3.226
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b823eeb39edd242cb8b6a200b2375b1f,
         type: 3}

@@ -10,11 +10,13 @@ using UnityEngine.VFX;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(EnemyDirector))]
+[RequireComponent(typeof(KiwiBT.BehaviourTreeRunner))]
 public class EnemyPathfinding : MonoBehaviour {
 
     [HideInInspector] public EnemyDirector director;
     NavMeshAgent agent;
     [HideInInspector] public Bloodletter bloodletter;
+    KiwiBT.BehaviourTreeRunner btRunner;
     
     [Header("References")]
     [SerializeField] AudioSource audioSource, sfxSource;
@@ -24,13 +26,14 @@ public class EnemyPathfinding : MonoBehaviour {
     public enum EnemyState { Lurking, Roaming, Ambling, Tracking, Chasing };
     [Header("State Machine")]
     public EnemyState state;
-    public bool hidden, visible;
+    public bool hidden;
     [SerializeField] float visibleTerror;
     [SerializeField] float hideDur;
 
 
     [Header("Detection Variables")] [Range(0,100)]
     public float detectionLevel;
+    public bool detecting;
     public float detectionDelta;
     public List<DetectionCone> detectionCones;
     [SerializeField] LayerMask viewMask;
@@ -58,22 +61,29 @@ public class EnemyPathfinding : MonoBehaviour {
         //audioSource = GetComponent<AudioSource>();
         bloodletter = Bloodletter.instance;
         director = GetComponent<EnemyDirector>();
+
+        btRunner = GetComponent<KiwiBT.BehaviourTreeRunner>();
+        btRunner.Init();
     
         StartCoroutine(PassiveDetection());
     }
 
     public void ChangeState(EnemyState _state) {
-        state = _state;
-        switch (state) {
+        if (director.downtimeCo != null)
+            director.StopCoroutine(director.downtimeCo);
+        switch (_state) {
             default:
             case EnemyState.Lurking:
-            director.downTimeThreshold = Random.Range(10f, 30f);
-                director.StartCoroutine(director.Downtime());
+                if (state == EnemyState.Lurking)
+                    director.hostilityLevel += 10f;
+                director.downtimeThreshold = Random.Range(10f, 30f);
             break;
             case EnemyState.Roaming:
-                director.StartCoroutine(director.Downtime());
+                director.downtimeThreshold = Random.Range(10f, 30f);
             break;
         }
+        state = _state;
+        director.downtimeCo = director.StartCoroutine(director.Downtime());
     }
 
 
@@ -81,7 +91,7 @@ public class EnemyPathfinding : MonoBehaviour {
         StartCoroutine(DetectionDelta());
         while (true) {
 // INCREMENT DETECTION LEVEL
-            bool detecting = false;
+            detecting = false;
             if (state != EnemyState.Lurking) {
                 foreach (DetectionCone cone in detectionCones) {
                     if (Vector3.Distance(transform.position, bloodletter.transform.position) < cone.dist) {
@@ -90,7 +100,11 @@ public class EnemyPathfinding : MonoBehaviour {
                             if (!Physics.Linecast(transform.position, bloodletter.transform.position, viewMask)) {
                                 if (detectionLevel < 100)
                                     detectionLevel += bloodletter.exposureLevel/1000 * cone.detectionMultiplier;
-                                detecting = true;
+                                if (!detecting) {
+                                    detecting = true;
+                                    director.downtimeTimer -= 5;
+                                    director.downtimeTimer = Mathf.Clamp(director.downtimeTimer, 0, 100);
+                                }
                                 cone.detecting = true;
                             } else {
                                 cone.inRange = false;
@@ -102,7 +116,11 @@ public class EnemyPathfinding : MonoBehaviour {
                                 if (!Physics.Linecast(transform.position, bloodletter.transform.position, viewMask)) {
                                     if (detectionLevel < 100)
                                         detectionLevel += bloodletter.exposureLevel/1000 * cone.detectionMultiplier;
-                                    detecting = true;
+                                    if (!detecting) {
+                                        detecting = true;
+                                        director.downtimeTimer -= 5;
+                                        director.downtimeTimer = Mathf.Clamp(director.downtimeTimer, 0, 100);
+                                    }
                                     cone.detecting = true;
                                 } else cone.detecting = false;
                                 cone.inRange = true;
@@ -118,13 +136,6 @@ public class EnemyPathfinding : MonoBehaviour {
                             cone.detecting = false;
                         }
                 }    
-
-// PLAYER DETECTION CAUSES TERROR
-                if (visible && bloodletter.enemyTerror < 60) 
-                    bloodletter.enemyTerror += visibleTerror;
-                else if (!visible && bloodletter.enemyTerror < 60)
-                    bloodletter.enemyTerror -= visibleTerror;
-                
             }
 
             if (!detecting && detectionLevel > 0) 

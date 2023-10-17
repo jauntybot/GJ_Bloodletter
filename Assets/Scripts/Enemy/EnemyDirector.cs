@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Animations;
 
 [RequireComponent(typeof(EnemyPathfinding))]
 public class EnemyDirector : MonoBehaviour {
@@ -17,10 +19,11 @@ public class EnemyDirector : MonoBehaviour {
     public float hostilityLevel;
     [SerializeField] float hostilityGainRate;
     [Range(0,100)]
-    public float downTime;
-    bool downTimeActive;
-    public float downTimeThreshold;
-    [SerializeField] AnimationCurve downTimeCurve;
+    public float downtime;
+    public float downtimeTimer;
+    public Coroutine downtimeCo;
+    public float downtimeThreshold;
+    [SerializeField] AnimationCurve downtimeCurve;
     
     public List<Interactable> interactables;
 
@@ -34,6 +37,8 @@ public class EnemyDirector : MonoBehaviour {
         StartCoroutine(PassiveTracking());
         foreach (Interactable inter in FindObjectsOfType<Interactable>())
             interactables.Add(inter);
+
+        poi.parent = transform.parent;
     }
 
 
@@ -51,16 +56,15 @@ public class EnemyDirector : MonoBehaviour {
     }
 
     public IEnumerator Downtime() {
-        if (!downTimeActive) {
-            downTimeActive = true;
-            float timer = 0f;
-            while (timer <= downTimeThreshold) {
-                timer += Time.deltaTime;
-                downTime = downTimeCurve.Evaluate(timer/downTimeThreshold) * 100;
-                
-                yield return null;
+        downtimeTimer = 0f;
+        float timer = 0f;
+        while (downtimeTimer <= downtimeThreshold) {
+            if (!enemy.detecting) {
+                downtimeTimer += Time.deltaTime;
+                downtime = downtimeCurve.Evaluate(downtimeTimer/downtimeThreshold) * 100;
             }
-            downTimeActive = false;
+                
+            yield return null;
         }
     }
 

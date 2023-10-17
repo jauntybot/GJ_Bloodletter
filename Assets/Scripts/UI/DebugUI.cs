@@ -35,7 +35,7 @@ public class DebugUI : MonoBehaviour {
         energySlider.value = enemy.energyLevel;
         terrorSlider.value = enemy.director.terrorLevel;
         hostilitySlider.value = enemy.director.hostilityLevel;
-        downtimeSlider.value = enemy.director.downTime;
+        downtimeSlider.value = enemy.director.downtime;
         tollCount.text = bloodletter.tollCount.ToString();
     } 
 
