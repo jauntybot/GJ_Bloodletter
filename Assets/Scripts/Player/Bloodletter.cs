@@ -59,7 +59,9 @@ public class Bloodletter : MonoBehaviour {
     [SerializeField] AnimationCurve exposureCurve;
     [SerializeField] float expBase, expStill, expCrouch, expWalk, expSprint, expBloodletting, expInfected;
     [SerializeField] DetectionCone fovCone;
-    [SerializeField] LayerMask viewMask;
+    [Range(0, 60)] public float enemyTerror;
+    [SerializeField] AnimationCurve terrorProximity;
+    [SerializeField] float terrorRate, terrorMod;
     
 
     [Header("Cinemachine Values")]
@@ -76,9 +78,6 @@ public class Bloodletter : MonoBehaviour {
     [Range(0,100)] public float bloodLevel;
     [Range(0,100)] public float infectionLevel, staminaLevel;
     public int tollCount;
-    [HideInInspector] [Range(0, 60)] public float enemyTerror;
-    [SerializeField] AnimationCurve terrorProximity;
-    [SerializeField] float terrorRate, terrorMod;
     public const float potencyMin = 0.125f, potencyMax = 1f;
     public Vector2 potencyRange { get { return new Vector2(potencyMin, potencyMax); } }
     [Range(potencyMin, potencyMax)]
@@ -129,22 +128,32 @@ public class Bloodletter : MonoBehaviour {
                 }
             }
 // SNEAK IN TERROR LEVEL
+            if (!enemy.hidden) {
+
+            }
             if (Vector3.Distance(transform.position, enemy.transform.position) < fovCone.dist) {
                 Vector3 dir = (enemy.transform.position - transform.position).normalized;
                 float angleDelta = Vector3.Angle(transform.forward, dir);
                 if (angleDelta < fovCone.viewAngle / 2f) {
-                    if (!Physics.Linecast(transform.position, enemy.transform.position, viewMask)) {
+                    if (!Physics.Linecast(transform.position, enemy.transform.position, fovCone.viewMask)) {
                         if (!fovCone.detecting) {
                             fovCone.detecting = true;
                         }
+                        terrorMod = terrorProximity.Evaluate((fovCone.dist - Vector3.Distance(transform.position, enemy.transform.position))/fovCone.dist) * 10;
                     }
                     fovCone.inRange = true;
                 } else {
+                    terrorMod -= terrorRate;
+                    terrorMod = Mathf.Clamp(terrorMod, 0.25f, 1);
                     fovCone.detecting = false;
                     fovCone.inRange = false;
                 }
+            } else {
+                terrorMod -= terrorRate;
+                terrorMod = Mathf.Clamp(terrorMod, -0.25f, 1);
             }
             enemyTerror += terrorRate * terrorMod;
+            enemyTerror = Mathf.Clamp(enemyTerror, 0, 60);
 
             bloodEffect.material.SetFloat(bloodEffect.properties[0].shaderProperty, bloodEffect.properties[0].range.x + bloodEffect.properties[0].curve.Evaluate(1 - (bloodLevel/100)) * (bloodEffect.properties[0].range.y - bloodEffect.properties[0].range.x));
             
@@ -486,5 +495,14 @@ public class Bloodletter : MonoBehaviour {
                 
             }
         }
+    }
+
+    void OnDrawGizmos () {
+		Gizmos.color = Color.yellow;
+        Vector3 coneOffset = new Vector3(0, 1.5f, 0);
+        if (Application.isPlaying)
+            Gizmos.color = fovCone.detecting ? Color.green : fovCone.inRange ? Color.yellow : Color.red;;
+        Gizmos.DrawRay(transform.position + coneOffset, Quaternion.AngleAxis(fovCone.viewAngle/2, Vector3.up) * transform.forward * fovCone.dist);
+        Gizmos.DrawRay(transform.position + coneOffset, Quaternion.AngleAxis(-fovCone.viewAngle/2, Vector3.up) * transform.forward * fovCone.dist);
     }
 }
