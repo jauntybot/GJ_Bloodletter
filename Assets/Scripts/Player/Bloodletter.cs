@@ -14,12 +14,12 @@ public class Bloodletter : MonoBehaviour {
 
     public static Bloodletter instance;
     void Awake() {
-        if (Bloodletter.instance) return;
+        if (Bloodletter.instance) Destroy(Bloodletter.instance.gameObject);
         Bloodletter.instance = this;
     }
 
     AudioSource audioSource;
-
+    EnemyPathfinding enemy;
 
     [Header("Controller")]	
     public bool alive;
@@ -58,6 +58,9 @@ public class Bloodletter : MonoBehaviour {
     public float exposureLevel;
     [SerializeField] AnimationCurve exposureCurve;
     [SerializeField] float expBase, expStill, expCrouch, expWalk, expSprint, expBloodletting, expInfected;
+    [SerializeField] DetectionCone fovCone;
+    [SerializeField] LayerMask viewMask;
+    
 
     [Header("Cinemachine Values")]
     [SerializeField] float baseFOV;
@@ -74,6 +77,8 @@ public class Bloodletter : MonoBehaviour {
     [Range(0,100)] public float infectionLevel, staminaLevel;
     public int tollCount;
     [HideInInspector] [Range(0, 60)] public float enemyTerror;
+    [SerializeField] AnimationCurve terrorProximity;
+    [SerializeField] float terrorRate, terrorMod;
     public const float potencyMin = 0.125f, potencyMax = 1f;
     public Vector2 potencyRange { get { return new Vector2(potencyMin, potencyMax); } }
     [Range(potencyMin, potencyMax)]
@@ -100,6 +105,7 @@ public class Bloodletter : MonoBehaviour {
 
     public void Init() {
         alive = true;
+        enemy = EnemyPathfinding.instance;
         audioSource = GetComponent<AudioSource>();
         cutsceneDirector = GetComponent<PlayableDirector>();
         StartCoroutine(InfectionSpread());
@@ -123,7 +129,22 @@ public class Bloodletter : MonoBehaviour {
                 }
             }
 // SNEAK IN TERROR LEVEL
-
+            if (Vector3.Distance(transform.position, enemy.transform.position) < fovCone.dist) {
+                Vector3 dir = (enemy.transform.position - transform.position).normalized;
+                float angleDelta = Vector3.Angle(transform.forward, dir);
+                if (angleDelta < fovCone.viewAngle / 2f) {
+                    if (!Physics.Linecast(transform.position, enemy.transform.position, viewMask)) {
+                        if (!fovCone.detecting) {
+                            fovCone.detecting = true;
+                        }
+                    }
+                    fovCone.inRange = true;
+                } else {
+                    fovCone.detecting = false;
+                    fovCone.inRange = false;
+                }
+            }
+            enemyTerror += terrorRate * terrorMod;
 
             bloodEffect.material.SetFloat(bloodEffect.properties[0].shaderProperty, bloodEffect.properties[0].range.x + bloodEffect.properties[0].curve.Evaluate(1 - (bloodLevel/100)) * (bloodEffect.properties[0].range.y - bloodEffect.properties[0].range.x));
             
@@ -135,9 +156,6 @@ public class Bloodletter : MonoBehaviour {
         while (true) {
             while (!tick) yield return null;
             infectionSpeed = bloodLevel/100;
-
-
-
             if (!bloodletting) {
                 if (infectionPotency < potencyMax)
                     infectionPotency += potencyIncrement;

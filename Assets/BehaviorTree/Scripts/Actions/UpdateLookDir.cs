@@ -9,7 +9,36 @@ public class UpdateLookDir : ActionNode
     public bool changeDir;
     public Blackboard.LookDir _lookDir;
 
+    public float turnDur, turnTimer;
+
+    Vector3 targetPos;
+    Quaternion startRot, targetRot;
+
     protected override void OnStart() {
+        if (!changeDir) {
+            switch (blackboard.lookDir) {
+                case Blackboard.LookDir.Forward:
+                    context.agent.updateRotation = true;
+                break;
+                case Blackboard.LookDir.AtPlayer:
+                    context.agent.updateRotation = false;
+                    targetPos = new Vector3(context.enemy.bloodletter.transform.position.x, 
+                                       context.gameObject.transform.position.y, 
+                                       context.enemy.bloodletter.transform.position.z ) ;        
+                break;
+                case Blackboard.LookDir.Scanning:
+                    context.agent.updateRotation = false;
+
+                    turnTimer = 0f;
+
+                    float rnd = Random.Range(80, 200);
+                    if (Random.Range(0, 1) != 0) rnd = -rnd;
+
+                    startRot = context.transform.rotation;
+                    targetRot = Quaternion.AngleAxis(rnd, Vector3.up);
+                break;
+            }
+        }
     }
 
     protected override void OnStop() {
@@ -25,19 +54,16 @@ public class UpdateLookDir : ActionNode
         if (!changeDir) {
             switch (blackboard.lookDir) {
                 case Blackboard.LookDir.Forward:
-                    context.agent.updateRotation = true;
                 break;
                 case Blackboard.LookDir.AtPlayer:
-                    context.agent.updateRotation = false;
-                    Vector3 targetPos = new Vector3(context.enemy.bloodletter.transform.position.x, 
-                                       context.gameObject.transform.position.y, 
-                                       context.enemy.bloodletter.transform.position.z ) ;
-            
                     context.gameObject.transform.LookAt(targetPos);
-                    
                 break;
                 case Blackboard.LookDir.Scanning:
-                    context.agent.updateRotation = false;
+                    if (turnTimer < turnDur) {
+                        turnTimer += Time.deltaTime;
+                        context.transform.rotation = Quaternion.Lerp(startRot, targetRot, turnTimer/turnDur);
+                        return State.Running;
+                    }
                 break;
             }
         }

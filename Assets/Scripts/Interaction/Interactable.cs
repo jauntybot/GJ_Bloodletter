@@ -13,6 +13,9 @@ public class Interactable : MonoBehaviour {
     public bool inRange, inView;
     public bool locked = false;
 
+    public delegate void OnInteraction();
+    public OnInteraction FirstInteractionCallback;
+
 
     protected virtual void Start() {
         Init();
@@ -48,7 +51,10 @@ public class Interactable : MonoBehaviour {
     }
 
 // OVERIDE FUNCTIONALITY IN INHERITED CLASSES
-    public virtual void Interact() {}
+    public virtual void Interact() {
+        FirstInteractionCallback?.Invoke();
+        hasInteracted = true;
+    }
 
 
     void OnDrawGizmosSelected () {
