@@ -42,7 +42,6 @@ public class EnemyPathfinding : MonoBehaviour {
     public bool detecting;
     public float detectionDelta;
     public List<DetectionCone> detectionCones;
-    [SerializeField] LayerMask viewMask;
     [SerializeField] float detectionDrainRate;
 
 
@@ -103,7 +102,7 @@ public class EnemyPathfinding : MonoBehaviour {
                     if (Vector3.Distance(transform.position, bloodletter.transform.position) < cone.dist) {
                         Vector3 dir = (bloodletter.transform.position - transform.position).normalized;
                         if (cone.coneShape == DetectionCone.ConeShape.Sphere) {
-                            if (!Physics.Linecast(transform.position, bloodletter.transform.position, viewMask)) {
+                            if (!Physics.Linecast(transform.position, bloodletter.transform.position, cone.viewMask)) {
                                 if (detectionLevel < 100)
                                     detectionLevel += bloodletter.exposureLevel/1000 * cone.detectionMultiplier;
                                 if (!detecting) {
@@ -119,7 +118,7 @@ public class EnemyPathfinding : MonoBehaviour {
                         } else {
                             float angleDelta = Vector3.Angle(transform.forward, dir);
                             if (angleDelta < cone.viewAngle / 2f) {
-                                if (!Physics.Linecast(transform.position, bloodletter.transform.position, viewMask)) {
+                                if (!Physics.Linecast(transform.position, bloodletter.transform.position, cone.viewMask)) {
                                     if (detectionLevel < 100)
                                         detectionLevel += bloodletter.exposureLevel/1000 * cone.detectionMultiplier;
                                     if (!detecting) {
@@ -166,39 +165,10 @@ public class EnemyPathfinding : MonoBehaviour {
         }
     }
 
-
-
-    IEnumerator AmbleToPOI(Vector3 pos) {
-        NavMeshHit hit;
-        
-        NavMesh.SamplePosition(pos, out hit, 1.0f, NavMesh.AllAreas);
-        agent.SetDestination(hit.position);
-        yield return null;
-
-        if (agent.hasPath) {
-            Debug.Log(agent.path.corners.Length);
-            agent.SetDestination(agent.path.corners.Length > 5 ? agent.path.corners[4] : agent.path.corners[agent.path.corners.Length - 1]);
-        }
-// WAIT FOR PATH TO FINISH
-        bool finished = false;
-        if (agent.hasPath) {
-            float distance = agent.remainingDistance;
-            while (!finished) {
-                if (!agent.pathPending) {
-                    if (agent.remainingDistance <= distance - Random.Range(2, 10) || agent.remainingDistance <= agent.stoppingDistance) {
-                        finished = true;
-                    }
-                }
-                yield return null;
-            }
-        }
-    }
-
     bool hiding;
     public void ToggleVisibility(bool state) {
         if (!hiding)
             StartCoroutine(HideAnimation(state));
-
     }
 
     public IEnumerator HideAnimation(bool state) {
@@ -308,7 +278,7 @@ public class DetectionCone {
     public float viewAngle, detectionMultiplier;
     public enum ConeShape { Cone, Sphere };
     public ConeShape coneShape;
-
+    public LayerMask viewMask;
     public bool detecting, inRange;
 
 

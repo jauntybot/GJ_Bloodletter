@@ -27,7 +27,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -105,7 +105,7 @@ Material:
     m_Floats:
     - Boolean_193028D2: 1
     - Boolean_3F1A8DAB: 1
-    - Boolean_43476D73: 1
+    - Boolean_43476D73: 0
     - Boolean_7165A49C: 0
     - Boolean_85059BBE: 1
     - Boolean_8BBF99CD: 1
@@ -148,7 +148,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_2E5415DE: {r: 1, g: 1, b: 1, a: 0}
+    - Color_2E5415DE: {r: 1, g: 1, b: 1, a: 1}
     - Vector2_8044833E: {r: 1, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

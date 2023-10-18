@@ -64,8 +64,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -73,8 +73,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -146,6 +146,9 @@ MonoBehaviour:
     viewAngle: 60
     detectionMultiplier: 4
     coneShape: 0
+    viewMask:
+      serializedVersion: 2
+      m_Bits: 0
     detecting: 0
     inRange: 0
   - name: Far Cone
@@ -153,6 +156,9 @@ MonoBehaviour:
     viewAngle: 85
     detectionMultiplier: 0.1
     coneShape: 0
+    viewMask:
+      serializedVersion: 2
+      m_Bits: 0
     detecting: 0
     inRange: 0
   - name: Peripheral Cone
@@ -160,6 +166,9 @@ MonoBehaviour:
     viewAngle: 220
     detectionMultiplier: 0.05
     coneShape: 0
+    viewMask:
+      serializedVersion: 2
+      m_Bits: 0
     detecting: 0
     inRange: 0
   - name: Immediate Radius
@@ -167,6 +176,9 @@ MonoBehaviour:
     viewAngle: 0
     detectionMultiplier: 4
     coneShape: 1
+    viewMask:
+      serializedVersion: 2
+      m_Bits: 0
     detecting: 0
     inRange: 0
   - name: Immediate Radius
@@ -174,18 +186,17 @@ MonoBehaviour:
     viewAngle: 15
     detectionMultiplier: 4
     coneShape: 0
+    viewMask:
+      serializedVersion: 2
+      m_Bits: 0
     detecting: 0
     inRange: 0
-  viewMask:
-    serializedVersion: 2
-    m_Bits: 192
   detectionDrainRate: 0.0125
   energyLevel: 100
   energyRegenRate: 0.1
   energyRegenDelay: 2
   energyDrainRate: 0.005
-  pointOfInterest: {fileID: 0}
-  pointsOfInterest: []
+  bloodPools: []
   currentPool: {fileID: 0}
   bloodPoolMask:
     serializedVersion: 2
