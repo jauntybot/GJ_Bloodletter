@@ -1,0 +1,289 @@
+fileFormatVersion: 2
+guid: 6c0b5533c637241d98e809f26d2fbd26
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Barley.001
+    second: {fileID: 2100000, guid: fe912e912643f44c989bbeb09d51b34f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Barrel_Stand
+    second: {fileID: 2100000, guid: fd51bb3f8dd3b4cc08a4cbfb744e2c00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bottle_Blue
+    second: {fileID: 2100000, guid: 1dd62badfb9c942ee9767c1767fe17a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bread_1
+    second: {fileID: 2100000, guid: 767dd1d8613f04dde84a0960c62039e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bread_2
+    second: {fileID: 2100000, guid: 41481bd455e6d47ecb09eb3a38888e29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bread_3
+    second: {fileID: 2100000, guid: d55821720ec3c4549a8edd5e4cc7be76, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bread_4
+    second: {fileID: 2100000, guid: 7f1051f36a4d9424390e5d95e219e288, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bread_5
+    second: {fileID: 2100000, guid: 0e5a34213571a4c84a1fd3903297633f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bread_Stick
+    second: {fileID: 2100000, guid: 8ee71134bbc7e4bf095362f12d8a8ad7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bread_Stick_2
+    second: {fileID: 2100000, guid: 584855e259d39487abecfa07070ac4b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bread_Stick_3
+    second: {fileID: 2100000, guid: e5ecf809115274a9fa18ea1bdae1ebbe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bread_Stick_4
+    second: {fileID: 2100000, guid: e5e550fa4f3cd4cd8b6a9120fc363a5f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bread_Stick_5
+    second: {fileID: 2100000, guid: 737895f7d2a734e0887e56de60e790e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Canopy_1
+    second: {fileID: 2100000, guid: 9aad3c1137d644bcf83aff1509f91e57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Canopy_2
+    second: {fileID: 2100000, guid: 6b27f331503ba4808a615d07254e0257, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Canopy_3
+    second: {fileID: 2100000, guid: d8472f23de16a41bdaef7489bba177ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Canopy_4
+    second: {fileID: 2100000, guid: 09fd1f461a8fc4c62a41aeb6469eeabf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Canopy_Frame
+    second: {fileID: 2100000, guid: 0ee71a8edcf1a434bb03e0f023de9bc0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Carrots
+    second: {fileID: 2100000, guid: aab5aeb5fa3ab4760b3b451728c62c04, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cart_Handles_001
+    second: {fileID: 2100000, guid: a77809e763ebf403aa13e0d280ac369a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cart_Main.001
+    second: {fileID: 2100000, guid: 4f54f8e6f6e9146c78091662bfe41fa8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cart_Poles.001
+    second: {fileID: 2100000, guid: 2051ce958a6984c4e8522d36f621d032, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cart_Side_Panel
+    second: {fileID: 2100000, guid: a8e8b85096bfc45eeb77c0263f622cb4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cart_Wheels_001
+    second: {fileID: 2100000, guid: 20e9df1aa98154fff9a24428cf845e4f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese_Wheel_1
+    second: {fileID: 2100000, guid: 2b737b7977dbd4f55b23106e3767bc65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese_Wheel_10
+    second: {fileID: 2100000, guid: 472ec7663b0db42e9b30b49ab6e6ed36, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese_Wheel_2
+    second: {fileID: 2100000, guid: a3f23d6ef69064a3e975afb06eda9e22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese_Wheel_3
+    second: {fileID: 2100000, guid: 43a8badeaade6412e88caa486c66818b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese_Wheel_4
+    second: {fileID: 2100000, guid: 730ef7091e5f34637a37db8f1ee566fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese_Wheel_5
+    second: {fileID: 2100000, guid: 794d3bdc29d28433c9fe098387e1c910, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese_Wheel_6
+    second: {fileID: 2100000, guid: 794d3bdc29d28433c9fe098387e1c910, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese_Wheel_7
+    second: {fileID: 2100000, guid: e1e1dac49cb684388a50fb52bf6784d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese_Wheel_8
+    second: {fileID: 2100000, guid: ae743b5caeb5b44ac87189ebf3048eaa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese_Wheel_9
+    second: {fileID: 2100000, guid: 1a3b6f210372e441bb0b0136509a8089, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Clay_Pot_1
+    second: {fileID: 2100000, guid: 439177b6a5bfe4dbd9890c2a54719d20, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grain_2
+    second: {fileID: 2100000, guid: ac05fb92b6ca949cdb9af0fd29bef8bd, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
