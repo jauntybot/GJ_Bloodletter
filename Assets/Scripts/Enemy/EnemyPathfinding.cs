@@ -13,6 +13,12 @@ using UnityEngine.VFX;
 [RequireComponent(typeof(KiwiBT.BehaviourTreeRunner))]
 public class EnemyPathfinding : MonoBehaviour {
 
+    public static EnemyPathfinding instance;
+    void Awake() {
+        if (EnemyPathfinding.instance) Destroy(EnemyPathfinding.instance.gameObject);
+        EnemyPathfinding.instance = this;
+    }
+
     [HideInInspector] public EnemyDirector director;
     NavMeshAgent agent;
     [HideInInspector] public Bloodletter bloodletter;
@@ -44,10 +50,9 @@ public class EnemyPathfinding : MonoBehaviour {
     [Header("Nav Variables")] [Range(0,100)]
     public float energyLevel;
     public float energyRegenRate, energyRegenDelay, energyDrainRate;
-    [SerializeField] Transform pointOfInterest;
-    [SerializeField] List<Vector3> pointsOfInterest;
-    [SerializeField] BloodPool currentPool;
-    [SerializeField] LayerMask bloodPoolMask;
+    public List<BloodPool> bloodPools = new List<BloodPool>();
+    public BloodPool currentPool;
+    public LayerMask bloodPoolMask;
     
 
     [Header("Kill Variables")]
@@ -64,7 +69,8 @@ public class EnemyPathfinding : MonoBehaviour {
 
         btRunner = GetComponent<KiwiBT.BehaviourTreeRunner>();
         btRunner.Init();
-    
+
+        ChangeState(EnemyState.Lurking);
         StartCoroutine(PassiveDetection());
     }
 
@@ -188,24 +194,6 @@ public class EnemyPathfinding : MonoBehaviour {
         }
     }
 
-    IEnumerator TrackBlood() {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionCones[2].dist, bloodPoolMask);
-        foreach (var hitCollider in hitColliders) {
-            if (hitCollider.GetComponent<BloodPool>()) {
-                BloodPool bp = hitCollider.GetComponent<BloodPool>();
-                if (currentPool == null || bp.age < currentPool.age) {
-                    currentPool = bp;
-                }
-            }
-        }
-        if (currentPool)
-            agent.SetDestination(currentPool.transform.position);
-        else {
-            state = EnemyState.Roaming;
-            yield return null;
-        }
-    }
-
     bool hiding;
     public void ToggleVisibility(bool state) {
         if (!hiding)
@@ -215,11 +203,16 @@ public class EnemyPathfinding : MonoBehaviour {
 
     public IEnumerator HideAnimation(bool state) {
         hiding = true;
+        float fromVol = 1;
+        float toVol = 0;
         if (state) {
             foreach(GameObject obj in gfx) 
                 obj.SetActive(state);
             audioSource.clip = idleSFX.Get();
             audioSource.Play();
+            audioSource.volume = 0;
+            fromVol = 0;
+            toVol = 1;
         } else
             agent.enabled = state;
             
@@ -228,6 +221,7 @@ public class EnemyPathfinding : MonoBehaviour {
         while (timer < hideDur) {
             timer += Time.deltaTime;
             transform.position = Vector3.Lerp(startPos, targetPos, timer/hideDur);
+            audioSource.volume = Mathf.Lerp(fromVol, toVol, timer/hideDur);
             yield return null;
         }
         transform.position = targetPos;
@@ -251,11 +245,11 @@ public class EnemyPathfinding : MonoBehaviour {
         if (bloodletter.enemyTerror > 60) bloodletter.enemyTerror = 60;
 
         float timer = 0f;
-        while (timer < 5f) {
+        while (timer < 1f) {
             timer += Time.deltaTime;
             yield return null;
         }
-
+        ChangeState(EnemyState.Lurking);
         yield return null;
         attacking = false;
     }

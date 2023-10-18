@@ -25,12 +25,12 @@ public class EnemyState : DecoratorNode
                     return State.Failure;
                 }
             case Operator.IsNot:
-                if (context.enemy.state != enemyState)
-                    return child.Update();
-                else {
+                if (context.enemy.state == enemyState) {
                     child.Abort();
                     return State.Failure;
                 }
+                else 
+                    return child.Update();
         }
     }
 }

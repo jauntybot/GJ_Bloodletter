@@ -5,18 +5,15 @@ using UnityEngine;
 public class BloodPool : MonoBehaviour {
     
 
-    bool inspected;
-    
+    bool _inspected;
+    public bool inspected { get { return _inspected; } }
     float _age;
-    public float age { get { return _age;}}
+    public float age { get { return _age; } }
     void Start() {
-        StartCoroutine(Age());
+        _age = Time.time;
     }
 
-    IEnumerator Age() {
-        while (true) {
-            _age += Time.deltaTime;
-            yield return null;
-        }
+    public void Inspect() {
+        _inspected = true;
     }
 }

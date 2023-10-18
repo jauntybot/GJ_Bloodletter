@@ -1,22 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8866668631133749917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d613f08f173d4dd895bb07b3230baa9, type: 3}
-  m_Name: FullScreenDistortion
-  m_EditorClassIdentifier: 
-  m_Active: 0
-  passMaterial: {fileID: 2100000, guid: c4f7c2bc05e31449ab5f549ba2953cd7, type: 2}
-  injectionPoint: 450
-  requirements: 4
-  passIndex: 0
 --- !u!114 &-8661902291474395699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +59,7 @@ MonoBehaviour:
   passMaterial: {fileID: 2100000, guid: d5d7cc48dcc294cafb1cdc1da83f9c47, type: 2}
   injectionPoint: 450
   requirements: 4
-  passIndex: 0
+  passIndex: 1
 --- !u!114 &-3165891883105746421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,7 +76,7 @@ MonoBehaviour:
   m_Settings:
     technique: 0
     maxDrawDistance: 1000
-    decalLayers: 0
+    decalLayers: 1
     dBufferSettings:
       surfaceData: 2
     screenSpaceSettings:
@@ -124,8 +107,7 @@ MonoBehaviour:
   - {fileID: -3882953748893234477}
   - {fileID: 5195105783734661948}
   - {fileID: -4647144530281157395}
-  - {fileID: -8866668631133749917}
-  m_RendererFeatureMap: 0b82301e1b7e10d4d302f1a1cd4a3c21cdcd8635c2bdca87a8f44a2d59da7d8bd38af25d23fa1cca3cf3147a2fb91848ed2cb1dcab0682bf637d2c8cdb43f384
+  m_RendererFeatureMap: 0b82301e1b7e10d4d302f1a1cd4a3c21cdcd8635c2bdca87a8f44a2d59da7d8bd38af25d23fa1cca3cf3147a2fb91848ed2cb1dcab0682bf
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}

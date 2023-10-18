@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using KiwiBT;
-using TMPro;
+
 
 public class RandomPosition : ActionNode {
 
@@ -39,7 +40,12 @@ public class RandomPosition : ActionNode {
                 blackboard.moveToPosition.z = context.enemy.director.poi.position.z + delta.y;
             break;
         }
-
-        return State.Success;
+// CHECK IF ENEMY CAN PATHFIND TO PLAYER, FAIL IF NOT
+        NavMeshPath path = new NavMeshPath();
+        NavMesh.CalculatePath(new Vector3 (blackboard.moveToPosition.x, context.enemy.bloodletter.transform.position.y, blackboard.moveToPosition.z), context.enemy.bloodletter.transform.position, NavMesh.AllAreas, path);
+        Debug.Log(new Vector3 (blackboard.moveToPosition.x, context.enemy.bloodletter.transform.position.y, blackboard.moveToPosition.z) + ", " + context.enemy.bloodletter.transform.position + ", " + path.status);
+        if (NavMesh.CalculatePath(new Vector3 (blackboard.moveToPosition.x, context.enemy.bloodletter.transform.position.y, blackboard.moveToPosition.z), context.enemy.bloodletter.transform.position, NavMesh.AllAreas, path))
+            return State.Success;
+        return State.Failure;
     }
 }

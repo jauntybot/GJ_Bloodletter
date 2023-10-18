@@ -14,18 +14,19 @@ public class EnemyDirector : MonoBehaviour {
 
     [Range(0, 100)]
     public float terrorLevel;
-    float fitnessMod; // Used to locally track changes from bloodletter's wellness
+    float fitnessMod, terrorMod; // Used to locally track changes from bloodletter's wellness
     [Range(0, 100)]
     public float hostilityLevel;
-    [SerializeField] float hostilityGainRate;
-    [Range(0,100)]
-    public float downtime;
+    [SerializeField] float hostilityGainRate, hostilityMod;
+    [SerializeField] AnimationCurve hostilityCurve;
+    [Range(0,100)] public float downtime;
     public float downtimeTimer;
     public Coroutine downtimeCo;
     public float downtimeThreshold;
     [SerializeField] AnimationCurve downtimeCurve;
     
     public List<Interactable> interactables;
+    public float interactedCount;
 
     public Transform poi;
     
@@ -35,8 +36,10 @@ public class EnemyDirector : MonoBehaviour {
         bloodletter = Bloodletter.instance;
         enemy = GetComponent<EnemyPathfinding>();
         StartCoroutine(PassiveTracking());
-        foreach (Interactable inter in FindObjectsOfType<Interactable>())
+        foreach (Interactable inter in FindObjectsOfType<Interactable>()) {
+            inter.FirstInteractionCallback += UpdateInteracted;
             interactables.Add(inter);
+        }
 
         poi.parent = transform.parent;
     }
@@ -45,11 +48,16 @@ public class EnemyDirector : MonoBehaviour {
 
     public IEnumerator PassiveTracking() {
         fitnessMod = 0;
+        terrorMod = 0;
         while (true) {
             terrorLevel -= fitnessMod;
             fitnessMod = Mathf.Lerp(0, 15, Mathf.InverseLerp(0, 100, 100 - bloodletter.bloodLevel)) + Mathf.Lerp(0, 15, Mathf.InverseLerp(0, 100, bloodletter.infectionLevel)) + Mathf.Lerp(0, 10, Mathf.InverseLerp(0, 100, 100 - bloodletter.staminaLevel));
             terrorLevel += fitnessMod;
-            hostilityLevel += hostilityGainRate * terrorLevel;
+            terrorLevel -= terrorMod;
+            terrorMod = bloodletter.enemyTerror;
+            terrorLevel += terrorMod;
+
+            hostilityLevel += hostilityGainRate * hostilityMod * terrorLevel;
 
             yield return null;
         }
@@ -69,9 +77,11 @@ public class EnemyDirector : MonoBehaviour {
     }
 
 
-
+    public void UpdateInteracted() {
+        interactedCount++;
+        hostilityMod = 0.1f + hostilityCurve.Evaluate(interactedCount/interactables.Count);
+    }
     public void UpdatePOI(Vector3 pos) {
-
         poi.position = pos;
     }
 

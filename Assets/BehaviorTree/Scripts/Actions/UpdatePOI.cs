@@ -5,7 +5,7 @@ using KiwiBT;
 
 public class UpdatePOI : ActionNode
 {
-    public enum POIType { Random, RandomCloseToPlayer }
+    public enum POIType { Random, RandomCloseToPlayer, BloodPool }
     public POIType poiType;
 
     protected override void OnStart() {
@@ -34,7 +34,10 @@ public class UpdatePOI : ActionNode
                     }
                 }
                 context.enemy.director.UpdatePOI(inters[Random.Range(0, inters.Count - 1)].transform.position);
+            break;
+            case POIType.BloodPool:
 
+                context.enemy.director.UpdatePOI(context.enemy.currentPool.transform.position);
             break;
         }
         return State.Success;

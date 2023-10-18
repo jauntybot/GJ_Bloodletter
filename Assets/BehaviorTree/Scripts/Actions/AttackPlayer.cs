@@ -18,19 +18,21 @@ public class AttackPlayer : ActionNode
     }
 
     protected override State OnUpdate() {
-        if (Vector3.Distance(context.transform.position, context.enemy.bloodletter.transform.position) <= context.enemy.killRadius) {
-            if (context.enemy.attacking && context.enemy.bloodletter.alive) {
+        if (!context.enemy.attacking) {
+            if (Vector3.Distance(context.transform.position, context.enemy.bloodletter.transform.position) <= context.enemy.killRadius) {
+                if (context.enemy.attacking && context.enemy.bloodletter.alive) {
 
-                switch (attackType) {
-                    default:
-                    case AttackType.Terrorize:
-                        context.enemy.StartCoroutine(context.enemy.TerrorizePlayer());
-                    break;
-                    case AttackType.Kill:
-                        context.enemy.StartCoroutine(context.enemy.KillPlayer());
-                    break;
+                    switch (attackType) {
+                        default:
+                        case AttackType.Terrorize:
+                            context.enemy.StartCoroutine(context.enemy.TerrorizePlayer());
+                        break;
+                        case AttackType.Kill:
+                            context.enemy.StartCoroutine(context.enemy.KillPlayer());
+                        break;
+                    }
+                    
                 }
-                
             }
         }
         if (context.enemy.attacking) return State.Running;

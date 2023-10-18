@@ -18,7 +18,7 @@ public class Teleport : ActionNode
     protected override State OnUpdate() {
         NavMeshHit navHit;
         Debug.Log("try hit");
-        if(NavMesh.SamplePosition(blackboard.moveToPosition, out navHit, 100, -1)) {
+        if(NavMesh.SamplePosition(blackboard.moveToPosition, out navHit, 100, 5)) {
             context.transform.position = navHit.position - new Vector3(0, 3, 0);
             Debug.Log(navHit.position);
             return State.Success;
