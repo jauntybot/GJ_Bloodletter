@@ -1,0 +1,919 @@
+fileFormatVersion: 2
+guid: c23596ec2cd8a4c2893a8eb9b7a66d1a
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 1
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: blood_loop_00000
+      rect:
+        serializedVersion: 2
+        x: 2607
+        y: 1239
+        width: 322
+        height: 961
+      alignment: 9
+      pivot: {x: 0.50931674, y: 0.5202914}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 271de003557dc49bfad66f7bb94d8f64
+      internalID: 1441688215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00001
+      rect:
+        serializedVersion: 2
+        x: 3583
+        y: 1237
+        width: 323
+        height: 963
+      alignment: 9
+      pivot: {x: 0.50773996, y: 0.5192108}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8267549dffa84f1fa655258bc603ef4
+      internalID: -1019028886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00002
+      rect:
+        serializedVersion: 2
+        x: 2931
+        y: 1244
+        width: 327
+        height: 956
+      alignment: 9
+      pivot: {x: 0.50764525, y: 0.5230126}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e05a81dba45f427ebec5f40fd4c80be
+      internalID: -587830598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00003
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 3158
+        width: 325
+        height: 937
+      alignment: 9
+      pivot: {x: 0.51076925, y: 0.51654214}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7c5cb2451900480f83a03aeb4edb472
+      internalID: 496399151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00004
+      rect:
+        serializedVersion: 2
+        x: 2614
+        y: 3158
+        width: 328
+        height: 937
+      alignment: 9
+      pivot: {x: 0.5, y: 0.51867664}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f61427d51212c438b97455b4a8b1e10f
+      internalID: -1343107193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00005
+      rect:
+        serializedVersion: 2
+        x: 1950
+        y: 1245
+        width: 325
+        height: 955
+      alignment: 9
+      pivot: {x: 0.50461537, y: 0.51623034}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fb09b029faf84135a4fe90d74ad2c97
+      internalID: 991182766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00006
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 3153
+        width: 321
+        height: 942
+      alignment: 9
+      pivot: {x: 0.49844238, y: 0.51380044}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c65a37e58a86443e4918b172eee3e18e
+      internalID: 1232482302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00007
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 1247
+        width: 324
+        height: 953
+      alignment: 9
+      pivot: {x: 0.5, y: 0.521511}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e000a078b0d8b4bc5a873405367f54a1
+      internalID: 171897839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00008
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 2207
+        width: 326
+        height: 944
+      alignment: 9
+      pivot: {x: 0.5092025, y: 0.5137712}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7656d2b9a2114ac487c1d4c7d3f3dc2
+      internalID: -1375430772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00009
+      rect:
+        serializedVersion: 2
+        x: 1635
+        y: 3160
+        width: 328
+        height: 935
+      alignment: 9
+      pivot: {x: 0.50914633, y: 0.5176471}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc4b79acd95a4489db62d306d7fb4d3a
+      internalID: -1370347400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00010
+      rect:
+        serializedVersion: 2
+        x: 1628
+        y: 1241
+        width: 320
+        height: 959
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5182482}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a669bc980b3c449ad975ffc67c3bab9f
+      internalID: -1110399604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00011
+      rect:
+        serializedVersion: 2
+        x: 2293
+        y: 2204
+        width: 324
+        height: 947
+      alignment: 9
+      pivot: {x: 0.50617284, y: 0.5121436}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec27e63f6c5034641abb2dc6e883ed0a
+      internalID: -376827885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00012
+      rect:
+        serializedVersion: 2
+        x: 2619
+        y: 2204
+        width: 324
+        height: 947
+      alignment: 9
+      pivot: {x: 0.50617284, y: 0.51953536}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 314781b469ab24adc82b70bf783bd5a0
+      internalID: -1810736918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00013
+      rect:
+        serializedVersion: 2
+        x: 3260
+        y: 1238
+        width: 321
+        height: 962
+      alignment: 9
+      pivot: {x: 0.49844238, y: 0.510395}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d170bc1a19c745a3a215cb69ef6046a
+      internalID: 1767043842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00014
+      rect:
+        serializedVersion: 2
+        x: 2288
+        y: 3155
+        width: 324
+        height: 940
+      alignment: 9
+      pivot: {x: 0.50308645, y: 0.5159575}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6347ad1485d94997ba0729e64492d24
+      internalID: 1482179967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00015
+      rect:
+        serializedVersion: 2
+        x: 3599
+        y: 3153
+        width: 324
+        height: 942
+      alignment: 9
+      pivot: {x: 0.50308645, y: 0.52441615}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd099d1ba7ee541f9939a7116e9aee79
+      internalID: -1729370499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00016
+      rect:
+        serializedVersion: 2
+        x: 1965
+        y: 3153
+        width: 321
+        height: 942
+      alignment: 9
+      pivot: {x: 0.5077882, y: 0.514862}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86dbc9f8ecb4a41acbfb321f3808ce76
+      internalID: 627132233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00017
+      rect:
+        serializedVersion: 2
+        x: 2945
+        y: 2202
+        width: 322
+        height: 949
+      alignment: 9
+      pivot: {x: 0.50621116, y: 0.51738673}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01e1dea77c1d94ff6ad324521d60513b
+      internalID: 364869112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00018
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 3161
+        width: 325
+        height: 934
+      alignment: 9
+      pivot: {x: 0.50461537, y: 0.52248394}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdf5434b18a104ad7be2c9837f715f21
+      internalID: -296747634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00019
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 2212
+        width: 328
+        height: 939
+      alignment: 9
+      pivot: {x: 0.5030488, y: 0.51757187}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3ca7dd37ac7b42ba8dda4047ef61991
+      internalID: 1381707196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00020
+      rect:
+        serializedVersion: 2
+        x: 3269
+        y: 2207
+        width: 329
+        height: 944
+      alignment: 9
+      pivot: {x: 0.5045593, y: 0.5201271}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aec6cc9ac1c754e0284d1daec417d2bc
+      internalID: 746008408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00021
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 2212
+        width: 329
+        height: 939
+      alignment: 9
+      pivot: {x: 0.5045593, y: 0.5186368}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21cce5580fe484e708fdfb142272c085
+      internalID: 476924040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00022
+      rect:
+        serializedVersion: 2
+        x: 982
+        y: 3161
+        width: 328
+        height: 934
+      alignment: 9
+      pivot: {x: 0.5121951, y: 0.5182013}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d52a34c5877534e7db9ec917e5c5a77c
+      internalID: -517534226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00023
+      rect:
+        serializedVersion: 2
+        x: 2944
+        y: 3156
+        width: 326
+        height: 939
+      alignment: 9
+      pivot: {x: 0.5092025, y: 0.5207668}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 470a5fa7395fb41b4939a5c49e0bd599
+      internalID: 979948026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00024
+      rect:
+        serializedVersion: 2
+        x: 1637
+        y: 2209
+        width: 328
+        height: 942
+      alignment: 9
+      pivot: {x: 0.5030488, y: 0.5212314}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 039a24e90f44d4f8e94fa0a6dccb1e97
+      internalID: -1438419125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00025
+      rect:
+        serializedVersion: 2
+        x: 3272
+        y: 3155
+        width: 325
+        height: 940
+      alignment: 9
+      pivot: {x: 0.50769234, y: 0.52340424}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8641d66f4f8bc4ec09b02e32ec7007bd
+      internalID: -197930590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00026
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 2203
+        width: 325
+        height: 948
+      alignment: 9
+      pivot: {x: 0.50769234, y: 0.5221519}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b16f05faf170749598922fa7940d4e07
+      internalID: -1448181380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00027
+      rect:
+        serializedVersion: 2
+        x: 2277
+        y: 1247
+        width: 328
+        height: 953
+      alignment: 9
+      pivot: {x: 0.5030488, y: 0.524659}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a99ed8efc64404201a2aacd4f0202d2a
+      internalID: -1792814124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00028
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1251
+        width: 325
+        height: 949
+      alignment: 9
+      pivot: {x: 0.50461537, y: 0.5194942}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 692aa3a65a7cc4c62ae1450bb0f46e1b
+      internalID: -173531214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00029
+      rect:
+        serializedVersion: 2
+        x: 985
+        y: 2204
+        width: 322
+        height: 947
+      alignment: 9
+      pivot: {x: 0.50621116, y: 0.5205913}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e508e870abc64c8c87896b35b7cbc09
+      internalID: 319804737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00030
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 3162
+        width: 325
+        height: 933
+      alignment: 9
+      pivot: {x: 0.50461537, y: 0.5187567}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b50417f7fb2794e188321fe0f0221779
+      internalID: -492745081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00031
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 1251
+        width: 326
+        height: 949
+      alignment: 9
+      pivot: {x: 0.5030675, y: 0.52687037}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdcdeeb43e7344c1bbbce4d603df8755
+      internalID: -296108952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00032
+      rect:
+        serializedVersion: 2
+        x: 1967
+        y: 2205
+        width: 324
+        height: 946
+      alignment: 9
+      pivot: {x: 0.50617284, y: 0.52219874}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e232867a116c5443e8987ddca3cb0926
+      internalID: -815806933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00033
+      rect:
+        serializedVersion: 2
+        x: 982
+        y: 1245
+        width: 322
+        height: 955
+      alignment: 9
+      pivot: {x: 0.50931674, y: 0.51623034}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ae54d8ec004d41f6bd88bced95ce800
+      internalID: 1089847940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00034
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 1242
+        width: 320
+        height: 958
+      alignment: 9
+      pivot: {x: 0.5125, y: 0.5177453}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f2935bbc02df4513875ea470c8cf0b1
+      internalID: -355676462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_loop_00035
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 2205
+        width: 321
+        height: 946
+      alignment: 9
+      pivot: {x: 0.5109034, y: 0.5243129}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5245ad9007934459896781a6921932a4
+      internalID: 1716345000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 6191fd5c0593244bb8187c053b34b81e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      blood_loop_00000: 1441688215
+      blood_loop_00001: -1019028886
+      blood_loop_00002: -587830598
+      blood_loop_00003: 496399151
+      blood_loop_00004: -1343107193
+      blood_loop_00005: 991182766
+      blood_loop_00006: 1232482302
+      blood_loop_00007: 171897839
+      blood_loop_00008: -1375430772
+      blood_loop_00009: -1370347400
+      blood_loop_00010: -1110399604
+      blood_loop_00011: -376827885
+      blood_loop_00012: -1810736918
+      blood_loop_00013: 1767043842
+      blood_loop_00014: 1482179967
+      blood_loop_00015: -1729370499
+      blood_loop_00016: 627132233
+      blood_loop_00017: 364869112
+      blood_loop_00018: -296747634
+      blood_loop_00019: 1381707196
+      blood_loop_00020: 746008408
+      blood_loop_00021: 476924040
+      blood_loop_00022: -517534226
+      blood_loop_00023: 979948026
+      blood_loop_00024: -1438419125
+      blood_loop_00025: -197930590
+      blood_loop_00026: -1448181380
+      blood_loop_00027: -1792814124
+      blood_loop_00028: -173531214
+      blood_loop_00029: 319804737
+      blood_loop_00030: -492745081
+      blood_loop_00031: -296108952
+      blood_loop_00032: -815806933
+      blood_loop_00033: 1089847940
+      blood_loop_00034: -355676462
+      blood_loop_00035: 1716345000
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
