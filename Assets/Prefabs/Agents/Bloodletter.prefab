@@ -663,6 +663,27 @@ MonoBehaviour:
   expSprint: 25
   expBloodletting: 25
   expInfected: 25
+  fovCone:
+    name: 
+    dist: 0
+    viewAngle: 0
+    detectionMultiplier: 0
+    deltaThreshold: 0
+    coneShape: 0
+    viewMask:
+      serializedVersion: 2
+      m_Bits: 0
+    detecting: 0
+    inRange: 0
+  enemyTerror: 0
+  terrorProximity:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  terrorRate: 0
+  terrorMod: 0
   baseFOV: 65
   sprintFOVMod: 5
   bloodletFOVMod: 0
@@ -672,7 +693,6 @@ MonoBehaviour:
   infectionLevel: 0
   staminaLevel: 100
   tollCount: 0
-  enemyTerror: 0
   infectionPotency: 0.5
   infectionSpeed: 1
   potencyIncrement: 0.0025
@@ -1336,7 +1356,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8e2520102f3b14710b3567fcb7a19e52, type: 2}
+      objectReference: {fileID: 2100000, guid: 0fa01526a0b6c446b8f9953454df1ba9, type: 2}
     - target: {fileID: 5866666021909216657, guid: f1ede3ae3895a4fe19f54ee786325c42,
         type: 3}
       propertyPath: m_Controller
@@ -1475,7 +1495,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6a6cc9687fedc4ec8a845d8385c82f44, type: 2}
+      objectReference: {fileID: 2100000, guid: a6e06cd53f398427eb4ef904e3b99c7c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

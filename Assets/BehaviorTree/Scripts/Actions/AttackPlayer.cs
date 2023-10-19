@@ -21,12 +21,12 @@ public class AttackPlayer : ActionNode
         if (!context.enemy.attacking) {
             if (Vector3.Distance(context.transform.position, context.enemy.bloodletter.transform.position) <= context.enemy.killRadius) {
                 if (!context.enemy.attacking && context.enemy.bloodletter.alive) {
-
+                    // context.agent.updateRotation = false;
+                    // blackboard.lookDir = Blackboard.LookDir.AtPlayer;
                     switch (attackType) {
                         default:
                         case AttackType.Terrorize:
                             context.enemy.StartCoroutine(context.enemy.TerrorizePlayer());
-                            Debug.Log("TERRORIZE");
                             return State.Running;
                         
                         case AttackType.Kill:
