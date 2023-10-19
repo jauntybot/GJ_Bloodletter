@@ -22,9 +22,6 @@ public class UpdateLookDir : ActionNode
                 break;
                 case Blackboard.LookDir.AtPlayer:
                     context.agent.updateRotation = false;
-                    targetPos = new Vector3(context.enemy.bloodletter.transform.position.x, 
-                                       context.gameObject.transform.position.y, 
-                                       context.enemy.bloodletter.transform.position.z ) ;        
                 break;
                 case Blackboard.LookDir.Scanning:
                     context.agent.updateRotation = false;
@@ -56,6 +53,9 @@ public class UpdateLookDir : ActionNode
                 case Blackboard.LookDir.Forward:
                 break;
                 case Blackboard.LookDir.AtPlayer:
+                    targetPos = new Vector3(context.enemy.bloodletter.transform.position.x, 
+                                       context.gameObject.transform.position.y, 
+                                       context.enemy.bloodletter.transform.position.z ) ;        
                     context.gameObject.transform.LookAt(targetPos);
                 break;
                 case Blackboard.LookDir.Scanning:
