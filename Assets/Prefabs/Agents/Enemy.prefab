@@ -145,26 +145,29 @@ MonoBehaviour:
     dist: 25
     viewAngle: 60
     detectionMultiplier: 4
+    deltaThreshold: 0
     coneShape: 0
     viewMask:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 128
     detecting: 0
     inRange: 0
   - name: Far Cone
     dist: 40
     viewAngle: 85
-    detectionMultiplier: 0.1
+    detectionMultiplier: 0.5
+    deltaThreshold: 0.1
     coneShape: 0
     viewMask:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 192
     detecting: 0
     inRange: 0
   - name: Peripheral Cone
-    dist: 40
+    dist: 50
     viewAngle: 220
     detectionMultiplier: 0.05
+    deltaThreshold: 0.01
     coneShape: 0
     viewMask:
       serializedVersion: 2
@@ -175,6 +178,7 @@ MonoBehaviour:
     dist: 5
     viewAngle: 0
     detectionMultiplier: 4
+    deltaThreshold: 0
     coneShape: 1
     viewMask:
       serializedVersion: 2
@@ -184,11 +188,12 @@ MonoBehaviour:
   - name: Immediate Radius
     dist: 15
     viewAngle: 15
-    detectionMultiplier: 4
-    coneShape: 0
+    detectionMultiplier: 0.25
+    deltaThreshold: 0.25
+    coneShape: 1
     viewMask:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 192
     detecting: 0
     inRange: 0
   detectionDrainRate: 0.0125
@@ -282,7 +287,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 50
+  MaxDistance: 35
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -378,7 +383,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 50
+  MaxDistance: 35
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
