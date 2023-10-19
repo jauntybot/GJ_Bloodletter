@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2842111729044082112
+--- !u!1 &7604024878474377423
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,80 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7769105632365961017}
-  - component: {fileID: 5898396159139011896}
-  - component: {fileID: 2481746418941345112}
-  - component: {fileID: 1173404331432714665}
-  - component: {fileID: 7340761428178209854}
+  - component: {fileID: 1593471704676511565}
   m_Layer: 0
-  m_Name: Canopy_Yellow_White
+  m_Name: Wooden_Barrel_Stand 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7769105632365961017
+--- !u!4 &1593471704676511565
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2842111729044082112}
+  m_GameObject: {fileID: 7604024878474377423}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.08, y: 2.34, z: -0.01}
+  m_LocalRotation: {x: -0.7071069, y: 0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: -239.93, y: 0, z: -190.1}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2841534506573674364}
+  m_Children:
+  - {fileID: 4663658657157640395}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5898396159139011896
+--- !u!1 &8852814470220232847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4663658657157640395}
+  - component: {fileID: 5471297378024526920}
+  - component: {fileID: 2357100313902591690}
+  - component: {fileID: 1906844358446981125}
+  - component: {fileID: 4847896019061313378}
+  m_Layer: 0
+  m_Name: Wooden_Barrel_Stand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4663658657157640395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8852814470220232847}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000029802322, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.12878753, y: 0.0006779456, z: 0.00652}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1593471704676511565}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5471297378024526920
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2842111729044082112}
-  m_Mesh: {fileID: -6953636756265992914, guid: 6c0b5533c637241d98e809f26d2fbd26, type: 3}
---- !u!23 &2481746418941345112
+  m_GameObject: {fileID: 8852814470220232847}
+  m_Mesh: {fileID: 7340176741084022162, guid: 6c0b5533c637241d98e809f26d2fbd26, type: 3}
+--- !u!23 &2357100313902591690
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2842111729044082112}
+  m_GameObject: {fileID: 8852814470220232847}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -63,8 +95,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 09fd1f461a8fc4c62a41aeb6469eeabf, type: 2}
-  - {fileID: 2100000, guid: 0ee71a8edcf1a434bb03e0f023de9bc0, type: 2}
+  - {fileID: 2100000, guid: fd51bb3f8dd3b4cc08a4cbfb744e2c00, type: 2}
+  - {fileID: 2100000, guid: 44d480debd0424a99948a2616967fdc2, type: 2}
+  - {fileID: 2100000, guid: b32ab9d3c05bb4d70bf87d4ffb51b5d7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,13 +119,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1173404331432714665
-MeshCollider:
+--- !u!65 &1906844358446981125
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2842111729044082112}
+  m_GameObject: {fileID: 8852814470220232847}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -104,17 +137,16 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6953636756265992914, guid: 6c0b5533c637241d98e809f26d2fbd26, type: 3}
---- !u!114 &7340761428178209854
+  serializedVersion: 3
+  m_Size: {x: 0.011156615, y: 0.010111909, z: 0.013338179}
+  m_Center: {x: -0.000010984484, y: 0.000009798909, z: -0.0005076389}
+--- !u!114 &4847896019061313378
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2842111729044082112}
+  m_GameObject: {fileID: 8852814470220232847}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
@@ -127,35 +159,3 @@ MonoBehaviour:
   m_IgnoreFromBuild: 1
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
---- !u!1 &6096281247726431130
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2841534506573674364}
-  m_Layer: 0
-  m_Name: Canopy_Yellow_White
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2841534506573674364
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6096281247726431130}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7769105632365961017}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
