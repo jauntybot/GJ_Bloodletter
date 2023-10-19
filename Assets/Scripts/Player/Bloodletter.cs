@@ -507,4 +507,14 @@ public class Bloodletter : MonoBehaviour {
         Gizmos.DrawRay(transform.position + coneOffset, Quaternion.AngleAxis(fovCone.viewAngle/2, Vector3.up) * transform.forward * fovCone.dist);
         Gizmos.DrawRay(transform.position + coneOffset, Quaternion.AngleAxis(-fovCone.viewAngle/2, Vector3.up) * transform.forward * fovCone.dist);
     }
+
+    void OnApplicationQuit() {
+        foreach (FullscreenEffect fx in infectionEffects) {
+            foreach (EffectProperty prop in fx.properties) {
+                fx.material.SetFloat(prop.shaderProperty, prop.range.x);
+            }
+        }
+        foreach (EffectProperty prop in bloodEffect.properties) 
+            bloodEffect.material.SetFloat(prop.shaderProperty, prop.range.x);
+    }
 }
