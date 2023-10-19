@@ -116,7 +116,7 @@ Material:
     - Color_2E5415DE: {r: 1, g: 1, b: 1, a: 0}
     - Color_881555E: {r: 1, g: 1, b: 1, a: 0}
     - Color_EB2C7663: {r: 0.46226418, g: 0, b: 0, a: 0}
-    - Vector2_8044833E: {r: 20, g: 20, b: 0, a: 0}
+    - Vector2_8044833E: {r: 100, g: 100, b: 0, a: 0}
     - Vector2_BEE4461D: {r: 1, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}

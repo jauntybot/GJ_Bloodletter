@@ -49,6 +49,9 @@ public class MoveToPosition : ActionNode
 
         if (context.enemy.energyLevel >= context.enemy.energyDrainRate * speed)
             context.enemy.energyLevel -= context.enemy.energyDrainRate * speed;
+
+        
+        
         else return State.Failure;
         
         return State.Running;
