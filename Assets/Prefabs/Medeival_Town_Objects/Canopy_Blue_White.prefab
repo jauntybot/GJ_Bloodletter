@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5420911447067460930}
   - component: {fileID: 1770484186694290786}
   - component: {fileID: 1117098966933031878}
+  - component: {fileID: 1524126725063162385}
   m_Layer: 0
   m_Name: Canopy_Blue_White
   m_TagString: Untagged
@@ -107,3 +108,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4477989001590714144, guid: 6c0b5533c637241d98e809f26d2fbd26, type: 3}
+--- !u!114 &1524126725063162385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395510816058062880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7573720023804054671}
   - component: {fileID: 6809685192879512028}
   - component: {fileID: 93152579384496461}
+  - component: {fileID: -2751431560502096686}
   m_Layer: 0
   m_Name: Wicker_Basket_Pulse
   m_TagString: Untagged
@@ -106,3 +107,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.005684859, y: 0.0056848573, z: 0.0031905225}
   m_Center: {x: -1.1641532e-10, y: -0.00000000570435, z: 0.0015952573}
+--- !u!114 &-2751431560502096686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3673304756265507923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff

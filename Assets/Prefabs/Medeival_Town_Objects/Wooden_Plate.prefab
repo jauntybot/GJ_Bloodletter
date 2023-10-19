@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3250548117451291474}
   - component: {fileID: 8295920102789684028}
   - component: {fileID: 670904315049137814}
+  - component: {fileID: -8159046036462607926}
   m_Layer: 0
   m_Name: Wooden_Plate
   m_TagString: Untagged
@@ -105,3 +106,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0067719966, y: 0.0067719957, z: 0.0007945277}
   m_Center: {x: 0.003696445, y: -0.004551872, z: 0.0017128151}
+--- !u!114 &-8159046036462607926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957662945488698742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff

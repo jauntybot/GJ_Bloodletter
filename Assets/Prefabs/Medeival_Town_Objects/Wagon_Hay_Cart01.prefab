@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7698174580284949928}
   - component: {fileID: 2022262809823229719}
   - component: {fileID: 6260238962349670336}
+  - component: {fileID: -503399979334318650}
   m_Layer: 0
   m_Name: Wagon_Hay_Cart01
   m_TagString: Untagged
@@ -111,3 +112,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1558550201530761089, guid: 6c0b5533c637241d98e809f26d2fbd26, type: 3}
+--- !u!114 &-503399979334318650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164020836900212988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff

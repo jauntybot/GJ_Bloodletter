@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4457154121313104450}
   - component: {fileID: 4730168605858721930}
   - component: {fileID: 1258554412459301621}
+  - component: {fileID: 4799816211690171310}
   m_Layer: 0
   m_Name: Bread_Loaf
   m_TagString: Untagged
@@ -105,3 +106,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.006348931, y: 0.0041601574, z: 0.0031434249}
   m_Center: {x: -0.0040880484, y: 0.0026934422, z: 0.0021573573}
+--- !u!114 &4799816211690171310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221842856687254444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff

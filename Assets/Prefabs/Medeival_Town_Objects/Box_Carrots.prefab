@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5100110470513742763}
   - component: {fileID: 5930308555072783000}
   - component: {fileID: 4467785716599546292}
+  - component: {fileID: 7693105998900879069}
   m_Layer: 0
   m_Name: Box_Carrots
   m_TagString: Untagged
@@ -106,3 +107,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.010351488, y: 0.007193694, z: 0.005714601}
   m_Center: {x: 0.000000009313226, y: -0.00000001909211, z: 0.002857301}
+--- !u!114 &7693105998900879069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7576057742361194455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff

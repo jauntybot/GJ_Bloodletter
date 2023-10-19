@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3812580233662694914}
   - component: {fileID: 1979958240337095176}
   - component: {fileID: -86466546451065551}
+  - component: {fileID: 2977663746114663329}
   m_Layer: 0
   m_Name: Wicker_Basket_Oats
   m_TagString: Untagged
@@ -106,3 +107,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0056848587, y: 0.0056848573, z: 0.003122087}
   m_Center: {x: -0.000000017462298, y: -8.149071e-10, z: 0.0015610394}
+--- !u!114 &2977663746114663329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7992588192039135531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
