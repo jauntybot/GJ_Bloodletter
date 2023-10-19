@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6820463077504898990}
   - component: {fileID: 7328481640335256094}
   - component: {fileID: 2615958177824505196}
+  - component: {fileID: -1287480823710801398}
   m_Layer: 0
   m_Name: Hay_Bale
   m_TagString: Untagged
@@ -105,3 +106,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.010299671, y: 0.005929212, z: 0.0056967}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-1287480823710801398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5681678805748187362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff

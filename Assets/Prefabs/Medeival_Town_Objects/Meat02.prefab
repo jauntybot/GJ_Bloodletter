@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4276700448508322403}
   - component: {fileID: 1934167257823531731}
   - component: {fileID: -5883632711705776086}
+  - component: {fileID: 3896481010208182898}
   m_Layer: 0
   m_Name: Meat02
   m_TagString: Untagged
@@ -105,3 +106,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0044959034, y: 0.006161617, z: 0.00089161913}
   m_Center: {x: -0.003749226, y: 0.012676871, z: 0.002188033}
+--- !u!114 &3896481010208182898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8853512532469670014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 494306463907227926}
   - component: {fileID: 9207130484057954356}
   - component: {fileID: -8451813153646688777}
+  - component: {fileID: 8608763645550276107}
   m_Layer: 0
   m_Name: Table_Boxes
   m_TagString: Untagged
@@ -111,3 +112,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1870922452609059248, guid: 6c0b5533c637241d98e809f26d2fbd26, type: 3}
+--- !u!114 &8608763645550276107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2934188309812673530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff

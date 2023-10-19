@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 694292711568864917}
   - component: {fileID: 8541850402890022995}
   - component: {fileID: -4272975296610509338}
+  - component: {fileID: -3423920401182600337}
   m_Layer: 0
   m_Name: Wooden_Bowl
   m_TagString: Untagged
@@ -105,3 +106,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.005139995, y: 0.005139995, z: 0.0021357548}
   m_Center: {x: -0.0017866769, y: 0.004376827, z: 0.0023849574}
+--- !u!114 &-3423920401182600337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354810868096381991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff

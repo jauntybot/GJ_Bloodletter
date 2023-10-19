@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8258594623479042297}
   - component: {fileID: 960618952910937317}
   - component: {fileID: 983473726480760594}
+  - component: {fileID: -262295254318437331}
   m_Layer: 0
   m_Name: Box_Oranges
   m_TagString: Untagged
@@ -106,3 +107,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.008681194, y: 0.0060329344, z: 0.0046953238}
   m_Center: {x: 0, y: -0.00000001909211, z: 0.0023476623}
+--- !u!114 &-262295254318437331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8207407257898912716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
