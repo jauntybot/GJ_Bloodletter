@@ -129,24 +129,26 @@ public class Bloodletter : MonoBehaviour {
             }
 // SNEAK IN TERROR LEVEL
             if (!enemy.hidden) {
-
-            }
-            if (Vector3.Distance(transform.position, enemy.transform.position) < fovCone.dist) {
-                Vector3 dir = (enemy.transform.position - transform.position).normalized;
-                float angleDelta = Vector3.Angle(transform.forward, dir);
-                if (angleDelta < fovCone.viewAngle / 2f) {
-                    if (!Physics.Linecast(transform.position, enemy.transform.position, fovCone.viewMask)) {
-                        if (!fovCone.detecting) {
-                            fovCone.detecting = true;
+                if (Vector3.Distance(transform.position, enemy.transform.position) < fovCone.dist) {
+                    Vector3 dir = (enemy.transform.position - transform.position).normalized;
+                    float angleDelta = Vector3.Angle(transform.forward, dir);
+                    if (angleDelta < fovCone.viewAngle / 2f) {
+                        if (!Physics.Linecast(transform.position, enemy.transform.position, fovCone.viewMask)) {
+                            if (!fovCone.detecting) {
+                                fovCone.detecting = true;
+                            }
+                            terrorMod = terrorProximity.Evaluate((fovCone.dist - Vector3.Distance(transform.position, enemy.transform.position))/fovCone.dist) * 10;
                         }
-                        terrorMod = terrorProximity.Evaluate((fovCone.dist - Vector3.Distance(transform.position, enemy.transform.position))/fovCone.dist) * 10;
+                        fovCone.inRange = true;
+                    } else {
+                        terrorMod -= terrorRate;
+                        terrorMod = Mathf.Clamp(terrorMod, 0.25f, 1);
+                        fovCone.detecting = false;
+                        fovCone.inRange = false;
                     }
-                    fovCone.inRange = true;
                 } else {
                     terrorMod -= terrorRate;
-                    terrorMod = Mathf.Clamp(terrorMod, 0.25f, 1);
-                    fovCone.detecting = false;
-                    fovCone.inRange = false;
+                    terrorMod = Mathf.Clamp(terrorMod, -0.25f, 1);
                 }
             } else {
                 terrorMod -= terrorRate;
@@ -504,5 +506,15 @@ public class Bloodletter : MonoBehaviour {
             Gizmos.color = fovCone.detecting ? Color.green : fovCone.inRange ? Color.yellow : Color.red;;
         Gizmos.DrawRay(transform.position + coneOffset, Quaternion.AngleAxis(fovCone.viewAngle/2, Vector3.up) * transform.forward * fovCone.dist);
         Gizmos.DrawRay(transform.position + coneOffset, Quaternion.AngleAxis(-fovCone.viewAngle/2, Vector3.up) * transform.forward * fovCone.dist);
+    }
+
+    void OnApplicationQuit() {
+        foreach (FullscreenEffect fx in infectionEffects) {
+            foreach (EffectProperty prop in fx.properties) {
+                fx.material.SetFloat(prop.shaderProperty, prop.range.x);
+            }
+        }
+        foreach (EffectProperty prop in bloodEffect.properties) 
+            bloodEffect.material.SetFloat(prop.shaderProperty, prop.range.x);
     }
 }
