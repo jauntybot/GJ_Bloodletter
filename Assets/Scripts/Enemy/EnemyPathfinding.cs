@@ -94,6 +94,7 @@ public class EnemyPathfinding : MonoBehaviour {
 
     public IEnumerator PassiveDetection() {
         StartCoroutine(DetectionDelta());
+        float delta = 0;
         while (true) {
 // INCREMENT DETECTION LEVEL
             detecting = false;
@@ -103,14 +104,17 @@ public class EnemyPathfinding : MonoBehaviour {
                         Vector3 dir = (bloodletter.transform.position - transform.position).normalized;
                         if (cone.coneShape == DetectionCone.ConeShape.Sphere) {
                             if (!Physics.Linecast(transform.position, bloodletter.transform.position, cone.viewMask)) {
-                                if (detectionLevel < 100)
-                                    detectionLevel += bloodletter.exposureLevel/1000 * cone.detectionMultiplier;
-                                if (!detecting) {
-                                    detecting = true;
-                                    director.downtimeTimer -= 5;
-                                    director.downtimeTimer = Mathf.Clamp(director.downtimeTimer, 0, 100);
+                                delta = bloodletter.exposureLevel/1000 * cone.detectionMultiplier;
+                                if (delta >= cone.deltaThreshold) {
+                                    if (detectionLevel < 100)
+                                        detectionLevel += delta;
+                                    if (!detecting) {
+                                        detecting = true;
+                                        director.downtimeTimer -= 5;
+                                        director.downtimeTimer = Mathf.Clamp(director.downtimeTimer, 0, 100);
+                                    }
+                                    cone.detecting = true;
                                 }
-                                cone.detecting = true;
                             } else {
                                 cone.inRange = false;
                                 cone.detecting = false;
@@ -119,14 +123,17 @@ public class EnemyPathfinding : MonoBehaviour {
                             float angleDelta = Vector3.Angle(transform.forward, dir);
                             if (angleDelta < cone.viewAngle / 2f) {
                                 if (!Physics.Linecast(transform.position, bloodletter.transform.position, cone.viewMask)) {
-                                    if (detectionLevel < 100)
-                                        detectionLevel += bloodletter.exposureLevel/1000 * cone.detectionMultiplier;
-                                    if (!detecting) {
-                                        detecting = true;
-                                        director.downtimeTimer -= 5;
-                                        director.downtimeTimer = Mathf.Clamp(director.downtimeTimer, 0, 100);
+                                    delta = bloodletter.exposureLevel/1000 * cone.detectionMultiplier;
+                                    if (delta >= cone.deltaThreshold) {
+                                        if (detectionLevel < 100)
+                                            detectionLevel += delta;
+                                        if (!detecting) {
+                                            detecting = true;
+                                            director.downtimeTimer -= 5;
+                                            director.downtimeTimer = Mathf.Clamp(director.downtimeTimer, 0, 100);
+                                        }
+                                        cone.detecting = true;
                                     }
-                                    cone.detecting = true;
                                 } else cone.detecting = false;
                                 cone.inRange = true;
                             } 
@@ -275,7 +282,7 @@ public class DetectionCone {
 
     [Header("Cone Properties")]
     public float dist;
-    public float viewAngle, detectionMultiplier;
+    public float viewAngle, detectionMultiplier, deltaThreshold;
     public enum ConeShape { Cone, Sphere };
     public ConeShape coneShape;
     public LayerMask viewMask;
