@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: f2b5f3f20933f434e850db1b710542fd, type: 2}
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17061417, g: 0.16546303, b: 0.16009118, a: 1}
+  m_IndirectSpecularColor: {r: 0.17060782, g: 0.16546266, b: 0.16008548, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -55139,74 +55139,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1738310344}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1739874941
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 6c0b5533c637241d98e809f26d2fbd26,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -240.85568
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6c0b5533c637241d98e809f26d2fbd26,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.0000009536743
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6c0b5533c637241d98e809f26d2fbd26,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -214.22197
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6c0b5533c637241d98e809f26d2fbd26,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6c0b5533c637241d98e809f26d2fbd26,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6c0b5533c637241d98e809f26d2fbd26,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6c0b5533c637241d98e809f26d2fbd26,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6c0b5533c637241d98e809f26d2fbd26,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6c0b5533c637241d98e809f26d2fbd26,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6c0b5533c637241d98e809f26d2fbd26,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 6c0b5533c637241d98e809f26d2fbd26,
-        type: 3}
-      propertyPath: m_Name
-      value: Medieval_Market_Asset_Pack
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6c0b5533c637241d98e809f26d2fbd26, type: 3}
 --- !u!1001 &1739949570
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59385,7 +59317,7 @@ PrefabInstance:
     - target: {fileID: 1979037535636582723, guid: 777e85965b358d14f936406135e1ab39,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.79999995
       objectReference: {fileID: 0}
     - target: {fileID: 2976120736546219309, guid: 777e85965b358d14f936406135e1ab39,
         type: 3}
@@ -59400,7 +59332,7 @@ PrefabInstance:
     - target: {fileID: 4542215002466608544, guid: 777e85965b358d14f936406135e1ab39,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -135
+      value: -298.4
       objectReference: {fileID: 0}
     - target: {fileID: 4542215002466608544, guid: 777e85965b358d14f936406135e1ab39,
         type: 3}
@@ -59410,7 +59342,7 @@ PrefabInstance:
     - target: {fileID: 4542215002466608544, guid: 777e85965b358d14f936406135e1ab39,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -83.5
+      value: -272.3
       objectReference: {fileID: 0}
     - target: {fileID: 4542215002466608544, guid: 777e85965b358d14f936406135e1ab39,
         type: 3}
@@ -59450,22 +59382,22 @@ PrefabInstance:
     - target: {fileID: 7468426084257711982, guid: 777e85965b358d14f936406135e1ab39,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.000020587351
+      value: -0.000032742042
       objectReference: {fileID: 0}
     - target: {fileID: 7468426084257711982, guid: 777e85965b358d14f936406135e1ab39,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4115275
+      value: 1.7115275
       objectReference: {fileID: 0}
     - target: {fileID: 7468426084257711982, guid: 777e85965b358d14f936406135e1ab39,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.009990046
+      value: -0.009962054
       objectReference: {fileID: 0}
     - target: {fileID: 8017399669014768720, guid: 777e85965b358d14f936406135e1ab39,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 1.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -61246,7 +61178,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.4333333
+  m_VoxelSize: 0.33333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 4231292c460c6d24ab62d433e2fa15a5, type: 2}
   m_BuildHeightMesh: 0
@@ -68923,4 +68855,3 @@ SceneRoots:
   - {fileID: 1789280816}
   - {fileID: 1493159807}
   - {fileID: 1042981450}
-  - {fileID: 1739874941}
