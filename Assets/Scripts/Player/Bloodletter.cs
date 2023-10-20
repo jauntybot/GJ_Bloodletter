@@ -41,6 +41,7 @@ public class Bloodletter : MonoBehaviour {
 
     [Header("Prefabs")]
     [SerializeField] GameObject bloodDecal;
+    [SerializeField] List<Animator> handAnims;
     [SerializeField] SFX bloodletSFX, footstepWalkSFX, footstepRunSFX, heavyBreathingSFX;
     PlayableDirector cutsceneDirector;
 
@@ -48,7 +49,7 @@ public class Bloodletter : MonoBehaviour {
     public bool alive;
     [SerializeField] CinemachineVirtualCamera fpsCam, killCam;
     [SerializeField] Transform cameraRoot;
-    [SerializeField] Vector2 cameraHeight = new Vector2(0.5f, -0.5f);
+    [SerializeField] Vector2 cameraHeight = new Vector2(0.8f, -0.5f);
     [SerializeField] AnimationCurve crouchCurve;
     [SerializeField] float crouchDur;
     public float walkSpeed;
@@ -96,6 +97,7 @@ public class Bloodletter : MonoBehaviour {
         if (bloodletting) fov += bloodletFOVMod;
         return fov;
     }
+    [SerializeField] Transform armsRoot;
 
 
     void Start() {
@@ -272,9 +274,13 @@ public class Bloodletter : MonoBehaviour {
             StartCoroutine(BloodletSFX());
             StartCoroutine(BloodletDecal());
             StartCoroutine(BloodletLerpFOV(bloodletFOVAmplitude));
+            foreach(Animator anim in handAnims)
+                anim.SetBool("Bloodletting", true);
         } else {
             bloodletting = false;
             StartCoroutine(BloodletLerpFOV(baseFOVAmplitude));
+            foreach(Animator anim in handAnims)
+                anim.SetBool("Bloodletting", false);
         }
     }
 
@@ -293,7 +299,7 @@ public class Bloodletter : MonoBehaviour {
         }
 
         if (bloodLevel <= 0) bloodletting = false;
-        StartCoroutine(BloodletLerpFOV(baseFOVAmplitude));
+        ToggleBloodletting(false);
     }
 
     IEnumerator BloodletLerpFOV(float target) {
@@ -436,6 +442,13 @@ public class Bloodletter : MonoBehaviour {
                     target.OnInteract();
                 }
             }
+
+            armsRoot.position = new Vector3(armsRoot.position.x, cameraRoot.position.y, armsRoot.position.z);
+            float rot = fpsCam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.Value;
+            float rot2 = Mathf.Lerp(-35, 35, Mathf.InverseLerp(-70, 70, rot));
+            Debug.Log(rot + ", " + rot2);
+            armsRoot.rotation = Quaternion.Euler(rot2, transform.eulerAngles.y, 0);
+
 // BLOODLET INPUT
             if (Input.GetButtonDown("Bloodlet")) 
                 ToggleBloodletting(!bloodletting);
