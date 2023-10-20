@@ -37,6 +37,7 @@ public class Door : HoldInteractable
         interacting = true;
         DebugUI.instance.StartCoroutine(DebugUI.instance.DisplayHoldInteract(this));
         float tollStep = 0;
+        float timer = 0;
         while (Input.GetMouseButton(0) && interacting && inRange &&
         content > 0) {
             if ((doorType == DoorType.Toll && bloodletter.tollCount >= 1) ||
@@ -47,13 +48,12 @@ public class Door : HoldInteractable
                         interacting = false;
                         break;
                     }
+                    if (timer >= loopDelay) {
+                        audioSource.loop = true;
+                        audioSource.clip = loopSFX.Get();
+                        audioSource.Play();
+                    } else timer += Time.deltaTime;
                 }
-                if (!audioSource.isPlaying) {
-                    audioSource.loop = true;
-                    audioSource.clip = loopSFX.Get();
-                    audioSource.Play();
-                }
-
                 if (!Input.GetMouseButton(0)) {
                         interacting = false;
                         break;

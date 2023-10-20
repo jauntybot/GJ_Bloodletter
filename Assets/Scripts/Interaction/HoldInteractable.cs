@@ -9,6 +9,7 @@ public class HoldInteractable : Interactable {
 
     protected AudioSource audioSource;
     [SerializeField] protected SFX openSFX, loopSFX, closeSFX;
+    [SerializeField] protected float loopDelay;
     protected Animator anim;
     public float maxContent;
     public float content;
