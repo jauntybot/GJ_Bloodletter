@@ -21,23 +21,25 @@ public class Door : HoldInteractable
     }
 
     public override void Interact() {
-        base.Interact();
-        switch (doorType) {
-            case DoorType.Toll:
-            case DoorType.Blood:
-                StartCoroutine(SiphonResource());
-            break;
-            case DoorType.Free:
-                OpenCloseDoor(!open);
-            break;
+        if (!hasInteracted) {
+            FirstInteractionCallback?.Invoke();
+            hasInteracted = true;
         }
+        if (doorType == DoorType.Free) OpenCloseDoor(!open);
+        else StartCoroutine(OpenSite());
+    }
+
+    protected override IEnumerator OpenSite() {
+        yield return base.OpenSite();
+        StartCoroutine(SiphonResource());
     }
 
     public IEnumerator SiphonResource() {
-        interacting = true;
+        audioSource.loop = true;
+        audioSource.clip = loopSFX.Get();
+        audioSource.Play();
         DebugUI.instance.StartCoroutine(DebugUI.instance.DisplayHoldInteract(this));
         float tollStep = 0;
-        float timer = 0;
         while (Input.GetMouseButton(0) && interacting && inRange &&
         content > 0) {
             if ((doorType == DoorType.Toll && bloodletter.tollCount >= 1) ||
@@ -48,11 +50,6 @@ public class Door : HoldInteractable
                         interacting = false;
                         break;
                     }
-                    if (timer >= loopDelay && !audioSource.isPlaying) {
-                        audioSource.loop = true;
-                        audioSource.clip = loopSFX.Get();
-                        audioSource.Play();
-                    } else timer += Time.deltaTime;
                 }
                 if (!Input.GetMouseButton(0)) {
                         interacting = false;
@@ -83,6 +80,7 @@ public class Door : HoldInteractable
             } 
             yield return null;
         }
+        PlaySound(closeSFX);
         interacting = false;    
     }
 

@@ -481,7 +481,7 @@ public class Bloodletter : MonoBehaviour {
             }
 
             freq += Time.deltaTime * Mathf.Clamp(_speedMultiplier, 0.5f, 2) * 5;
-            armsRoot.position = new Vector3(armsRoot.position.x, cameraRoot.position.y + Mathf.Sin(freq) * 0.05f, armsRoot.position.z);
+            armsRoot.position = new Vector3(armsRoot.position.x, cameraRoot.position.y + Mathf.Sin(freq) * 0.01f * _speedMultiplier, armsRoot.position.z);
             float rot = fpsCam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.Value;
             float rot2 = Mathf.Lerp(-15, 35, Mathf.InverseLerp(-70, 70, rot));
             armsRoot.rotation = Quaternion.Euler(rot2, transform.eulerAngles.y, 0);

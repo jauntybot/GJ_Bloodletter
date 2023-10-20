@@ -9,7 +9,7 @@ public class HoldInteractable : Interactable {
 
     protected AudioSource audioSource;
     [SerializeField] protected SFX openSFX, loopSFX, closeSFX;
-    [SerializeField] protected float loopDelay;
+    [SerializeField] protected float openDelay;
     protected Animator anim;
     public float maxContent;
     public float content;
@@ -28,12 +28,21 @@ public class HoldInteractable : Interactable {
         if (!hasInteracted) {
             FirstInteractionCallback?.Invoke();
             hasInteracted = true;
-            PlaySound(openSFX);
+        }
+        StartCoroutine(OpenSite());
+    }
+
+    protected virtual IEnumerator OpenSite() {
+        interacting = true;
+        PlaySound(openSFX);
+        float timer = 0f;
+        while (timer < openDelay) {
+            timer += Time.deltaTime;
+            yield return null;
         }
     }
 
     protected virtual void ExhaustSite() {
-        PlaySound(closeSFX);
         locked = true;
         inRange = false; inView = false;
         anim.SetBool("Empty", true);

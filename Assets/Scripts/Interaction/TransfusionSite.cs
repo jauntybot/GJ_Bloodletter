@@ -9,15 +9,16 @@ public class TransfusionSite : HoldInteractable {
     
     public float infectionHeal, infectionDilution;    
 
-    public override void Interact() {
-        base.Interact();
+    protected override IEnumerator OpenSite() {
+        yield return base.OpenSite();
         StartCoroutine(TransfuseBlood(bloodletter));
     }
 
     public IEnumerator TransfuseBlood(Bloodletter bloodletter) {
-        interacting = true;
+        audioSource.loop = true;
+        audioSource.clip = loopSFX.Get();
+        audioSource.Play();
         DebugUI.instance.StartCoroutine(DebugUI.instance.DisplayHoldInteract(this));
-        float timer = 0;
         while (Input.GetMouseButton(0) && interacting && inRange &&
         content > 0  && bloodletter.bloodLevel < 100) {
             while (!bloodletter.tick) {
@@ -26,11 +27,6 @@ public class TransfusionSite : HoldInteractable {
                     interacting = false;
                     break;
                 }
-                if (timer >= loopDelay && !audioSource.isPlaying) {
-                    audioSource.loop = true;
-                    audioSource.clip = loopSFX.Get();
-                    audioSource.Play();
-                } else timer += Time.deltaTime;
             }
             if (!Input.GetMouseButton(0)) {
                     interacting = false;
@@ -61,6 +57,7 @@ public class TransfusionSite : HoldInteractable {
         if (content <= 0) {
             ExhaustSite();
         } 
+        PlaySound(closeSFX);
         interacting = false;    
     }
 
