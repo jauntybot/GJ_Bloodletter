@@ -44,8 +44,9 @@ public class RandomPosition : ActionNode {
         NavMeshPath path = new NavMeshPath();
         NavMesh.CalculatePath(new Vector3 (blackboard.moveToPosition.x, context.enemy.bloodletter.transform.position.y, blackboard.moveToPosition.z), context.enemy.bloodletter.transform.position, NavMesh.AllAreas, path);
 
-        if (NavMesh.CalculatePath(new Vector3 (blackboard.moveToPosition.x, context.enemy.bloodletter.transform.position.y, blackboard.moveToPosition.z), context.enemy.bloodletter.transform.position, NavMesh.AllAreas, path))
+        if (path.status != NavMeshPathStatus.PathInvalid) {
             return State.Success;
+        }
         return State.Failure;
     }
 }

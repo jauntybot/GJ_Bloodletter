@@ -23,6 +23,7 @@ public class MoveToPosition : ActionNode
                 context.agent.destination = blackboard.moveToPosition;
             break;
             case Pos.POI:
+                context.agent.destination = context.enemy.director.poi.position;
             break;
             case Pos.Player:
                 context.agent.destination = context.enemy.bloodletter.transform.position;
@@ -38,6 +39,8 @@ public class MoveToPosition : ActionNode
             return State.Running;
         }
 
+        context.agent.speed = context.enemy.CalculateSpeed();
+
         if (context.agent.remainingDistance < tolerance) {
             return State.Success;
         }
@@ -48,10 +51,7 @@ public class MoveToPosition : ActionNode
         }
 
         if (context.enemy.energyLevel >= context.enemy.energyDrainRate * speed)
-            context.enemy.energyLevel -= context.enemy.energyDrainRate * speed;
-
-        
-        
+            context.enemy.energyLevel -= context.enemy.energyDrainRate * speed;        
         else return State.Failure;
         
         return State.Running;

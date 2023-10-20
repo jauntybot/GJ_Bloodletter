@@ -20,6 +20,29 @@ public class Bloodletter : MonoBehaviour {
 
     AudioSource audioSource;
     EnemyPathfinding enemy;
+    [Header("Stats")]
+    [Range(0,100)] public float bloodLevel;
+    [Range(0,100)] public float infectionLevel, staminaLevel;
+    public int tollCount;
+    public const float potencyMin = 0.125f, potencyMax = 1f;
+    public Vector2 potencyRange { get { return new Vector2(potencyMin, potencyMax); } }
+    [Range(potencyMin, potencyMax)]
+    public float infectionPotency;
+    public float infectionSpeed, potencyIncrement;
+    [SerializeField] List<FullscreenEffect> infectionEffects;
+    [SerializeField] FullscreenEffect bloodEffect;
+
+
+    [Header("States")]
+    [SerializeField]
+    bool sprinting;
+    [SerializeField]
+    bool crouching, staminaRegen, heavyBreathing, bloodletting, bloodRegen;
+
+    [Header("Prefabs")]
+    [SerializeField] GameObject bloodDecal;
+    [SerializeField] SFX bloodletSFX, footstepWalkSFX, footstepRunSFX, heavyBreathingSFX;
+    PlayableDirector cutsceneDirector;
 
     [Header("Controller")]	
     public bool alive;
@@ -58,7 +81,7 @@ public class Bloodletter : MonoBehaviour {
     public float exposureLevel;
     [SerializeField] AnimationCurve exposureCurve;
     [SerializeField] float expBase, expStill, expCrouch, expWalk, expSprint, expBloodletting, expInfected;
-    [SerializeField] DetectionCone fovCone;
+    public DetectionCone fovCone;
     [Range(0, 60)] public float enemyTerror;
     [SerializeField] AnimationCurve terrorProximity;
     [SerializeField] float terrorRate, terrorMod;
@@ -74,29 +97,6 @@ public class Bloodletter : MonoBehaviour {
         return fov;
     }
 
-    [Header("Stats")]
-    [Range(0,100)] public float bloodLevel;
-    [Range(0,100)] public float infectionLevel, staminaLevel;
-    public int tollCount;
-    public const float potencyMin = 0.125f, potencyMax = 1f;
-    public Vector2 potencyRange { get { return new Vector2(potencyMin, potencyMax); } }
-    [Range(potencyMin, potencyMax)]
-    public float infectionPotency;
-    public float infectionSpeed, potencyIncrement;
-    [SerializeField] List<FullscreenEffect> infectionEffects;
-    [SerializeField] FullscreenEffect bloodEffect;
-
-
-    [Header("States")]
-    [SerializeField]
-    bool sprinting;
-    [SerializeField]
-    bool crouching, staminaRegen, heavyBreathing, bloodletting, bloodRegen;
-
-    [Header("Prefabs")]
-    [SerializeField] GameObject bloodDecal;
-    [SerializeField] SFX bloodletSFX, footstepWalkSFX, footstepRunSFX, heavyBreathingSFX;
-    PlayableDirector cutsceneDirector;
 
     void Start() {
         Init();

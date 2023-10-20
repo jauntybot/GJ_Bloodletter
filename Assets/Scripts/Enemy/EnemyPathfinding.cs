@@ -28,6 +28,7 @@ public class EnemyPathfinding : MonoBehaviour {
     [SerializeField] AudioSource audioSource, sfxSource;
     [SerializeField] List<GameObject> gfx;
     [SerializeField] SFX idleSFX, chaseStingSFX, killStingSFX;
+    [SerializeField] Material larvaMat;
 
     public enum EnemyState { Lurking, Roaming, Ambling, Tracking, Chasing };
     [Header("State Machine")]
@@ -46,8 +47,9 @@ public class EnemyPathfinding : MonoBehaviour {
 
 
     
-    [Header("Nav Variables")] [Range(0,100)]
-    public float energyLevel;
+    [Header("Nav Variables")] 
+    [Range(0.2f, 4.2f)] public Vector2 speedRange;
+    [Range(0,100)] public float energyLevel;
     public float energyRegenRate, energyRegenDelay, energyDrainRate;
     public List<BloodPool> bloodPools = new List<BloodPool>();
     public BloodPool currentPool;
@@ -153,6 +155,8 @@ public class EnemyPathfinding : MonoBehaviour {
             if (!detecting && detectionLevel > 0) 
                 detectionLevel -= detectionDrainRate;
     
+            larvaMat.SetFloat("_VertexResolution", Mathf.Lerp(6, 32,Mathf.InverseLerp(0, 60, bloodletter.enemyTerror)));
+
             yield return null;
         }
     }
@@ -170,6 +174,14 @@ public class EnemyPathfinding : MonoBehaviour {
             detectionDelta = detectionLevel - prevDetection;
             yield return null;
         }
+    }
+
+    public float CalculateSpeed() {
+        float _speed;
+        _speed = Mathf.Lerp(speedRange.x, speedRange.y, Mathf.InverseLerp(0, 100, director.hostilityLevel));
+
+
+        return _speed;
     }
 
     bool hiding;

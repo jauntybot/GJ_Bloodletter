@@ -8,8 +8,6 @@ public class EnemyDisappear : ActionNode {
     public bool disappear;
 
     protected override void OnStart() {
-        if (context.enemy.director.hostilityLevel >= 5)
-            context.enemy.director.hostilityLevel -= 5;
         if (context.enemy.energyLevel >= 10)
             context.enemy.energyLevel -= 10;
             

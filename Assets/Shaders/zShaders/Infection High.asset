@@ -45,7 +45,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _shaderProperty: _HueStrength
     range: {x: 0, y: 100}
-    threshold: {x: 0, y: 0.5}
+    threshold: {x: 0, y: 0.75}
     curve:
       serializedVersion: 2
       m_Curve:

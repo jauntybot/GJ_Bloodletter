@@ -21,10 +21,14 @@ public class TrackBlood : ActionNode
                     context.enemy.currentPool = bp;
                 if (!context.enemy.bloodPools.Contains(bp)) {
                     context.enemy.bloodPools.Add(bp);
-                    return State.Success;
                 }
             }
         }
+        int idlePools = 0;
+        foreach (BloodPool bp in context.enemy.bloodPools) {
+            if (!bp.inspected) idlePools++;
+        }
+        if (idlePools/context.enemy.bloodPools.Count >= 0.5f) return State.Success;
         return State.Failure;
     }
 }

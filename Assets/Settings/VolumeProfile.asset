@@ -336,13 +336,13 @@ MonoBehaviour:
     m_Value: 100
   fogAltScale:
     m_OverrideState: 0
-    m_Value: 10
+    m_Value: 51.5
   fogThinning:
     m_OverrideState: 0
-    m_Value: 100
+    m_Value: -113.1
   noiseScale:
     m_OverrideState: 1
     m_Value: 100
   noiseStrength:
-    m_OverrideState: 0
-    m_Value: 0.05
+    m_OverrideState: 1
+    m_Value: 0
