@@ -236,7 +236,7 @@ Transform:
   m_GameObject: {fileID: 2948876666042268591}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.564, z: 0}
+  m_LocalPosition: {x: 0, y: 10.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -254,8 +254,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 10
-  m_Range: 20
+  m_Intensity: 30
+  m_Range: 25
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -513,8 +513,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d63dd6d81e50548bb090a42c923bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bloodLevel: 100
-  infectionLevel: 0
+  bloodLevel: 90
+  infectionLevel: 5
   staminaLevel: 100
   tollCount: 0
   infectionPotency: 0.5
@@ -541,9 +541,9 @@ MonoBehaviour:
   footstepRunSFX: {fileID: 11400000, guid: 4fb2fda166b67494dae2c77363f6ab12, type: 2}
   heavyBreathingSFX: {fileID: 11400000, guid: 4579dc8912138488cac6f3b49b2b5ed3, type: 2}
   alive: 0
-  breathAudioSource: {fileID: 0}
-  footstepAudioSource: {fileID: 0}
-  oneShotAudioSource: {fileID: 0}
+  breathAudioSource: {fileID: 948513739522517545}
+  footstepAudioSource: {fileID: 5298621853029278723}
+  oneShotAudioSource: {fileID: 7389527517728659835}
   fpsCam: {fileID: 0}
   killCam: {fileID: 0}
   cameraRoot: {fileID: 5858822562685353770}
@@ -573,13 +573,13 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   crouchDur: 0.4
-  walkSpeed: 1.5
-  sprintMultiplierRange: {x: 0, y: 0}
+  walkSpeed: 1.75
+  sprintMultiplierRange: {x: 1.33, y: 2.5}
   standMultiplier: 0.5
   _moveSpeed: 0
   _speedMultiplier: 0
   staminaDrainRate: 5
-  staminaDelay: 0
+  staminaDelay: 2
   staminaRegenRate: 3
   sprintDelay: 1
   bloodDrainRate: 2.2
@@ -595,7 +595,7 @@ MonoBehaviour:
   decalSprintDelay: 0.25
   decalWalkDelay: 0.75
   footstepDelay: 0.75
-  footstepRunDelay: 0.4
+  footstepRunDelay: 1
   heavyBreathingDelay: 1
   exposureLevel: 0
   exposureCurve:
@@ -682,7 +682,8 @@ MonoBehaviour:
   bloodletFOVMod: 0
   baseFOVAmplitude: 0.5
   bloodletFOVAmplitude: 2.5
-  sprintFOVAmplitudeRange: {x: 0, y: 0}
+  headbobFrequency: 0.75
+  sprintFOVAmplitudeRange: {x: 1.25, y: 2.25}
   armsRoot: {fileID: 6631919041910146374}
 --- !u!114 &4135780480321125180
 MonoBehaviour:
@@ -715,7 +716,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1207,8 +1208,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5815837429782692197}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.039634574, y: -0.21955614, z: 0.0095333485, w: 0.97474784}
-  m_LocalPosition: {x: 0.1960248, y: 0.8799999, z: 3.3608189}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.79999995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1518,7 +1519,7 @@ Transform:
   m_GameObject: {fileID: 6381519286918088546}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
