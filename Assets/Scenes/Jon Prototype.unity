@@ -18416,6 +18416,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3061591488648716424, guid: 9cd00a9937c52a145a78b786526b979e,
+        type: 3}
+      propertyPath: bloodLevel
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3061591488648716424, guid: 9cd00a9937c52a145a78b786526b979e,
+        type: 3}
+      propertyPath: infectionLevel
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4542215002466608544, guid: 9cd00a9937c52a145a78b786526b979e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18465,6 +18475,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581628561963182597, guid: 9cd00a9937c52a145a78b786526b979e,
+        type: 3}
+      propertyPath: m_AmplitudeGain
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4581628561963182597, guid: 9cd00a9937c52a145a78b786526b979e,
         type: 3}

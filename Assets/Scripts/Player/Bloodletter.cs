@@ -185,10 +185,12 @@ public class Bloodletter : MonoBehaviour {
             while (!tick) yield return null;
             infectionSpeed = bloodLevel/100;
             if (!bloodletting) {
-                if (infectionPotency < potencyMax)
+                if (infectionPotency + potencyIncrement < potencyRange.y)
                     infectionPotency += potencyIncrement;
-                if (infectionLevel < 100)
+                else infectionPotency = potencyRange.y;
+                if (infectionLevel + infectionPotency < 100)
                     infectionLevel += infectionPotency * infectionSpeed;
+                else infectionLevel = 100;
             }
             yield return null;
         }

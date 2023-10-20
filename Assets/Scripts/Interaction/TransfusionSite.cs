@@ -32,18 +32,20 @@ public class TransfusionSite : HoldInteractable {
                     audioSource.Play();
                 } else timer += Time.deltaTime;
             }
-            
             if (!Input.GetMouseButton(0)) {
                     interacting = false;
                     break;
             }
             
-            if (bloodletter.bloodLevel < 100)
+            if (bloodletter.bloodLevel + consumptionRate < 100)
                 bloodletter.bloodLevel += consumptionRate;
-            if (bloodletter.infectionPotency > bloodletter.potencyRange.x)
+            else bloodletter.bloodLevel = 100;
+            if (bloodletter.infectionPotency - infectionDilution > bloodletter.potencyRange.x)
                 bloodletter.infectionPotency -= infectionDilution;
-            if (bloodletter.infectionLevel > 0)
+            else bloodletter.infectionPotency = 0;
+            if (bloodletter.infectionLevel - infectionHeal > 0)
                 bloodletter.infectionLevel -= infectionHeal;
+            else bloodletter.infectionLevel = 0;
             content -= consumptionRate;
             if (!inRange) {
                 interacting = false;
@@ -51,15 +53,14 @@ public class TransfusionSite : HoldInteractable {
             }
             yield return null;
         }
-        audioSource.loop = false;
-        audioSource.Stop();
-// USED ALL BLOOD
-        if (content <= 0) {
-            ExhaustSite();
-        } else if (audioSource.loop == true) {
+        if (audioSource.loop == true) {
             audioSource.loop = false;
             audioSource.Stop();
         }
+// USED ALL BLOOD
+        if (content <= 0) {
+            ExhaustSite();
+        } 
         interacting = false;    
     }
 

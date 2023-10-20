@@ -9,6 +9,22 @@ public class InfectionSite : HoldInteractable {
 
     public float infectionHeal, infectionDilution;    
 
+    public override void OnInteract()
+    {
+        // Check if this can be interacted with
+        if (inRange && inView && (!interactOnce || (interactOnce && !hasInteracted))) {
+        // Check if player can unlock this
+            if (locked) {}
+            if (!locked) {
+                if (bloodletter.infectionLevel > 0)          
+                    Interact();
+                else {
+                    highlight.message = "CANNOT TAKE MORE MEDICINE NOW.";
+                }
+            }
+        }
+    }
+
     public override void Interact() {
         base.Interact();
         StartCoroutine(RemedyIllness(bloodletter));
@@ -37,10 +53,12 @@ public class InfectionSite : HoldInteractable {
                     break;
             }
             
-            if (bloodletter.infectionPotency > bloodletter.potencyRange.x)
+            if (bloodletter.infectionPotency - infectionDilution > bloodletter.potencyRange.x)
                 bloodletter.infectionPotency -= infectionDilution;
-            if (bloodletter.infectionLevel > 0)
+            else bloodletter.infectionPotency = 0;
+            if (bloodletter.infectionLevel - infectionHeal > 0)
                 bloodletter.infectionLevel -= infectionHeal;
+            else bloodletter.infectionLevel = 0;
             content -= consumptionRate;
 
             if (!inRange) {
@@ -49,13 +67,14 @@ public class InfectionSite : HoldInteractable {
             }
             yield return null;
         }
-// USED ALL BLOOD
-        if (content <= 0) {
-            ExhaustSite();
-        } else if (audioSource.loop == true) {
+        if (audioSource.loop == true) {
             audioSource.loop = false;
             audioSource.Stop();
         }
+// USED ALL BLOOD
+        if (content <= 0) {
+            ExhaustSite();
+        } 
         interacting = false;    
     }
 

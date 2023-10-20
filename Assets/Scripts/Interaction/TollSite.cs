@@ -28,11 +28,6 @@ public class TollSite : HoldInteractable {
                     audioSource.Play();
                 } else timer += Time.deltaTime;
             }
-            if (!audioSource.isPlaying) {
-                audioSource.loop = true;
-                audioSource.clip = loopSFX.Get();
-                audioSource.Play();
-            }
             if (!Input.GetMouseButton(0)) {
                     interacting = false;
                     break;
@@ -46,15 +41,14 @@ public class TollSite : HoldInteractable {
             }
             yield return null;
         }
-        audioSource.loop = false;
-        audioSource.Stop();
-// USED ALL BLOOD
-        if (content <= 0) {
-            ExhaustSite();
-        } else if (audioSource.loop == true) {
+        if (audioSource.loop == true) {
             audioSource.loop = false;
             audioSource.Stop();
         }
+// USED ALL BLOOD
+        if (content <= 0) {
+            ExhaustSite();
+        } 
         interacting = false;    
     }
 

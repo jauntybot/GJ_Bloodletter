@@ -73,15 +73,14 @@ public class Door : HoldInteractable
                     break;
                 }
             }
-            audioSource.loop = false;
-            audioSource.Stop();
-    // USED ALL BLOOD
-            if (content <= 0) {
-                ExhaustSite();
-            } else if (audioSource.loop == true) {
+            if (audioSource.loop == true) {
                 audioSource.loop = false;
                 audioSource.Stop();
             }
+    // USED ALL BLOOD
+            if (content <= 0) {
+                ExhaustSite();
+            } 
             yield return null;
         }
         interacting = false;    

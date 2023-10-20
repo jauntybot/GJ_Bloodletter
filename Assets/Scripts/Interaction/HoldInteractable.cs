@@ -23,6 +23,7 @@ public class HoldInteractable : Interactable {
         anim = GetComponent<Animator>();
     }
 
+
     public override void Interact() {
         if (!hasInteracted) {
             FirstInteractionCallback?.Invoke();
