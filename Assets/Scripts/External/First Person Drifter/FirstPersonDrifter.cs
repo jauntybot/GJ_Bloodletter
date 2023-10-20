@@ -15,9 +15,6 @@ public class FirstPersonDrifter: MonoBehaviour
     // If true, diagonal speed (when strafing + moving forward or back) can't exceed normal move speed; otherwise it's about 1.4 times faster
     private bool limitDiagonalSpeed = true;
  
-    public bool enableRunning = true;
- 
-    public float jumpSpeed = 4.0f;
     public float gravity = 10.0f;
  
     // Units that player can fall before a falling damage function is run. To disable, type "infinity" in the inspector
@@ -73,26 +70,18 @@ public class FirstPersonDrifter: MonoBehaviour
  
         if (grounded) {
             bool sliding = false;
-            // See if surface immediately below should be slid down. We use this normally rather than a ControllerColliderHit point,
-            // because that interferes with step climbing amongst other annoyances
             if (Physics.Raycast(myTransform.position, -Vector3.up, out hit, rayDistance)) {
                 if (Vector3.Angle(hit.normal, Vector3.up) > slideLimit)
                     sliding = true;
-            }
-            // However, just raycasting straight down from the center can fail when on steep slopes
-            // So if the above raycast didn't catch anything, raycast down from the stored ControllerColliderHit point instead
-            else {
+            } else {
                 Physics.Raycast(contactPoint + Vector3.up, -Vector3.up, out hit);
                 if (Vector3.Angle(hit.normal, Vector3.up) > slideLimit)
                     sliding = true;
             }
  
-            // If we were falling, and we fell a vertical distance greater than the threshold, run a falling damage routine
-            if (falling) {
+            if (falling) 
                 falling = false;
-                // if (myTransform.position.y < fallStartLevel - fallingDamageThreshold)
-                //     FallingDamageAlert (fallStartLevel - myTransform.position.y);
-            }
+            
  
             // GET SPEED FROM BLOODLETTER
             speed = bloodletter.moveSpeed;
@@ -113,13 +102,6 @@ public class FirstPersonDrifter: MonoBehaviour
                 playerControl = true;
             }
  
-            // Jump! But only if the jump button has been released and player has been grounded for a given number of frames
-            // if (!Input.GetButton("Jump"))
-            //     jumpTimer++;
-            // else if (jumpTimer >= antiBunnyHopFactor) {
-            //     moveDirection.y = jumpSpeed;
-            //     jumpTimer = 0;
-            // }
         }
         else {
             // If we stepped over a cliff or something, set the height at which we started falling
@@ -147,11 +129,5 @@ public class FirstPersonDrifter: MonoBehaviour
     void OnControllerColliderHit (ControllerColliderHit hit) {
         contactPoint = hit.point;
     }
- 
-    // If falling damage occured, this is the place to do something about it. You can make the player
-    // have hitpoints and remove some of them based on the distance fallen, add sound effects, etc.
-    // void FallingDamageAlert (float fallDistance)
-    // {
-    //     //print ("Ouch! Fell " + fallDistance + " units!");   
-    // }
+
 }

@@ -101,13 +101,13 @@ Material:
     m_Floats:
     - Boolean_193028D2: 1
     - Boolean_3F1A8DAB: 0
-    - Boolean_43476D73: 0
+    - Boolean_43476D73: 1
     - Boolean_7165A49C: 0
     - Boolean_85059BBE: 1
-    - Boolean_8BBF99CD: 0
-    - Boolean_D258FF8E: 0
+    - Boolean_8BBF99CD: 1
+    - Boolean_D258FF8E: 1
     - DeformMagnitude: 0
-    - Vector1_21C41D02: 128
+    - Vector1_21C41D02: 56
     - Vector1_6F288C5B: 0.5
     - Vector1_B2CC132F: 16
     - Vector1_B9994903: 11
@@ -141,7 +141,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _VertexResolution: 16
+    - _VertexResolution: 126
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

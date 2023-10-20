@@ -10,12 +10,13 @@ public class InfectionSite : HoldInteractable {
 
     public override void Interact() {
         StartCoroutine(RemedyIllness(bloodletter));
-
     }
     
     public IEnumerator RemedyIllness(Bloodletter bloodletter) {
         interacting = true;
         DebugUI.instance.StartCoroutine(DebugUI.instance.DisplayHoldInteract(this));
+        audioSource.loop = true;
+        PlaySound(loopSFX);
         while (Input.GetMouseButton(0) && interacting && inRange &&
         content > 0  && bloodletter.infectionLevel > 0) {
             while (!bloodletter.tick) {
@@ -42,6 +43,8 @@ public class InfectionSite : HoldInteractable {
             }
             yield return null;
         }
+        audioSource.loop = false;
+        audioSource.Stop();
 // USED ALL BLOOD
         if (content <= 0) {
             ExhaustSite();

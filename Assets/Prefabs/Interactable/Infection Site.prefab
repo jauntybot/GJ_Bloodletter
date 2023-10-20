@@ -684,6 +684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightMat: {fileID: 2100000, guid: fd37e0595a914c14d9a1cffee0a9bece, type: 2}
+  skinnedMesh: 0
   displayMessage: 1
   message: HOLD 'LMB' TO REMEDY ILLNESS.
 --- !u!114 &8923784915141476291
@@ -708,8 +709,8 @@ MonoBehaviour:
   content: 0
   consumptionRate: 2
   interacting: 0
-  infectionHeal: 1.5
-  infectionDilution: 0.12
+  infectionHeal: 2.5
+  infectionDilution: 0.2
 --- !u!95 &6519232179934230541
 Animator:
   serializedVersion: 5

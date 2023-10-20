@@ -396,6 +396,7 @@ GameObject:
   - component: {fileID: 1808239837428549413}
   - component: {fileID: 4135780480321125180}
   - component: {fileID: 7389527517728659835}
+  - component: {fileID: 948513739522517545}
   - component: {fileID: 8224393149476468071}
   m_Layer: 0
   m_Name: Bloodletter 1
@@ -539,6 +540,8 @@ MonoBehaviour:
   footstepRunSFX: {fileID: 11400000, guid: 4fb2fda166b67494dae2c77363f6ab12, type: 2}
   heavyBreathingSFX: {fileID: 11400000, guid: 4579dc8912138488cac6f3b49b2b5ed3, type: 2}
   alive: 0
+  breathAudioSource: {fileID: 0}
+  oneShotAudioSource: {fileID: 0}
   fpsCam: {fileID: 0}
   killCam: {fileID: 0}
   cameraRoot: {fileID: 5858822562685353770}
@@ -569,8 +572,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   crouchDur: 0.4
   walkSpeed: 1.5
+  sprintMultiplierRange: {x: 0, y: 0}
   standMultiplier: 0.5
-  sprintMultiplier: 2.5
+  _moveSpeed: 0
+  _speedMultiplier: 0
   staminaDrainRate: 5
   staminaDelay: 0
   staminaRegenRate: 3
@@ -675,6 +680,7 @@ MonoBehaviour:
   bloodletFOVMod: 0
   baseFOVAmplitude: 0.5
   bloodletFOVAmplitude: 2.5
+  sprintFOVAmplitudeRange: {x: 0, y: 0}
   armsRoot: {fileID: 6631919041910146374}
 --- !u!114 &4135780480321125180
 MonoBehaviour:
@@ -689,8 +695,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1041412191401356060}
-  enableRunning: 0
-  jumpSpeed: 4
   gravity: 10
   slideWhenOverSlopeLimit: 0
   slideOnTaggedObjects: 0
@@ -710,6 +714,102 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &948513739522517545
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5038823845995218877}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1009,8 +1109,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5815837429782692197}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.79999995, z: 0}
+  m_LocalRotation: {x: 0.039634574, y: -0.21955614, z: 0.0095333485, w: 0.97474784}
+  m_LocalPosition: {x: 0.1960248, y: 0.8799999, z: 3.3608189}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
