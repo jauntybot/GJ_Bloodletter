@@ -91,7 +91,7 @@ public class Bloodletter : MonoBehaviour {
 
     [Header("Cinemachine Values")]
     [SerializeField] float baseFOV;
-    [SerializeField] float sprintFOVMod, bloodletFOVMod, baseFOVAmplitude, bloodletFOVAmplitude;
+    [SerializeField] float sprintFOVMod, bloodletFOVMod, baseFOVAmplitude, bloodletFOVAmplitude, headbobFrequency;
     [SerializeField] Vector2 sprintFOVAmplitudeRange;
     [SerializeField] float FOV() {
         float fov = baseFOV;
@@ -217,7 +217,7 @@ public class Bloodletter : MonoBehaviour {
         while (sprinting) {
             _speedMultiplier = sprintMultiplier;
             fpsCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = amp();
-            fpsCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = sprintMultiplier;
+            fpsCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = sprintMultiplier * headbobFrequency;
             while (!tick) {
                 if (!Input.GetButton("Run") || (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)) {
                     sprinting = false;
