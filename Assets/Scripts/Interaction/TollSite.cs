@@ -13,9 +13,6 @@ public class TollSite : HoldInteractable {
     public IEnumerator RifleSite(Bloodletter bloodletter) {
         interacting = true;
         DebugUI.instance.StartCoroutine(DebugUI.instance.DisplayHoldInteract(this));
-        audioSource.loop = true;
-        audioSource.clip = loopSFX.Get();
-        audioSource.Play();
         while (Input.GetMouseButton(0) && interacting && inRange &&
         content > 0) {
             while (!bloodletter.tick) {
@@ -24,6 +21,11 @@ public class TollSite : HoldInteractable {
                     interacting = false;
                     break;
                 }
+            }
+            if (!audioSource.isPlaying) {
+                audioSource.loop = true;
+                audioSource.clip = loopSFX.Get();
+                audioSource.Play();
             }
             if (!Input.GetMouseButton(0)) {
                     interacting = false;
@@ -38,6 +40,8 @@ public class TollSite : HoldInteractable {
             }
             yield return null;
         }
+        audioSource.loop = false;
+        audioSource.Stop();
 // USED ALL BLOOD
         if (content <= 0) {
             ExhaustSite();
