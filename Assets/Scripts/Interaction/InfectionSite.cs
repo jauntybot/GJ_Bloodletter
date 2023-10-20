@@ -25,15 +25,17 @@ public class InfectionSite : HoldInteractable {
         }
     }
 
-    public override void Interact() {
-        base.Interact();
+    protected override IEnumerator OpenSite() {
+        yield return base.OpenSite();
         StartCoroutine(RemedyIllness(bloodletter));
     }
     
     public IEnumerator RemedyIllness(Bloodletter bloodletter) {
         interacting = true;
+        audioSource.loop = true;
+        audioSource.clip = loopSFX.Get();
+        audioSource.Play();
         DebugUI.instance.StartCoroutine(DebugUI.instance.DisplayHoldInteract(this));
-        float timer = 0;
         while (Input.GetMouseButton(0) && interacting && inRange &&
         content > 0  && bloodletter.infectionLevel > 0) {
             while (!bloodletter.tick) {
@@ -42,11 +44,6 @@ public class InfectionSite : HoldInteractable {
                     interacting = false;
                     break;
                 }
-                if (timer >= loopDelay && !audioSource.isPlaying) {
-                    audioSource.loop = true;
-                    audioSource.clip = loopSFX.Get();
-                    audioSource.Play();
-                } else timer += Time.deltaTime;
             }
             if (!Input.GetMouseButton(0)) {
                     interacting = false;
@@ -75,6 +72,7 @@ public class InfectionSite : HoldInteractable {
         if (content <= 0) {
             ExhaustSite();
         } 
+        PlaySound(closeSFX);
         interacting = false;    
     }
 
