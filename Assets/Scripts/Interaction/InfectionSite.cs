@@ -17,6 +17,7 @@ public class InfectionSite : HoldInteractable {
     public IEnumerator RemedyIllness(Bloodletter bloodletter) {
         interacting = true;
         DebugUI.instance.StartCoroutine(DebugUI.instance.DisplayHoldInteract(this));
+        float timer = 0;
         while (Input.GetMouseButton(0) && interacting && inRange &&
         content > 0  && bloodletter.infectionLevel > 0) {
             while (!bloodletter.tick) {
@@ -25,11 +26,11 @@ public class InfectionSite : HoldInteractable {
                     interacting = false;
                     break;
                 }
-            }
-            if (!audioSource.isPlaying) {
-                audioSource.loop = true;
-                audioSource.clip = loopSFX.Get();
-                audioSource.Play();
+                if (timer >= loopDelay) {
+                    audioSource.loop = true;
+                    audioSource.clip = loopSFX.Get();
+                    audioSource.Play();
+                } else timer += Time.deltaTime;
             }
             if (!Input.GetMouseButton(0)) {
                     interacting = false;
