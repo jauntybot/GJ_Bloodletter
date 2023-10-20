@@ -16,17 +16,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b43fde417b4aaad4ab70859ea30e1c63,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 100.53546
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b43fde417b4aaad4ab70859ea30e1c63,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.27464294
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b43fde417b4aaad4ab70859ea30e1c63,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -191.29164
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b43fde417b4aaad4ab70859ea30e1c63,
         type: 3}
@@ -727,9 +727,10 @@ MonoBehaviour:
   openSFX: {fileID: 11400000, guid: b015b4647414c44f7a07bf9568aeb381, type: 2}
   loopSFX: {fileID: 11400000, guid: f700133b286924208b758392a80cbe46, type: 2}
   closeSFX: {fileID: 11400000, guid: a098db30bd34b406cbdf8580dc92aac3, type: 2}
+  openDelay: 1
   maxContent: 15
   content: 0
-  consumptionRate: 1.5
+  consumptionRate: 1.25
   interacting: 0
 --- !u!82 &1171416205256783555
 AudioSource:

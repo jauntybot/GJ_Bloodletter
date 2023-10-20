@@ -407,9 +407,10 @@ MonoBehaviour:
   openSFX: {fileID: 11400000, guid: f2cc446f68ce3407d906fadbbc051b2d, type: 2}
   loopSFX: {fileID: 11400000, guid: edc980f9f2b3247738a9dcf466c9b448, type: 2}
   closeSFX: {fileID: 11400000, guid: fbba0c7ee3f1a452eaf9168ff8523ccc, type: 2}
+  openDelay: 1
   maxContent: 25
   content: 0
-  consumptionRate: 2.5
+  consumptionRate: 2
   interacting: 0
   infectionHeal: 0.7
   infectionDilution: 0.1

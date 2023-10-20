@@ -709,6 +709,7 @@ MonoBehaviour:
   openSFX: {fileID: 11400000, guid: f3b892206a4fa7f40ae72d8f381b78c2, type: 2}
   loopSFX: {fileID: 11400000, guid: 2de953ed3f22831418dc9f394e42245e, type: 2}
   closeSFX: {fileID: 11400000, guid: d78a137d7b199a441b4bef837c45c1d1, type: 2}
+  openDelay: 1
   maxContent: 20
   content: 0
   consumptionRate: 2
