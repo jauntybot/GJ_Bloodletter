@@ -480,12 +480,6 @@ public class Bloodletter : MonoBehaviour {
                 }
             }
 
-            freq += Time.deltaTime * Mathf.Clamp(_speedMultiplier, 0.5f, 2) * 5;
-            armsRoot.position = new Vector3(armsRoot.position.x, cameraRoot.position.y + Mathf.Sin(freq) * 0.01f * _speedMultiplier, armsRoot.position.z);
-            float rot = fpsCam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.Value;
-            float rot2 = Mathf.Lerp(-15, 35, Mathf.InverseLerp(-70, 70, rot));
-            armsRoot.rotation = Quaternion.Euler(rot2, transform.eulerAngles.y, 0);
-
 // BLOODLET INPUT
             if (Input.GetButtonDown("Bloodlet")) 
                 ToggleBloodletting(!bloodletting);
@@ -509,6 +503,16 @@ public class Bloodletter : MonoBehaviour {
                 
             } else if (!sprinting) _speedMultiplier = standMultiplier;
         }
+    }
+
+    void LateUpdate() {
+        freq += Time.deltaTime * Mathf.Clamp(_speedMultiplier, 0.5f, 2) * 5;
+        armsRoot.position = new Vector3(armsRoot.position.x, cameraRoot.position.y + Mathf.Sin(freq) * 0.01f * _speedMultiplier, armsRoot.position.z);
+        float rot = fpsCam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.Value;
+        float rot2 = Mathf.Lerp(-15, 35, Mathf.InverseLerp(-70, 70, rot));
+        rot = fpsCam.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.Value;
+        float rot3 = Mathf.Lerp(-90, 270, Mathf.InverseLerp(-180, 180, rot));
+        armsRoot.rotation = Quaternion.Euler(rot2, rot3, 0);
     }
 
     IEnumerator FootstepCheck()
