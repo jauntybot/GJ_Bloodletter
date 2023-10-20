@@ -36,9 +36,6 @@ public class Door : HoldInteractable
     public IEnumerator SiphonResource() {
         interacting = true;
         DebugUI.instance.StartCoroutine(DebugUI.instance.DisplayHoldInteract(this));
-        audioSource.loop = true;
-        audioSource.clip = loopSFX.Get();
-        audioSource.Play();
         float tollStep = 0;
         while (Input.GetMouseButton(0) && interacting && inRange &&
         content > 0) {
@@ -51,6 +48,12 @@ public class Door : HoldInteractable
                         break;
                     }
                 }
+                if (!audioSource.isPlaying) {
+                    audioSource.loop = true;
+                    audioSource.clip = loopSFX.Get();
+                    audioSource.Play();
+                }
+
                 if (!Input.GetMouseButton(0)) {
                         interacting = false;
                         break;
@@ -70,6 +73,8 @@ public class Door : HoldInteractable
                     break;
                 }
             }
+            audioSource.loop = false;
+            audioSource.Stop();
     // USED ALL BLOOD
             if (content <= 0) {
                 ExhaustSite();

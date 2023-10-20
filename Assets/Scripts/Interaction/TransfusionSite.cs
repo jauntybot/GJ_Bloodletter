@@ -17,9 +17,6 @@ public class TransfusionSite : HoldInteractable {
     public IEnumerator TransfuseBlood(Bloodletter bloodletter) {
         interacting = true;
         DebugUI.instance.StartCoroutine(DebugUI.instance.DisplayHoldInteract(this));
-        audioSource.loop = true;
-        audioSource.clip = loopSFX.Get();
-        audioSource.Play();
         while (Input.GetMouseButton(0) && interacting && inRange &&
         content > 0  && bloodletter.bloodLevel < 100) {
             while (!bloodletter.tick) {
@@ -28,6 +25,11 @@ public class TransfusionSite : HoldInteractable {
                     interacting = false;
                     break;
                 }
+            }
+            if (!audioSource.isPlaying) {
+                audioSource.loop = true;
+                audioSource.clip = loopSFX.Get();
+                audioSource.Play();
             }
             if (!Input.GetMouseButton(0)) {
                     interacting = false;
@@ -47,6 +49,8 @@ public class TransfusionSite : HoldInteractable {
             }
             yield return null;
         }
+        audioSource.loop = false;
+        audioSource.Stop();
 // USED ALL BLOOD
         if (content <= 0) {
             ExhaustSite();
