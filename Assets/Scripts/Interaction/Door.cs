@@ -48,7 +48,7 @@ public class Door : HoldInteractable
                         interacting = false;
                         break;
                     }
-                    if (timer >= loopDelay) {
+                    if (timer >= loopDelay && !audioSource.isPlaying) {
                         audioSource.loop = true;
                         audioSource.clip = loopSFX.Get();
                         audioSource.Play();
@@ -78,6 +78,9 @@ public class Door : HoldInteractable
     // USED ALL BLOOD
             if (content <= 0) {
                 ExhaustSite();
+            } else if (audioSource.loop == true) {
+                audioSource.loop = false;
+                audioSource.Stop();
             }
             yield return null;
         }
