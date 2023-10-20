@@ -12,5 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f59e54f2bfd184b9dd451a678d089b, type: 3}
   m_Name: FPS Camera Noise Profile
   m_EditorClassIdentifier: 
-  PositionNoise: []
+  PositionNoise:
+  - X:
+      Frequency: 0
+      Amplitude: 0
+      Constant: 0
+    Y:
+      Frequency: 1.19
+      Amplitude: 0.1
+      Constant: 0
+    Z:
+      Frequency: 0
+      Amplitude: 0
+      Constant: 0
   OrientationNoise: []

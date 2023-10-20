@@ -50,7 +50,12 @@ PrefabInstance:
     - target: {fileID: 4477753787983100913, guid: 91fc04320e3c8504f9c5cd7cda515f02,
         type: 3}
       propertyPath: m_AmplitudeGain
-      value: 2.5
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477753787983100913, guid: 91fc04320e3c8504f9c5cd7cda515f02,
+        type: 3}
+      propertyPath: m_FrequencyGain
+      value: 15.43
       objectReference: {fileID: 0}
     - target: {fileID: 7994625164610944420, guid: 91fc04320e3c8504f9c5cd7cda515f02,
         type: 3}
@@ -151,17 +156,17 @@ PrefabInstance:
     - target: {fileID: 8558229603941195183, guid: b74b4d61641804e4db5f48d28e3ab104,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.007474567
+      value: 0.007426373
       objectReference: {fileID: 0}
     - target: {fileID: 8558229603941195183, guid: b74b4d61641804e4db5f48d28e3ab104,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7050638
+      value: 1.7050759
       objectReference: {fileID: 0}
     - target: {fileID: 8558229603941195183, guid: b74b4d61641804e4db5f48d28e3ab104,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.000994618
+      value: 0.0010782275
       objectReference: {fileID: 0}
     - target: {fileID: 8558229603941195183, guid: b74b4d61641804e4db5f48d28e3ab104,
         type: 3}
@@ -249,6 +254,16 @@ PrefabInstance:
       propertyPath: killCam
       value: 
       objectReference: {fileID: 7415100406228873278}
+    - target: {fileID: 1808239837428549413, guid: 3e545542a8729834da5abe8faedaafab,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808239837428549413, guid: 3e545542a8729834da5abe8faedaafab,
+        type: 3}
+      propertyPath: sprintMultiplier
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3840052362551888005, guid: 3e545542a8729834da5abe8faedaafab,
         type: 3}
       propertyPath: m_LocalPosition.x
