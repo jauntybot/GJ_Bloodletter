@@ -32,7 +32,7 @@ public class TransfusionSite : HoldInteractable {
                     audioSource.Play();
                 } else timer += Time.deltaTime;
             }
-            if (!audioSource.isPlaying) {
+            if (!audioSource.isPlaying && !audioSource.isPlaying) {
                 audioSource.loop = true;
                 audioSource.clip = loopSFX.Get();
                 audioSource.Play();
@@ -60,6 +60,9 @@ public class TransfusionSite : HoldInteractable {
 // USED ALL BLOOD
         if (content <= 0) {
             ExhaustSite();
+        } else if (audioSource.loop == true) {
+            audioSource.loop = false;
+            audioSource.Stop();
         }
         interacting = false;    
     }

@@ -22,7 +22,7 @@ public class TollSite : HoldInteractable {
                     interacting = false;
                     break;
                 }
-                if (timer >= loopDelay) {
+                if (timer >= loopDelay && !audioSource.isPlaying) {
                     audioSource.loop = true;
                     audioSource.clip = loopSFX.Get();
                     audioSource.Play();
@@ -51,6 +51,9 @@ public class TollSite : HoldInteractable {
 // USED ALL BLOOD
         if (content <= 0) {
             ExhaustSite();
+        } else if (audioSource.loop == true) {
+            audioSource.loop = false;
+            audioSource.Stop();
         }
         interacting = false;    
     }
