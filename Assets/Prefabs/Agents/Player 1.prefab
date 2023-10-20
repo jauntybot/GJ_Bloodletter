@@ -169,12 +169,12 @@ PrefabInstance:
     - target: {fileID: 4477753787983100913, guid: 91fc04320e3c8504f9c5cd7cda515f02,
         type: 3}
       propertyPath: m_AmplitudeGain
-      value: 1.488504
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4477753787983100913, guid: 91fc04320e3c8504f9c5cd7cda515f02,
         type: 3}
       propertyPath: m_FrequencyGain
-      value: 1.491412
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7994625164610944420, guid: 91fc04320e3c8504f9c5cd7cda515f02,
         type: 3}
@@ -275,17 +275,17 @@ PrefabInstance:
     - target: {fileID: 8558229603941195183, guid: b74b4d61641804e4db5f48d28e3ab104,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.007552226
+      value: 0.007522583
       objectReference: {fileID: 0}
     - target: {fileID: 8558229603941195183, guid: b74b4d61641804e4db5f48d28e3ab104,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7050372
+      value: 1.7050493
       objectReference: {fileID: 0}
     - target: {fileID: 8558229603941195183, guid: b74b4d61641804e4db5f48d28e3ab104,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0009691082
+      value: 0.0009460449
       objectReference: {fileID: 0}
     - target: {fileID: 8558229603941195183, guid: b74b4d61641804e4db5f48d28e3ab104,
         type: 3}
