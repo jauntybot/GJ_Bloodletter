@@ -722,7 +722,7 @@ MonoBehaviour:
   locked: 0
   maxContent: 15
   content: 0
-  consumptionRate: 1
+  consumptionRate: 1.5
   interacting: 0
 --- !u!1 &2191772305905988192 stripped
 GameObject:

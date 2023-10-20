@@ -10,12 +10,16 @@ public class TransfusionSite : HoldInteractable {
     public float infectionHeal, infectionDilution;    
 
     public override void Interact() {
+        base.Interact();
         StartCoroutine(TransfuseBlood(bloodletter));
     }
 
     public IEnumerator TransfuseBlood(Bloodletter bloodletter) {
         interacting = true;
         DebugUI.instance.StartCoroutine(DebugUI.instance.DisplayHoldInteract(this));
+        audioSource.loop = true;
+        audioSource.clip = loopSFX.Get();
+        audioSource.Play();
         while (Input.GetMouseButton(0) && interacting && inRange &&
         content > 0  && bloodletter.bloodLevel < 100) {
             while (!bloodletter.tick) {

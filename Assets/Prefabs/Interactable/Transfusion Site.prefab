@@ -407,8 +407,8 @@ MonoBehaviour:
   content: 0
   consumptionRate: 2.5
   interacting: 0
-  infectionHeal: 0.5
-  infectionDilution: 0.05
+  infectionHeal: 0.7
+  infectionDilution: 0.1
 --- !u!95 &6675312354278790025
 Animator:
   serializedVersion: 5

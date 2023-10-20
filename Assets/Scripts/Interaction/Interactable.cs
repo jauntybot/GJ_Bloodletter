@@ -8,7 +8,7 @@ public class Interactable : MonoBehaviour {
     [SerializeField] protected Bloodletter bloodletter;
     protected InteractableHighlight highlight;
     public bool interactOnce;
-    bool hasInteracted;
+    protected bool hasInteracted;
     public float interactRadius = 2.5f;
     public bool inRange, inView;
     public bool locked = false;
@@ -52,8 +52,10 @@ public class Interactable : MonoBehaviour {
 
 // OVERIDE FUNCTIONALITY IN INHERITED CLASSES
     public virtual void Interact() {
-        FirstInteractionCallback?.Invoke();
-        hasInteracted = true;
+        if (!hasInteracted) {
+            FirstInteractionCallback?.Invoke();
+            hasInteracted = true;
+        }
     }
 
 
