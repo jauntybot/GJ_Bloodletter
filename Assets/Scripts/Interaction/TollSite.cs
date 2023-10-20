@@ -45,7 +45,7 @@ public class TollSite : HoldInteractable {
         if (content <= 0) {
             ExhaustSite();
         } 
-        PlaySound(closeSFX);
+        
         interacting = false;    
     }
 
