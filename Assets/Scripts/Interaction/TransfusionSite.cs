@@ -26,17 +26,13 @@ public class TransfusionSite : HoldInteractable {
                     interacting = false;
                     break;
                 }
-                if (timer >= loopDelay) {
+                if (timer >= loopDelay && !audioSource.isPlaying) {
                     audioSource.loop = true;
                     audioSource.clip = loopSFX.Get();
                     audioSource.Play();
                 } else timer += Time.deltaTime;
             }
-            if (!audioSource.isPlaying && !audioSource.isPlaying) {
-                audioSource.loop = true;
-                audioSource.clip = loopSFX.Get();
-                audioSource.Play();
-            }
+            
             if (!Input.GetMouseButton(0)) {
                     interacting = false;
                     break;
