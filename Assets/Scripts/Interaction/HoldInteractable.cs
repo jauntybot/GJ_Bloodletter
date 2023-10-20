@@ -42,8 +42,7 @@ public class HoldInteractable : Interactable {
             if (sfx.outputMixerGroup) 
                 audioSource.outputAudioMixerGroup = sfx.outputMixerGroup;   
             
-                audioSource.clip = sfx.Get();
-                audioSource.Play();
+                audioSource.PlayOneShot(sfx.Get());
         }
     }
 

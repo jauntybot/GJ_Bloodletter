@@ -6,12 +6,16 @@ public class TollSite : HoldInteractable {
 
 
     public override void Interact() {
+        base.Interact();
         StartCoroutine(RifleSite(bloodletter));
     }
 
     public IEnumerator RifleSite(Bloodletter bloodletter) {
         interacting = true;
         DebugUI.instance.StartCoroutine(DebugUI.instance.DisplayHoldInteract(this));
+        audioSource.loop = true;
+        audioSource.clip = loopSFX.Get();
+        audioSource.Play();
         while (Input.GetMouseButton(0) && interacting && inRange &&
         content > 0) {
             while (!bloodletter.tick) {

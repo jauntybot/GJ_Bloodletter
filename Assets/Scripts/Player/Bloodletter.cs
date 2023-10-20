@@ -45,7 +45,7 @@ public class Bloodletter : MonoBehaviour {
 
     [Header("Controller")]	
     public bool alive;
-    [SerializeField] AudioSource breathAudioSource, oneShotAudioSource;
+    [SerializeField] AudioSource breathAudioSource, footstepAudioSource, oneShotAudioSource;
     [SerializeField] CinemachineVirtualCamera fpsCam, killCam;
     [SerializeField] Transform cameraRoot;
     [SerializeField] Vector2 cameraHeight = new Vector2(0.8f, -0.5f);
@@ -534,8 +534,7 @@ public class Bloodletter : MonoBehaviour {
             if (sfx.outputMixerGroup) 
                 oneShotAudioSource.outputAudioMixerGroup = sfx.outputMixerGroup;   
             
-                oneShotAudioSource.clip = sfx.Get();
-                oneShotAudioSource.Play();
+                oneShotAudioSource.PlayOneShot(sfx.Get());
         }
     }
 
@@ -556,5 +555,9 @@ public class Bloodletter : MonoBehaviour {
         }
         foreach (EffectProperty prop in bloodEffect.properties) 
             bloodEffect.material.SetFloat(prop.shaderProperty, prop.range.x);
+
+        fpsCam.m_Lens.FieldOfView = baseFOV;
+        fpsCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = baseFOVAmplitude;
+        fpsCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 1;
     }
 }

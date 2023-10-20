@@ -21,6 +21,7 @@ public class Door : HoldInteractable
     }
 
     public override void Interact() {
+        base.Interact();
         switch (doorType) {
             case DoorType.Toll:
             case DoorType.Blood:
@@ -35,6 +36,9 @@ public class Door : HoldInteractable
     public IEnumerator SiphonResource() {
         interacting = true;
         DebugUI.instance.StartCoroutine(DebugUI.instance.DisplayHoldInteract(this));
+        audioSource.loop = true;
+        audioSource.clip = loopSFX.Get();
+        audioSource.Play();
         float tollStep = 0;
         while (Input.GetMouseButton(0) && interacting && inRange &&
         content > 0) {

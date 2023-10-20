@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security;
+using Unity.Jobs;
 using UnityEngine;
 
 
@@ -9,6 +10,7 @@ public class InfectionSite : HoldInteractable {
     public float infectionHeal, infectionDilution;    
 
     public override void Interact() {
+        base.Interact();
         StartCoroutine(RemedyIllness(bloodletter));
     }
     
@@ -16,7 +18,8 @@ public class InfectionSite : HoldInteractable {
         interacting = true;
         DebugUI.instance.StartCoroutine(DebugUI.instance.DisplayHoldInteract(this));
         audioSource.loop = true;
-        PlaySound(loopSFX);
+        audioSource.clip = loopSFX.Get();
+        audioSource.Play();
         while (Input.GetMouseButton(0) && interacting && inRange &&
         content > 0  && bloodletter.infectionLevel > 0) {
             while (!bloodletter.tick) {
