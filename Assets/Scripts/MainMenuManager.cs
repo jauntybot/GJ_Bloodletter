@@ -6,18 +6,20 @@ using UnityEngine.SceneManagement;
 using System.Security.Cryptography;
 using UnityEngine.Rendering.Universal;
 
+[RequireComponent(typeof(AudioSource))]
 public class MainMenuManager : MonoBehaviour {
 
-
+    AudioSource audioSource;
     public string gameScene;
     public Image blackFade;
-
+    
 
     void Awake() {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void Start() {
+        audioSource = GetComponent<AudioSource>();
         GameManager.instance.ChangeState(GameManager.GameState.Menu);
         StartCoroutine(FadeScene(false));
     }
@@ -39,7 +41,7 @@ public class MainMenuManager : MonoBehaviour {
         float to = state ? 1 : 0;
         while (timer < 2) {
             blackFade.color = new Color(blackFade.color.b, blackFade.color.g, blackFade.color.b, Mathf.Lerp(from, to, timer/2));
-
+            audioSource.volume = Mathf.Lerp(to, from, timer/2);
             timer += Time.deltaTime;
             yield return null;
         }
