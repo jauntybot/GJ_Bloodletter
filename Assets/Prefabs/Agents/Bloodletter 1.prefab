@@ -513,8 +513,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d63dd6d81e50548bb090a42c923bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bloodLevel: 90
-  infectionLevel: 5
+  bloodLevel: 70
+  infectionLevel: 20
   staminaLevel: 100
   tollCount: 0
   infectionPotency: 0.5
