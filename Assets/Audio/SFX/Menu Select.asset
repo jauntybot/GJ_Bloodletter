@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a317b34f4e791d644aa08a21497597da, type: 3}
+  m_Name: Menu Select
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: bbd364cf20ac0479f88a680758d1fcc3, type: 3}
+  outputMixerGroup: {fileID: -6565913208151490343, guid: 4e5f271d56dcd954088ec71c5a54edb5,
+    type: 2}
