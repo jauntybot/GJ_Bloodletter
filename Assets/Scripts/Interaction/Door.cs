@@ -36,9 +36,11 @@ public class Door : HoldInteractable
     }
 
     public IEnumerator SiphonResource() {
-        // audioSource.loop = true;
-        // audioSource.clip = loopSFX.Get();
-        // audioSource.Play();
+        if (doorType == DoorType.Toll) {
+            audioSource.loop = true;
+            audioSource.clip = loopSFX.Get();
+            audioSource.Play();
+        }
         DebugUI.instance.StartCoroutine(DebugUI.instance.DisplayHoldInteract(this));
         while (Input.GetMouseButton(0) && interacting && inRange &&
         content > 0) {
@@ -71,10 +73,10 @@ public class Door : HoldInteractable
                     break;
                 }
             }
-            // if (audioSource.loop == true) {
-            //     audioSource.loop = false;
-            //     audioSource.Stop();
-            // }
+            if (audioSource.loop == true) {
+                audioSource.loop = false;
+                audioSource.Stop();
+            }
     // USED ALL BLOOD
             if (content <= 0) {
                 ExhaustSite();

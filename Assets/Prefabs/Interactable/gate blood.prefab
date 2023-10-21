@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 1717243282023760560, guid: cecca00473181470591b2d93a02087e8,
         type: 3}
       propertyPath: m_Name
-      value: gate Variant
+      value: gate blood
       objectReference: {fileID: 0}
     - target: {fileID: 1848333212977093530, guid: cecca00473181470591b2d93a02087e8,
         type: 3}
@@ -108,6 +108,24 @@ PrefabInstance:
       propertyPath: locked
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7970158005274235082, guid: cecca00473181470591b2d93a02087e8,
+        type: 3}
+      propertyPath: loopSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: ab2c231e52bdd48ee9916f2f809e049a,
+        type: 2}
+    - target: {fileID: 7970158005274235082, guid: cecca00473181470591b2d93a02087e8,
+        type: 3}
+      propertyPath: openSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: db2d709594f994c34bfa702aaeb213fe,
+        type: 2}
+    - target: {fileID: 7970158005274235082, guid: cecca00473181470591b2d93a02087e8,
+        type: 3}
+      propertyPath: closeSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: db2d709594f994c34bfa702aaeb213fe,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

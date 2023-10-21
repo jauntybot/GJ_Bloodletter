@@ -501,7 +501,7 @@ public class Bloodletter : MonoBehaviour {
             if (inputX != 0 || inputY != 0) {
                 if (!sprinting) _speedMultiplier = 1f;
 // SPRINT INPUT
-                if (Input.GetButton("Run")) {
+                if (Input.GetButton("Run") && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) ) {
                     if (staminaLevel > 0 && !sprinting) StartCoroutine(Sprint());
                 } else if (staminaLevel < 100 && !staminaRegen) StartCoroutine(RegainStamina());
                 
