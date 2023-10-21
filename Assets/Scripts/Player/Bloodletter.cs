@@ -64,7 +64,7 @@ public class Bloodletter : MonoBehaviour {
         get { return _speedMultiplier; }
     }
 
-    [SerializeField] float staminaDrainRate, staminaDelay, staminaRegenRate, sprintDelay, bloodDrainRate, bloodDelay, bloodRegenRate;
+    [SerializeField] float staminaDrainRate, staminaDelay, staminaRegenRamp, staminaRegenRate, sprintDelay, bloodDrainRate, bloodDelay, bloodRegenRate;
 
     [SerializeField] float tickDur;
     float curTick;
@@ -76,6 +76,7 @@ public class Bloodletter : MonoBehaviour {
     [Header("Rates")]
     [SerializeField] float bloodletSFXDelay;
     [SerializeField] float decalSprintDelay, decalWalkDelay, footstepDelay, footstepRunDelay, heavyBreathingDelay;
+    [SerializeField] AnimationCurve regenAnimationCurve;
     
     
     [Header("Exposure")]
@@ -228,7 +229,7 @@ public class Bloodletter : MonoBehaviour {
             if (sprinting && staminaLevel >= staminaDrainRate)
                 staminaLevel -= staminaDrainRate;
 
-            if (staminaLevel <= 25 && !heavyBreathing) StartCoroutine(HeavyBreathing());
+            if (staminaLevel <= 0 && !heavyBreathing) StartCoroutine(HeavyBreathing());
 
             yield return null;
         }
@@ -265,7 +266,7 @@ public class Bloodletter : MonoBehaviour {
             }
 
             if (staminaRegen)
-                staminaLevel += staminaRegenRate * terrorProximity.Evaluate(regen/staminaDelay);
+                staminaLevel += staminaRegenRate * regenAnimationCurve.Evaluate(regen/staminaRegenRamp);
 
             yield return null;
         }
