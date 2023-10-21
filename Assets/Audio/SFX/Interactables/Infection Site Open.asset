@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClips:
   - {fileID: 8300000, guid: e2b77bd11972e47c9839fffc97c418c1, type: 3}
-  outputMixerGroup: {fileID: 24300002, guid: 4e5f271d56dcd954088ec71c5a54edb5, type: 2}
+  outputMixerGroup: {fileID: -6565913208151490343, guid: 4e5f271d56dcd954088ec71c5a54edb5,
+    type: 2}

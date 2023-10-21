@@ -30,11 +30,12 @@ public class EnemyDirector : MonoBehaviour {
 
     public Transform poi;
     
-
+    void Awake() {
+        enemy = GetComponent<EnemyPathfinding>();
+    }
 
     void Start() {
         bloodletter = Bloodletter.instance;
-        enemy = GetComponent<EnemyPathfinding>();
         StartCoroutine(PassiveTracking());
         foreach (Interactable inter in FindObjectsOfType<Interactable>()) {
             inter.FirstInteractionCallback += UpdateInteracted;

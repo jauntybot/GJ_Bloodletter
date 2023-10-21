@@ -27,7 +27,7 @@ public class Interactable : MonoBehaviour {
     }
     
     protected virtual void Update() {
-        if (bloodletter && !locked) {
+        if (bloodletter && !locked && GameManager.instance.gameState == GameManager.GameState.Running) {
             inRange = Vector3.Distance(transform.position, bloodletter.transform.position) <= interactRadius;
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

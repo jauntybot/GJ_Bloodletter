@@ -49,48 +49,6 @@ MonoBehaviour:
       normalBlend: 2
   m_CopyDepthPS: {fileID: 4800000, guid: d6dae50ee9e1bfa4db75f19f99355220, type: 3}
   m_DBufferClear: {fileID: 4800000, guid: f056d8bd2a1c7e44e9729144b4c70395, type: 3}
---- !u!114 &-5578793085156823028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: RenderObjects
-  m_EditorClassIdentifier: 
-  m_Active: 0
-  settings:
-    passTag: RenderObjects
-    Event: 450
-    filterSettings:
-      RenderQueueType: 0
-      LayerMask:
-        serializedVersion: 2
-        m_Bits: 256
-      PassNames: []
-    overrideMaterial: {fileID: 2100000, guid: c4f7c2bc05e31449ab5f549ba2953cd7, type: 2}
-    overrideMaterialPassIndex: 0
-    overrideShader: {fileID: 0}
-    overrideShaderPassIndex: 0
-    overrideMode: 2
-    overrideDepthState: 0
-    depthCompareFunction: 4
-    enableWrite: 1
-    stencilSettings:
-      overrideStencilState: 0
-      stencilReference: 0
-      stencilCompareFunction: 8
-      passOperation: 0
-      failOperation: 0
-      zFailOperation: 0
-    cameraSettings:
-      overrideCamera: 0
-      restoreCamera: 1
-      offset: {x: 0, y: 0, z: 0, w: 0}
-      cameraFieldOfView: 60
 --- !u!114 &-4647144530281157395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d613f08f173d4dd895bb07b3230baa9, type: 3}
   m_Name: FullScreenPassRendererFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   passMaterial: {fileID: 2100000, guid: c4f7c2bc05e31449ab5f549ba2953cd7, type: 2}
   injectionPoint: 450
   requirements: 4
@@ -167,7 +125,8 @@ MonoBehaviour:
   - {fileID: -4647144530281157395}
   - {fileID: -6544462381174044019}
   - {fileID: -777727585581576026}
-  m_RendererFeatureMap: d302f1a1cd4a3c21cdcd8635c2bdca87a8f44a2d59da7d8bd38af25d23fa1cca3cf3147a2fb91848ed2cb1dcab0682bf8dca366c23662da5a65063a9e1f434f5
+  - {fileID: 6170331754207451811}
+  m_RendererFeatureMap: d302f1a1cd4a3c21cdcd8635c2bdca87a8f44a2d59da7d8bd38af25d23fa1cca3cf3147a2fb91848ed2cb1dcab0682bf8dca366c23662da5a65063a9e1f434f5a31ad9e3096ca155
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -238,5 +197,22 @@ MonoBehaviour:
   m_Active: 1
   passMaterial: {fileID: 2100000, guid: f575dad7025954525b874b70ef10ba37, type: 2}
   injectionPoint: 600
+  requirements: 4
+  passIndex: 0
+--- !u!114 &6170331754207451811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d613f08f173d4dd895bb07b3230baa9, type: 3}
+  m_Name: FullScreenPassRendererFeature
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  passMaterial: {fileID: 2100000, guid: 0caf6874d0a452a48ba41adb5993a5ce, type: 2}
+  injectionPoint: 450
   requirements: 4
   passIndex: 0

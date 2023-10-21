@@ -56,8 +56,8 @@ public class TransfusionSite : HoldInteractable {
 // USED ALL BLOOD
         if (content <= 0) {
             ExhaustSite();
+            PlaySound(closeSFX);
         } 
-        PlaySound(closeSFX);
         interacting = false;    
     }
 

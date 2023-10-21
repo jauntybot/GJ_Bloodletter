@@ -34,7 +34,8 @@ public class HoldInteractable : Interactable {
 
     protected virtual IEnumerator OpenSite() {
         interacting = true;
-        PlaySound(openSFX);
+        if (openSFX)
+            PlaySound(openSFX);
         float timer = 0f;
         while (timer < openDelay) {
             timer += Time.deltaTime;

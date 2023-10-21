@@ -28,7 +28,8 @@ public class TrackBlood : ActionNode
         foreach (BloodPool bp in context.enemy.bloodPools) {
             if (!bp.inspected) idlePools++;
         }
-        if (idlePools/context.enemy.bloodPools.Count >= 0.5f) return State.Success;
+        
+        if (context.enemy.bloodPools.Count > 0 && idlePools/context.enemy.bloodPools.Count >= 0.5f) return State.Success;
         return State.Failure;
     }
 }

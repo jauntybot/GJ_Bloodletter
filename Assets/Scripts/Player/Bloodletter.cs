@@ -86,7 +86,7 @@ public class Bloodletter : MonoBehaviour {
     [SerializeField] float expBase, expStill, expCrouch, expWalk, expSprint, expBloodletting, expInfected;
     public DetectionCone fovCone;
     [Range(0, 60)] public float enemyTerror;
-    [SerializeField] AnimationCurve terrorProximity;
+    public AnimationCurve terrorProximity;
     [SerializeField] float terrorRate, terrorMod;
     
 
@@ -129,6 +129,8 @@ public class Bloodletter : MonoBehaviour {
         breathAudioSource.volume = 0;
         breathAudioSource.loop = true;
         breathAudioSource.Play();
+
+        GameManager.instance.ChangeState(GameManager.GameState.Running);
     }
 
     IEnumerator BloodletterTick() {
@@ -228,6 +230,8 @@ public class Bloodletter : MonoBehaviour {
             }
             if (sprinting && staminaLevel >= staminaDrainRate)
                 staminaLevel -= staminaDrainRate;
+            else if (sprinting)
+                staminaLevel = 0;
 
             if (staminaLevel <= 0 && !heavyBreathing) StartCoroutine(HeavyBreathing());
 
@@ -238,7 +242,7 @@ public class Bloodletter : MonoBehaviour {
 
         StartCoroutine(LerpFOV(FOV(), sprintDelay));    
         StartCoroutine(LerpFOVAmp(baseFOVAmplitude, sprintDelay));
-        fpsCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = amp();
+        fpsCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 1;
     }
 
     public IEnumerator RegainStamina() {
@@ -468,7 +472,9 @@ public class Bloodletter : MonoBehaviour {
 
     float freq = 0;
     public void Update() {
-        if (alive) {
+        if (GameManager.instance.gameState != GameManager.GameState.Menu && Input.GetButtonDown("Pause"))
+            GameManager.instance.Pause(GameManager.instance.gameState == GameManager.GameState.Running ? true : false);
+        if (alive && GameManager.instance.gameState == GameManager.GameState.Running) {
 // MOUSE INPUT
 // INTERACTION INPUT
             if (Input.GetMouseButtonDown(0)) {
@@ -555,6 +561,11 @@ public class Bloodletter : MonoBehaviour {
     }
 
     void OnApplicationQuit() {
+        ResetShaders();
+    }
+
+    public void ResetShaders() {
+        Debug.Log("reset shaders");
         foreach (FullscreenEffect fx in infectionEffects) {
             foreach (EffectProperty prop in fx.properties) {
                 fx.material.SetFloat(prop.shaderProperty, prop.range.x);

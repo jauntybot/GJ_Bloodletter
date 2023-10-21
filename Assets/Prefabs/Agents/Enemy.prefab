@@ -133,6 +133,7 @@ MonoBehaviour:
   idleSFX: {fileID: 11400000, guid: 56109061aa827de40a70fbaf20496076, type: 2}
   chaseStingSFX: {fileID: 11400000, guid: b62710e1cb9b3eb4593fb32c72aad909, type: 2}
   killStingSFX: {fileID: 11400000, guid: a965494d91753471bac41da354dafd94, type: 2}
+  larvaMat: {fileID: 2100000, guid: 7471a9878fb9f2d44891bab2be85fb24, type: 2}
   state: 0
   hidden: 0
   visibleTerror: 0
@@ -197,6 +198,7 @@ MonoBehaviour:
     detecting: 0
     inRange: 0
   detectionDrainRate: 0.0125
+  speedRange: {x: 0.2, y: 4.2}
   energyLevel: 100
   energyRegenRate: 0.1
   energyRegenDelay: 2
@@ -208,6 +210,7 @@ MonoBehaviour:
     m_Bits: 256
   killRadius: 2.75
   attacking: 0
+  mixer: {fileID: 24100000, guid: 4e5f271d56dcd954088ec71c5a54edb5, type: 2}
 --- !u!114 &4217456658478783787
 MonoBehaviour:
   m_ObjectHideFlags: 0
