@@ -14,7 +14,7 @@ public class InfectionSite : HoldInteractable {
             FirstInteractionCallback?.Invoke();
             hasInteracted = true;
         }
-        if (bloodletter.bloodLevel > 0)
+        if (bloodletter.infectionLevel > 0)
             StartCoroutine(OpenSite());
         else
             DebugUI.instance.textPopUp.DisplayMessage("CANNOT TAKE MORE MEDICINE NOW.");

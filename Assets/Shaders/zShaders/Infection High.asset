@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcbd8fdd9a98644e9fde3d97cb7eafe, type: 3}
   m_Name: Infection High
   m_EditorClassIdentifier: 
-  rendererFeature: {fileID: -8866668631133749917, guid: a9d0ca00fc878004da3ab8acee74949e,
+  rendererFeature: {fileID: 6170331754207451811, guid: a9d0ca00fc878004da3ab8acee74949e,
     type: 2}
-  material: {fileID: 2100000, guid: c4f7c2bc05e31449ab5f549ba2953cd7, type: 2}
+  material: {fileID: 2100000, guid: 0caf6874d0a452a48ba41adb5993a5ce, type: 2}
   properties:
-  - _shaderProperty: _VignetteIntensity
-    range: {x: 0, y: 0.25}
-    threshold: {x: 0.33, y: 1}
+  - _shaderProperty: _Hue
+    range: {x: 0, y: 100}
+    threshold: {x: 0.5, y: 1}
     curve:
       serializedVersion: 2
       m_Curve:
@@ -43,8 +43,8 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - _shaderProperty: _HueStrength
-    range: {x: 0, y: 100}
+  - _shaderProperty: _Blend
+    range: {x: 0, y: 0.1}
     threshold: {x: 0, y: 0.75}
     curve:
       serializedVersion: 2
@@ -52,8 +52,8 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 2
-        outSlope: 2
+        inSlope: 0
+        outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
@@ -61,8 +61,8 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 1
         value: 1
-        inSlope: 0
-        outSlope: 0
+        inSlope: 2
+        outSlope: 2
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
