@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using System.Threading;
-using UnityEngine.Rendering.Universal;
-using UnityEditor.UIElements;
 using UnityEngine.Playables;
 
 [RequireComponent(typeof(PlayableDirector))]
