@@ -9,6 +9,7 @@ public class Door : HoldInteractable
     public enum DoorType { Free, Toll, Blood };
     public DoorType doorType;
 
+    [SerializeField] float tollStep = 0;
     bool open;
 
 
@@ -35,23 +36,22 @@ public class Door : HoldInteractable
     }
 
     public IEnumerator SiphonResource() {
-        audioSource.loop = true;
-        audioSource.clip = loopSFX.Get();
-        audioSource.Play();
+        // audioSource.loop = true;
+        // audioSource.clip = loopSFX.Get();
+        // audioSource.Play();
         DebugUI.instance.StartCoroutine(DebugUI.instance.DisplayHoldInteract(this));
-        float tollStep = 0;
         while (Input.GetMouseButton(0) && interacting && inRange &&
         content > 0) {
             if ((doorType == DoorType.Toll && bloodletter.tollCount >= 1) ||
             (doorType == DoorType.Blood && bloodletter.bloodLevel >= consumptionRate)) {
                 while (!bloodletter.tick) {
                     yield return null;
-                    if (!Input.GetMouseButton(0)) {
+                    if (!Input.GetMouseButton(0) || bloodletter.tollCount < 1) {
                         interacting = false;
                         break;
                     }
                 }
-                if (!Input.GetMouseButton(0)) {
+                if (!Input.GetMouseButton(0) || bloodletter.tollCount < 1) {
                         interacting = false;
                         break;
                 }
@@ -61,8 +61,9 @@ public class Door : HoldInteractable
                     bloodletter.bloodLevel -= consumptionRate;
                 else if (doorType == DoorType.Toll) {
                     tollStep += consumptionRate;
-                    if (Mathf.RoundToInt(tollStep) == tollStep)
-                        bloodletter.tollCount -= 1;
+                    if (Mathf.Approximately(tollStep, Mathf.RoundToInt(tollStep)))
+                        bloodletter.tollCount --;
+                    if (content <= 0.1f) content = 0;
                 }
 
                 if (!inRange) {
@@ -70,17 +71,16 @@ public class Door : HoldInteractable
                     break;
                 }
             }
-            if (audioSource.loop == true) {
-                audioSource.loop = false;
-                audioSource.Stop();
-            }
+            // if (audioSource.loop == true) {
+            //     audioSource.loop = false;
+            //     audioSource.Stop();
+            // }
     // USED ALL BLOOD
             if (content <= 0) {
                 ExhaustSite();
             } 
             yield return null;
         }
-        PlaySound(closeSFX);
         interacting = false;    
     }
 
@@ -93,6 +93,7 @@ public class Door : HoldInteractable
 
     public void OpenCloseDoor(bool state) {
         anim.SetBool("Open", state);
+        PlaySound(closeSFX);
         open = state;
         DebugUI.instance.textPopUp.DismissMessage();
         highlight.message = "PRESS 'LMB' TO " + (open ? "CLOSE." : "OPEN.");
