@@ -580,6 +580,7 @@ MonoBehaviour:
   _speedMultiplier: 0
   staminaDrainRate: 5
   staminaDelay: 2
+  staminaRegenRamp: 0
   staminaRegenRate: 3
   sprintDelay: 1
   bloodDrainRate: 2.2
@@ -597,6 +598,39 @@ MonoBehaviour:
   footstepDelay: 0.75
   footstepRunDelay: 1
   heavyBreathingDelay: 1
+  regenAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.68418425
+      value: 0.19521716
+      inSlope: 0.78086865
+      outSlope: 0.78086865
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 4.994645
+      outSlope: 4.994645
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.056817114
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   exposureLevel: 0
   exposureCurve:
     serializedVersion: 2
@@ -631,7 +665,7 @@ MonoBehaviour:
   expInfected: 25
   fovCone:
     name: FOV
-    dist: 40
+    dist: 60
     viewAngle: 98
     detectionMultiplier: 1
     deltaThreshold: 0

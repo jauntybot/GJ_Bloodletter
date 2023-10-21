@@ -9,6 +9,16 @@ public class TransfusionSite : HoldInteractable {
     
     public float infectionHeal, infectionDilution;    
 
+    public override void Interact() {
+        if (!hasInteracted) {
+            FirstInteractionCallback?.Invoke();
+            hasInteracted = true;
+        }
+        if (bloodletter.bloodLevel < 100)
+            StartCoroutine(OpenSite());
+        else
+            DebugUI.instance.textPopUp.DisplayMessage("LET MORE BLOOD FIRST.");
+    }
     protected override IEnumerator OpenSite() {
         yield return base.OpenSite();
         StartCoroutine(TransfuseBlood(bloodletter));
@@ -57,7 +67,9 @@ public class TransfusionSite : HoldInteractable {
         if (content <= 0) {
             ExhaustSite();
             PlaySound(closeSFX);
-        } 
+        } else if (bloodletter.bloodLevel >= 100)
+            DebugUI.instance.textPopUp.DisplayMessage("LET MORE BLOOD FIRST."); 
+
         interacting = false;    
     }
 

@@ -356,7 +356,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: aa85bf22cc55579429628a772d19dcbf
-  position: {x: -908.8, y: 318.4}
+  position: {x: -758.4001, y: 190.40004}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -456,7 +456,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c08c394b40b813e459f18cfd43335604
-  position: {x: -908.8, y: 190.40001}
+  position: {x: -1058.4001, y: 57.600014}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -464,7 +464,7 @@ MonoBehaviour:
     enemyCheck: 0
   description: KILL PLAYER
   drawGizmos: 0
-  child: {fileID: -6834558433728463768}
+  child: {fileID: 0}
   compareTo: 0
   enemyVar: 4
   compareVar: 0
@@ -706,8 +706,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: -6192064948927499123}
-  - {fileID: 2334335689730139372}
+  - {fileID: -6834558433728463768}
 --- !u!114 &-4997719276754839594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -723,7 +722,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 783f5545d7b33fb4b9687235558e276c
-  position: {x: -455.19995, y: 709.60004}
+  position: {x: -455.19986, y: 708.79987}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -978,7 +977,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: f391cf6ef2e1f764495a668d06406b54
-  position: {x: 1952.8, y: 575.2001}
+  position: {x: 1953.5999, y: 572}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -1746,7 +1745,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 99b1fe526dc91294791314f0a7d147ee
-  position: {x: -758.4001, y: 190.40001}
+  position: {x: -908.00006, y: 57.600014}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -2735,7 +2734,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e36ee2f3eeb592041a87338f9930bcf9
-  position: {x: 1277.6521, y: 832.31647}
+  position: {x: 1277.6001, y: 829.6}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -2759,7 +2758,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c38717a0918941a42974ba1a09e76f2c
-  position: {x: -758.4001, y: 317.6}
+  position: {x: -908.00006, y: 185.60005}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}

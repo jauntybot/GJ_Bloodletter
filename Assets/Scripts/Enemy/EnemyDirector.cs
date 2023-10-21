@@ -17,7 +17,7 @@ public class EnemyDirector : MonoBehaviour {
     float fitnessMod, terrorMod; // Used to locally track changes from bloodletter's wellness
     [Range(0, 100)]
     public float hostilityLevel;
-    [SerializeField] float hostilityGainRate, hostilityMod;
+    public float hostilityGainRate, hostilityMod;
     [SerializeField] AnimationCurve hostilityCurve;
     [Range(0,100)] public float downtime;
     public float downtimeTimer;

@@ -9,25 +9,20 @@ public class InfectionSite : HoldInteractable {
 
     public float infectionHeal, infectionDilution;    
 
-    public override void OnInteract()
-    {
-        // Check if this can be interacted with
-        if (inRange && inView && (!interactOnce || (interactOnce && !hasInteracted))) {
-        // Check if player can unlock this
-            if (locked) {}
-            if (!locked) {
-                if (bloodletter.infectionLevel > 0)          
-                    Interact();
-                else {
-                    highlight.message = "CANNOT TAKE MORE MEDICINE NOW.";
-                }
-            }
+    public override void Interact() {
+        if (!hasInteracted) {
+            FirstInteractionCallback?.Invoke();
+            hasInteracted = true;
         }
+        if (bloodletter.bloodLevel < 100)
+            StartCoroutine(OpenSite());
+        else
+            DebugUI.instance.textPopUp.DisplayMessage("CANNOT TAKE MORE MEDICINE NOW.");
     }
 
     protected override IEnumerator OpenSite() {
         yield return base.OpenSite();
-        StartCoroutine(RemedyIllness(bloodletter));
+        StartCoroutine(RemedyIllness(bloodletter)); 
     }
     
     public IEnumerator RemedyIllness(Bloodletter bloodletter) {
@@ -72,6 +67,8 @@ public class InfectionSite : HoldInteractable {
         if (content <= 0) {
             ExhaustSite();
         } 
+        if (bloodletter.infectionLevel <= 0)
+            DebugUI.instance.textPopUp.DisplayMessage("CANNOT TAKE MORE MEDICINE NOW.");
         PlaySound(closeSFX);
         interacting = false;    
     }
