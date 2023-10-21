@@ -195,6 +195,7 @@ public class EnemyPathfinding : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 10f, bloodPoolMask)) {
             _speed -= 1;
+            Debug.Log("On blood pool");
             hit.transform.GetComponent<BloodPool>().Inspect();
         }
         
@@ -308,7 +309,7 @@ public class EnemyPathfinding : MonoBehaviour {
         mixer.GetFloat("EnvirVol", out vol);
         float timer = 0;
         while (timer < 1) {
-            mixer.SetFloat("EnvirVol", Mathf.Lerp(vol, Mathf.Log10(1) * 20, timer/1);
+            mixer.SetFloat("EnvirVol", Mathf.Lerp(vol, Mathf.Log10(1) * 20, timer/1));
             timer += Time.deltaTime;
             yield return null;
         }

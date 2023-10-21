@@ -5,7 +5,7 @@ using UnityEngine;
 public class BloodPool : MonoBehaviour {
     
 
-    bool _inspected;
+    [SerializeField] bool _inspected;
     public bool inspected { get { return _inspected; } }
     float _age;
     public float age { get { return _age; } }
