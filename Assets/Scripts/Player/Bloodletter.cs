@@ -154,7 +154,7 @@ public class Bloodletter : MonoBehaviour {
                             if (!fovCone.detecting) {
                                 fovCone.detecting = true;
                             }
-                            terrorMod = terrorProximity.Evaluate((fovCone.dist - Vector3.Distance(transform.position, enemy.transform.position))/fovCone.dist) * 10;
+                            terrorMod = terrorProximity.Evaluate((fovCone.dist - Vector3.Distance(transform.position, enemy.transform.position))/fovCone.dist) * 100;
                         }
                         fovCone.inRange = true;
                     } else {

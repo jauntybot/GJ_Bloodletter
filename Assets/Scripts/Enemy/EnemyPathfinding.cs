@@ -27,7 +27,7 @@ public class EnemyPathfinding : MonoBehaviour {
     [Header("References")]
     [SerializeField] AudioSource audioSource, sfxSource;
     [SerializeField] List<GameObject> gfx;
-    [SerializeField] SFX idleSFX, chaseStingSFX, killStingSFX;
+    [SerializeField] SFX roamLoopSFX, trackLoopSFX, chaseLoopSFX, chaseStingSFX, killStingSFX;
     [SerializeField] Material larvaMat;
 
     public enum EnemyState { Lurking, Roaming, Ambling, Tracking, Chasing };
@@ -86,7 +86,18 @@ public class EnemyPathfinding : MonoBehaviour {
                 director.downtimeThreshold = Random.Range(10f, 30f);
             break;
             case EnemyState.Roaming:
+                audioSource.clip = roamLoopSFX.Get();
+                audioSource.Play();
                 director.downtimeThreshold = Random.Range(30f, 60f);
+            break;
+            case EnemyState.Tracking:
+                audioSource.clip = trackLoopSFX.Get();
+                audioSource.Play();
+            break;
+            case EnemyState.Chasing:
+                audioSource.clip = chaseLoopSFX.Get();
+                audioSource.Play();
+                PlaySound(chaseStingSFX);
             break;
         }
         state = _state;
@@ -154,6 +165,8 @@ public class EnemyPathfinding : MonoBehaviour {
 
             if (!detecting && detectionLevel > 0) 
                 detectionLevel -= detectionDrainRate;
+            if (detecting)
+                director.hostilityLevel += director.hostilityGainRate * director.hostilityMod * director.terrorLevel;
     
             larvaMat.SetFloat("_VertexResolution", Mathf.Lerp(6, 32,Mathf.InverseLerp(0, 60, bloodletter.enemyTerror)));
 
@@ -179,7 +192,11 @@ public class EnemyPathfinding : MonoBehaviour {
     public float CalculateSpeed() {
         float _speed;
         _speed = Mathf.Lerp(speedRange.x, speedRange.y, Mathf.InverseLerp(0, 100, director.hostilityLevel));
-
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 10f, bloodPoolMask)) {
+            _speed -= 1;
+            hit.transform.GetComponent<BloodPool>().Inspect();
+        }
         
         return _speed;
     }
@@ -197,8 +214,8 @@ public class EnemyPathfinding : MonoBehaviour {
         if (state) {
             foreach(GameObject obj in gfx) 
                 obj.SetActive(state);
-            audioSource.clip = idleSFX.Get();
-            //audioSource.Play();
+            audioSource.clip = roamLoopSFX.Get();
+            audioSource.Play();
             audioSource.volume = 0;
             fromVol = 0;
             toVol = 1;

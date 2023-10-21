@@ -130,7 +130,9 @@ MonoBehaviour:
   sfxSource: {fileID: 699619039724576305}
   gfx:
   - {fileID: 2293993216453592507}
-  idleSFX: {fileID: 11400000, guid: 56109061aa827de40a70fbaf20496076, type: 2}
+  roamLoopSFX: {fileID: 11400000, guid: bdcb4a62a03a04a09985b85f9415148f, type: 2}
+  trackLoopSFX: {fileID: 11400000, guid: 10481e35286974caab99ae455733a793, type: 2}
+  chaseLoopSFX: {fileID: 11400000, guid: def7b4ee941b049a3b4446ff580ac10e, type: 2}
   chaseStingSFX: {fileID: 11400000, guid: b62710e1cb9b3eb4593fb32c72aad909, type: 2}
   killStingSFX: {fileID: 11400000, guid: a965494d91753471bac41da354dafd94, type: 2}
   larvaMat: {fileID: 2100000, guid: 7471a9878fb9f2d44891bab2be85fb24, type: 2}
