@@ -35,7 +35,7 @@ public class RandomPosition : ActionNode {
                 blackboard.moveToPosition.z = context.enemy.bloodletter.transform.position.z + delta.y;
             break;
             case Relative.FromPOI:
-                delta = Random.insideUnitCircle * Random.Range(range.x, range.y);
+                delta = Random.insideUnitCircle * Random.Range(range.x * (1 + context.enemy.director.hostilityLevel/100), range.y * (1 + context.enemy.director.hostilityLevel/100));
                 blackboard.moveToPosition.x = context.enemy.director.poi.position.x + delta.x;
                 blackboard.moveToPosition.z = context.enemy.director.poi.position.z + delta.y;
             break;
