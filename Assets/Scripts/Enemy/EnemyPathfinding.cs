@@ -296,18 +296,24 @@ public class EnemyPathfinding : MonoBehaviour {
             float dist = Vector3.Distance(transform.position, bloodletter.transform.position);
             if (dist < detectionCones[2].dist) {
                     mixer.SetFloat("EnvirVol", Mathf.Log10(0.001f + bloodletter.terrorProximity.Evaluate(dist/detectionCones[2].dist)) * 20);
-                    mixer.SetFloat("PlayerVol", Mathf.Log10(0.001f + bloodletter.terrorProximity.Evaluate(dist/detectionCones[2].dist)) * 20);
+                    
             } else {
                 mixer.SetFloat("EnvirVol", Mathf.Log10(1) * 20);
-                mixer.SetFloat("PlayerVol", Mathf.Log10(1) * 20);
+                
             }
-
-
 
             yield return null;
         }
+        float vol;
+        mixer.GetFloat("EnvirVol", out vol);
+        float timer = 0;
+        while (timer < 1) {
+            mixer.SetFloat("EnvirVol", Mathf.Lerp(vol, Mathf.Log10(1) * 20, timer/1);
+            timer += Time.deltaTime;
+            yield return null;
+        }
         mixer.SetFloat("EnvirVol", Mathf.Log10(1) * 20);
-        mixer.SetFloat("PlayerVol", Mathf.Log10(1) * 20);
+    
         dampen = false;
 
     }
