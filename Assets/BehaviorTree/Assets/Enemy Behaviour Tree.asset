@@ -1949,8 +1949,8 @@ MonoBehaviour:
   drawGizmos: 0
   child: {fileID: -4472951212350046413}
   compareTo: 0
-  enemyVar: 3
-  compareVar: 4
+  enemyVar: 4
+  compareVar: 3
   op: 4
   value: 0
 --- !u!114 &3110480105623433915
