@@ -45,12 +45,12 @@ Material:
     - _Amplitude: 5
     - _BlendFactor: 1
     - _DistortionStrength: 10
-    - _HueStrength: 69.12105
+    - _HueStrength: 0
     - _MasterMultiply: 0
     - _Power: 0.07
     - _Scale: 29.28
     - _Speed: 0.05
-    - _VignetteIntensity: 0.0000058235983
+    - _VignetteIntensity: 0
     - _VignettePower: 2
     m_Colors: []
   m_BuildTextureStacks: []
