@@ -24,12 +24,16 @@ public class TrackBlood : ActionNode
                 }
             }
         }
+        int closePools = 0;
         int idlePools = 0;
         foreach (BloodPool bp in context.enemy.bloodPools) {
-            if (!bp.inspected) idlePools++;
+            if (Vector3.Distance(bp.transform.position, context.transform.position) < context.enemy.detectionCones[2].dist) {
+                if (!bp.inspected) idlePools++;
+                closePools++;
+            }
         }
         
-        if (context.enemy.bloodPools.Count > 0 && idlePools/context.enemy.bloodPools.Count >= 0.5f) return State.Success;
+        if (context.enemy.bloodPools.Count > 0 && idlePools/closePools >= 0.5f) return State.Success;
         return State.Failure;
     }
 }

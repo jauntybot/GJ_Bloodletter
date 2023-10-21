@@ -200,7 +200,7 @@ MonoBehaviour:
     detecting: 0
     inRange: 0
   detectionDrainRate: 0.0125
-  speedRange: {x: 0.2, y: 4.2}
+  speedRange: {x: 1, y: 4.2}
   energyLevel: 100
   energyRegenRate: 0.1
   energyRegenDelay: 2
