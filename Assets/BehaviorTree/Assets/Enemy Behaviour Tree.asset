@@ -987,8 +987,8 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   teleportType: 0
-  outsideOfVision: 0
-  value: 0
+  outsideOfVision: 1
+  value: 20
   byPlaytime: 1
 --- !u!114 &-2100920106336379012
 MonoBehaviour:

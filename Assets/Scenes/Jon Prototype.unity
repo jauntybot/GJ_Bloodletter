@@ -18466,6 +18466,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4581628561963182597, guid: 9cd00a9937c52a145a78b786526b979e,
+        type: 3}
+      propertyPath: m_FrequencyGain
+      value: 1.014014
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30045,6 +30050,16 @@ PrefabInstance:
       propertyPath: larvaMat
       value: 
       objectReference: {fileID: 2100000, guid: 7471a9878fb9f2d44891bab2be85fb24, type: 2}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: speedRange.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: speedRange.y
+      value: 4.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2160673951556383848, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
         type: 3}
       propertyPath: m_Name

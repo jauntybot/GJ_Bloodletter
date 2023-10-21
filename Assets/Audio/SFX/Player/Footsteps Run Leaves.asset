@@ -29,4 +29,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 90e1fae987fd24876bc7e1d2fee63139, type: 3}
   - {fileID: 8300000, guid: de17d8b24ec234fbb9d97815d1ba7aa7, type: 3}
   - {fileID: 8300000, guid: 31d93a0bc08e64e87b0dd1c9b85708a1, type: 3}
-  outputMixerGroup: {fileID: 24300002, guid: 4e5f271d56dcd954088ec71c5a54edb5, type: 2}
+  outputMixerGroup: {fileID: -6183208437827143641, guid: 4e5f271d56dcd954088ec71c5a54edb5,
+    type: 2}

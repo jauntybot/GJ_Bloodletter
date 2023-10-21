@@ -8,7 +8,6 @@ using UnityEngine.AI;
 using UnityEngine.Playables;
 using UnityEngine.VFX;
 
-[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(EnemyDirector))]
 [RequireComponent(typeof(KiwiBT.BehaviourTreeRunner))]
 public class EnemyPathfinding : MonoBehaviour {
@@ -48,7 +47,7 @@ public class EnemyPathfinding : MonoBehaviour {
 
     
     [Header("Nav Variables")] 
-    [Range(0.2f, 4.2f)] public Vector2 speedRange;
+    public Vector2 speedRange;
     [Range(0,100)] public float energyLevel;
     public float energyRegenRate, energyRegenDelay, energyDrainRate;
     public List<BloodPool> bloodPools = new List<BloodPool>();
@@ -180,7 +179,7 @@ public class EnemyPathfinding : MonoBehaviour {
         float _speed;
         _speed = Mathf.Lerp(speedRange.x, speedRange.y, Mathf.InverseLerp(0, 100, director.hostilityLevel));
 
-
+        Debug.Log(_speed);
         return _speed;
     }
 
@@ -198,7 +197,7 @@ public class EnemyPathfinding : MonoBehaviour {
             foreach(GameObject obj in gfx) 
                 obj.SetActive(state);
             audioSource.clip = idleSFX.Get();
-            audioSource.Play();
+            //audioSource.Play();
             audioSource.volume = 0;
             fromVol = 0;
             toVol = 1;
