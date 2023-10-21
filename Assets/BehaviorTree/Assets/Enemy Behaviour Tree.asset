@@ -314,7 +314,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   relative: 3
-  range: {x: 15, y: 25}
+  range: {x: 25, y: 50}
 --- !u!114 &-7056217138205358663
 MonoBehaviour:
   m_ObjectHideFlags: 0

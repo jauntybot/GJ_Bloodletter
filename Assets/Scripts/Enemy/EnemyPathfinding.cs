@@ -5,6 +5,7 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 using UnityEngine.Playables;
 using UnityEngine.VFX;
 
@@ -18,7 +19,7 @@ public class EnemyPathfinding : MonoBehaviour {
         EnemyPathfinding.instance = this;
     }
 
-    [HideInInspector] public EnemyDirector director;
+    public EnemyDirector director;
     NavMeshAgent agent;
     [HideInInspector] public Bloodletter bloodletter;
     KiwiBT.BehaviourTreeRunner btRunner;
@@ -179,7 +180,7 @@ public class EnemyPathfinding : MonoBehaviour {
         float _speed;
         _speed = Mathf.Lerp(speedRange.x, speedRange.y, Mathf.InverseLerp(0, 100, director.hostilityLevel));
 
-        Debug.Log(_speed);
+        
         return _speed;
     }
 
@@ -220,8 +221,10 @@ public class EnemyPathfinding : MonoBehaviour {
             foreach(GameObject obj in gfx) 
                 obj.SetActive(state);
             audioSource.Stop();   
-        } else
+        } else {
             agent.enabled = state;
+            StartCoroutine(DampenAudio());
+        }
         hiding = false;
     }
 
@@ -266,6 +269,30 @@ public class EnemyPathfinding : MonoBehaviour {
         		Gizmos.DrawWireSphere(transform.position, cone.dist);
 
         }
+    }
+
+    [SerializeField] AudioMixer mixer;
+    bool dampen;
+    public IEnumerator DampenAudio() {
+        dampen = true;
+        while (!hidden) {
+            float dist = Vector3.Distance(transform.position, bloodletter.transform.position);
+            if (dist < detectionCones[2].dist) {
+                    mixer.SetFloat("EnvirVol", Mathf.Log10(0.001f + bloodletter.terrorProximity.Evaluate(dist/detectionCones[2].dist)) * 20);
+                    mixer.SetFloat("PlayerVol", Mathf.Log10(0.001f + bloodletter.terrorProximity.Evaluate(dist/detectionCones[2].dist)) * 20);
+            } else {
+                mixer.SetFloat("EnvirVol", Mathf.Log10(1) * 20);
+                mixer.SetFloat("PlayerVol", Mathf.Log10(1) * 20);
+            }
+
+
+
+            yield return null;
+        }
+        mixer.SetFloat("EnvirVol", Mathf.Log10(1) * 20);
+        mixer.SetFloat("PlayerVol", Mathf.Log10(1) * 20);
+        dampen = false;
+
     }
 
     public virtual void PlaySound(SFX sfx = null, bool loop = false) {

@@ -51,8 +51,10 @@ public class TollSite : HoldInteractable {
 
     protected override void ExhaustSite() {
         base.ExhaustSite();
+        PlaySound(closeSFX);
         bloodletter.tollCount ++;
-        DebugUI.instance.textPopUp.DismissMessage();
+        highlight.displayMessage = false;
+        DebugUI.instance.textPopUp.DisplayMessage("COLLECTED 1 TOLL.", 3);
     }
 
 }

@@ -19,29 +19,37 @@ public class GameManager : MonoBehaviour
     }
 
     Bloodletter bloodletter;
+    PauseManager pauseManager;
 
     public enum GameState { Menu, Running, Paused, Gameover };
     public GameState gameState;
 
-    bool cursorLock;
-    [SerializeField]
-    string sceneName;
+    [SerializeField] bool cursorLock;
+    [SerializeField] string sceneName;
 
 
     void Start() {
         sceneName = SceneManager.GetActiveScene().name;
-        gameState = GameState.Running;
-        LockCursor(true);
+    }
+
+    public void ChangeState(GameState state) {
+        gameState = state;
+        if (state == GameState.Running) {
+            LockCursor(true);
+
+        } else {
+            LockCursor(false);
+        }
     }
 
     void Update() {
     	if (gameState == GameState.Running) {
 // lock when mouse is clicked
-           if(Input.GetMouseButtonDown(0) && !cursorLock )
+           if(!cursorLock)
                 LockCursor(!cursorLock);        
-// unlock when escape is hit
-            if  (Input.GetKeyDown(KeyCode.Escape) )
-                LockCursor(!cursorLock);
+        } else {
+            if(cursorLock)
+                LockCursor(!cursorLock);        
         }
     }
     
@@ -63,14 +71,18 @@ public class GameManager : MonoBehaviour
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        gameState = GameState.Running;
-        LockCursor(true);
         bloodletter = Bloodletter.instance;
+        pauseManager = PauseManager.instance;
     }
-
 
     public void RestartScene() {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void Pause(bool state) {
+        pauseManager.Pause(state);
+        gameState = state ? GameState.Paused : GameState.Running;
+        Debug.Log("Pause: " + state);
     }
 
 }

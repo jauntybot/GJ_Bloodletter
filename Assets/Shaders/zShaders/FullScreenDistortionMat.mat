@@ -42,10 +42,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Amplitude: 5
     - _BlendFactor: 1
     - _DistortionStrength: 10
-    - _HueStrength: 0
+    - _HueStrength: 15.149649
     - _MasterMultiply: 0
+    - _Power: 0.07
+    - _Scale: 29.28
+    - _Speed: 0.05
     - _VignetteIntensity: 0
     - _VignettePower: 2
     m_Colors: []
