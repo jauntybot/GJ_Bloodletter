@@ -50,7 +50,7 @@ public class Bloodletter : MonoBehaviour {
     [SerializeField] float crouchDur;
     public float walkSpeed;
     [SerializeField] Vector2 sprintMultiplierRange;
-    float sprintMultiplier { get { return Mathf.Lerp(sprintMultiplierRange.x, sprintMultiplierRange.y, Mathf.InverseLerp(0, 5, staminaLevel)); }}
+    float sprintMultiplier { get { return Mathf.Lerp(sprintMultiplierRange.x, sprintMultiplierRange.y, Mathf.InverseLerp(0, 25, staminaLevel)); }}
     public float standMultiplier;
     public float moveSpeed {
         get { return walkSpeed * _speedMultiplier; }
