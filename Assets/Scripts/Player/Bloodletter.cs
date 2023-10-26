@@ -319,12 +319,17 @@ public class Bloodletter : MonoBehaviour {
             } 
             if (bloodletting) {
                 bloodLevel -= bloodDrainRate * _speedMultiplier;
+                if (infectionLevel > 0)
+                    infectionLevel -= bloodDrainRate * _speedMultiplier;
             }
             
             yield return null;
         }
 
-        if (bloodLevel <= 0) bloodletting = false;
+        if (bloodLevel <= 0) {
+            bloodLevel = 0;
+            bloodletting = false;
+        }
         ToggleBloodletting(false);
     }
 

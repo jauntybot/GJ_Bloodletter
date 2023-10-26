@@ -720,7 +720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bloodletter: {fileID: 0}
   interactOnce: 0
-  interactRadius: 2.5
+  interactRadius: 3.5
   inRange: 0
   inView: 0
   locked: 0
