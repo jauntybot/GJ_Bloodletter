@@ -50,9 +50,8 @@ public class Bloodletter : MonoBehaviour {
     [SerializeField] float crouchDur;
     public float walkSpeed;
     [SerializeField] Vector2 sprintMultiplierRange;
-    float sprintMultiplier { get { return Mathf.Lerp(sprintMultiplierRange.x, sprintMultiplierRange.y, Mathf.InverseLerp(0, 60, staminaLevel)); }}
+    float sprintMultiplier { get { return Mathf.Lerp(sprintMultiplierRange.x, sprintMultiplierRange.y, Mathf.InverseLerp(0, 5, staminaLevel)); }}
     public float standMultiplier;
-    [SerializeField] private float _moveSpeed;
     public float moveSpeed {
         get { return walkSpeed * _speedMultiplier; }
     }
@@ -62,6 +61,7 @@ public class Bloodletter : MonoBehaviour {
     }
 
     [SerializeField] float staminaDrainRate, staminaDelay, staminaRegenRamp, staminaRegenRate, sprintDelay, bloodDrainRate, bloodDelay, bloodRegenRate;
+    [SerializeField] AnimationCurve regenAnimationCurve;
 
     [SerializeField] float tickDur;
     float curTick;
@@ -73,7 +73,6 @@ public class Bloodletter : MonoBehaviour {
     [Header("Rates")]
     [SerializeField] float bloodletSFXDelay;
     [SerializeField] float decalSprintDelay, decalWalkDelay, footstepDelay, footstepRunDelay, heavyBreathingDelay;
-    [SerializeField] AnimationCurve regenAnimationCurve;
     
     
     [Header("Exposure")]
@@ -183,7 +182,7 @@ public class Bloodletter : MonoBehaviour {
     public IEnumerator InfectionSpread() {
         while (true) {
             while (!tick) yield return null;
-            infectionSpeed = bloodLevel/100;
+            infectionSpeed = bloodLevel/100 + 0.2f;
             if (!bloodletting) {
                 if (infectionPotency + potencyIncrement < potencyRange.y)
                     infectionPotency += potencyIncrement;
@@ -232,6 +231,12 @@ public class Bloodletter : MonoBehaviour {
 
             if (staminaLevel <= 0 && !heavyBreathing) StartCoroutine(HeavyBreathing());
 
+            yield return null;
+        }
+        timer = 0;
+        while (timer < sprintDelay) {
+            timer += Time.deltaTime;    
+            _speedMultiplier = Mathf.Lerp(sprintMultiplier, 1, timer / sprintDelay);
             yield return null;
         }
         _speedMultiplier = 1f;
@@ -320,7 +325,7 @@ public class Bloodletter : MonoBehaviour {
             if (bloodletting) {
                 bloodLevel -= bloodDrainRate * _speedMultiplier;
                 if (infectionLevel > 0)
-                    infectionLevel -= bloodDrainRate * _speedMultiplier;
+                    infectionLevel -= bloodDrainRate * _speedMultiplier / 2;
             }
             
             yield return null;
@@ -329,6 +334,9 @@ public class Bloodletter : MonoBehaviour {
         if (bloodLevel <= 0) {
             bloodLevel = 0;
             bloodletting = false;
+
+            staminaLevel = 0;
+            StartCoroutine(HeavyBreathing());
         }
         ToggleBloodletting(false);
     }
@@ -407,7 +415,7 @@ public class Bloodletter : MonoBehaviour {
             yield return null;
         }
 // REGENERATE BLOOD
-        while (!bloodletting && bloodRegen && bloodLevel < 100) {
+        while (!bloodletting && bloodRegen && bloodLevel < 25) {
             while (!tick) {
                 if (bloodletting) {
                     bloodRegen = false;
@@ -468,7 +476,6 @@ public class Bloodletter : MonoBehaviour {
         cutsceneDirector.Play();
         bloodLevel = 0f;
         alive = false;
-        _moveSpeed = 0;
         walkSpeed = 0;
     }
 
@@ -492,7 +499,7 @@ public class Bloodletter : MonoBehaviour {
 // BLOODLET INPUT
             if (Input.GetButtonDown("Bloodlet")) 
                 ToggleBloodletting(!bloodletting);
-            if (bloodLevel < 100 && !bloodRegen && !bloodletting) 
+            if (bloodLevel < 25 && !bloodRegen && !bloodletting) 
                 StartCoroutine(RegainBlood());
 
 // CROUCH INPUT
@@ -507,7 +514,7 @@ public class Bloodletter : MonoBehaviour {
                 if (!sprinting) _speedMultiplier = 1f;
 // SPRINT INPUT
                 if (Input.GetButton("Run") && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) ) {
-                    if (staminaLevel > 0 && !sprinting) StartCoroutine(Sprint());
+                    if (!sprinting) StartCoroutine(Sprint());
                 } else if (staminaLevel < 100 && !staminaRegen) StartCoroutine(RegainStamina());
                 
             } else if (!sprinting) _speedMultiplier = standMultiplier;
