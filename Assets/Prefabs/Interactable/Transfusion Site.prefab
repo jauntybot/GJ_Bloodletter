@@ -408,12 +408,12 @@ MonoBehaviour:
   loopSFX: {fileID: 11400000, guid: edc980f9f2b3247738a9dcf466c9b448, type: 2}
   closeSFX: {fileID: 11400000, guid: fbba0c7ee3f1a452eaf9168ff8523ccc, type: 2}
   openDelay: 1.5
-  maxContent: 25
-  content: 0
-  consumptionRate: 2
+  timer: 0
+  pilferDuration: 5
   interacting: 0
-  infectionHeal: 0.7
-  infectionDilution: 0.1
+  bloodLevelGain: 33
+  infectionHealP: 0.875
+  infectionDilutionP: 0.875
 --- !u!95 &6675312354278790025
 Animator:
   serializedVersion: 5
