@@ -67,7 +67,7 @@ PrefabInstance:
         type: 3}
       propertyPath: tree
       value: 
-      objectReference: {fileID: 11400000, guid: 4c75fec3b556eca4b9362928a5fae75e,
+      objectReference: {fileID: 11400000, guid: 38d6c54921884bd4b910ab95bc20d4cf,
         type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
