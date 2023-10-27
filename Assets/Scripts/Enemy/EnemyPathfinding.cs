@@ -36,6 +36,8 @@ public class EnemyPathfinding : MonoBehaviour {
     public bool hidden;
     [SerializeField] float visibleTerror;
     [SerializeField] float hideDur;
+    public bool safezone;
+    public Interactable safezoneTarget;
 
 
     [Header("Detection Variables")] [Range(0,100)]

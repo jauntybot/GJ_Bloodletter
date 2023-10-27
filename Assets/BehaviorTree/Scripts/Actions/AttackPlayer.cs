@@ -7,7 +7,7 @@ using System;
 public class AttackPlayer : ActionNode
 {
 
-    public enum AttackType { Terrorize, Kill };
+    public enum AttackType { Terrorize, Kill, Safezone };
     public AttackType attackType;
     
 
@@ -19,22 +19,34 @@ public class AttackPlayer : ActionNode
 
     protected override State OnUpdate() {
         if (!context.enemy.attacking) {
-            if (Vector3.Distance(context.transform.position, context.enemy.bloodletter.transform.position) <= context.enemy.killRadius) {
-                if (!context.enemy.attacking && context.enemy.bloodletter.alive) {
-                    // context.agent.updateRotation = false;
-                    // blackboard.lookDir = Blackboard.LookDir.AtPlayer;
-                    switch (attackType) {
-                        default:
-                        case AttackType.Terrorize:
-                            context.enemy.StartCoroutine(context.enemy.TerrorizePlayer());
-                            return State.Running;
-                        
-                        case AttackType.Kill:
-                            context.enemy.StartCoroutine(context.enemy.KillPlayer());
-                            return State.Running;
+            if (attackType != AttackType.Safezone) {
+                if (Vector3.Distance(context.transform.position, context.enemy.bloodletter.transform.position) <= context.enemy.killRadius) {
+                    if (!context.enemy.attacking && context.enemy.bloodletter.alive) {
+                        // context.agent.updateRotation = false;
+                        // blackboard.lookDir = Blackboard.LookDir.AtPlayer;
+                        switch (attackType) {
+                            default:
+                            case AttackType.Terrorize:
+                                context.enemy.StartCoroutine(context.enemy.TerrorizePlayer());
+                                return State.Running;
+                            
+                            case AttackType.Kill:
+                                context.enemy.StartCoroutine(context.enemy.KillPlayer());
+                                return State.Running;
+                            
+                        }
                         
                     }
-                    
+                }
+            } else { 
+                if (Vector3.Distance(context.transform.position, context.enemy.bloodletter.transform.position) <= context.enemy.killRadius) {
+                    if (!context.enemy.attacking) { 
+                        context.enemy.StartCoroutine(context.enemy.TerrorizePlayer());
+                        Destroy(context.enemy.safezoneTarget.gameObject);
+                        context.enemy.safezone = false;
+                        context.enemy.safezoneTarget = null;
+                        DebugUI.instance.textPopUp.DismissMessage();
+                    }
                 }
             }
         }

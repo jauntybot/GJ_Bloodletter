@@ -8,7 +8,7 @@ public class EnemyCheck : DecoratorNode
 
     public enum CompareTo { Const, Var };
     public CompareTo compareTo;
-    public enum EnemyVar { EnergyLevel, DetectionLevel, DetectionDelta, TerrorLevel, LethalityLevel, DownTime, Hidden };
+    public enum EnemyVar { EnergyLevel, DetectionLevel, DetectionDelta, TerrorLevel, LethalityLevel, DownTime, Hidden, Safezone };
     public EnemyVar enemyVar;
     public EnemyVar compareVar;
     public enum Operator { LessThan, LessThanEqual, Equal, GreaterThan, GreaterThanEqual };
@@ -45,6 +45,9 @@ public class EnemyCheck : DecoratorNode
             case EnemyVar.Hidden:
                 _var = context.enemy.hidden ? 1 : 0;
             break;
+            case EnemyVar.Safezone:
+                _var = context.enemy.safezone ? 1 : 0;
+            break;
         }
         var _var2 = 0f;
         switch(compareVar) {
@@ -68,6 +71,9 @@ public class EnemyCheck : DecoratorNode
             break;
             case EnemyVar.Hidden:
                 _var2 = context.enemy.hidden ? 1 : 0;
+            break;
+            case EnemyVar.Safezone:
+                _var2 = context.enemy.safezone ? 1 : 0;
             break;
         }
         var _val = (compareTo == CompareTo.Var) ? _var2 : value;

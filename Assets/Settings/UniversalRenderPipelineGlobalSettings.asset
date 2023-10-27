@@ -21,7 +21,8 @@ MonoBehaviour:
   - Light Layer 4
   - Light Layer 5
   - Recieve Decals
-  m_ValidRenderingLayers: 127
+  - Toll Site
+  m_ValidRenderingLayers: 255
   lightLayerName0: Light Layer default
   lightLayerName1: Light Layer 1
   lightLayerName2: Light Layer 2

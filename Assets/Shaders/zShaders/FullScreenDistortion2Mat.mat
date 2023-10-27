@@ -39,7 +39,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Amplitude: 0.4
-    - _Blend: 0
+    - _Blend: 0.008872056
     - _Hue: 0
     - _NoiseScale: 50
     m_Colors:

@@ -53,7 +53,6 @@ public class HoldInteractable : Interactable {
         while (Input.GetMouseButton(0) && interacting && inRange 
         && timer < pilferDuration) {
             while (!bloodletter.tick) {
-                Debug.Log("Pilfering");
                 yield return null;
                 if (!Input.GetMouseButton(0)) {
                     interacting = false;

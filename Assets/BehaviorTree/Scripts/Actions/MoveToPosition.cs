@@ -5,7 +5,7 @@ using KiwiBT;
 
 public class MoveToPosition : ActionNode
 {
-    public enum Pos { bbMoveTo, POI, Player };
+    public enum Pos { bbMoveTo, POI, Player, Safezone };
     public Pos pos;
     public float speed = 5;
     public float stoppingDistance = 0.1f;
@@ -27,6 +27,9 @@ public class MoveToPosition : ActionNode
             break;
             case Pos.Player:
                 context.agent.destination = context.enemy.bloodletter.transform.position;
+            break;
+            case Pos.Safezone:
+                context.agent.destination = context.enemy.safezoneTarget.transform.position;
             break;
         }
     }

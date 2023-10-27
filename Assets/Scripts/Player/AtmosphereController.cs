@@ -29,6 +29,7 @@ public class AtmosphereController : MonoBehaviour
         if (enemy.state == EnemyPathfinding.EnemyState.Chasing) {
             float strength = (falloffDist - Vector3.Distance(enemy.transform.position, bloodletter.transform.position)) / falloffDist;
             float sinMod = Mathf.Sin(Time.time * effectFreq) * effectAmp;
+            Debug.Log(strength + ", " + sinMod);
             skyboxMat.SetFloat("_Exposure", Mathf.Lerp(skyboxExposureRange.x, skyboxExposureRange.y, Mathf.InverseLerp(0, falloffDist, sinMod * (falloffDist - Vector3.Distance(enemy.transform.position, bloodletter.transform.position)))));
             pointLight.intensity = Mathf.Lerp(pointLightRange.x, pointLightRange.y, Mathf.InverseLerp(0, 100, sinMod * (falloffDist - Vector3.Distance(enemy.transform.position, bloodletter.transform.position))));
             RenderSettings.fogColor = Color.Lerp(fogStart, Color.black, sinMod * strength);

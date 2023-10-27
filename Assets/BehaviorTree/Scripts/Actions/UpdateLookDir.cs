@@ -58,6 +58,13 @@ public class UpdateLookDir : ActionNode
                                        context.enemy.bloodletter.transform.position.z ) ;        
                     context.gameObject.transform.LookAt(targetPos);
                 break;
+                case Blackboard.LookDir.AtSafezone:
+                    if (context.enemy.safezoneTarget == null) return State.Failure;
+                    targetPos = new Vector3(context.enemy.safezoneTarget.transform.position.x, 
+                                       context.gameObject.transform.position.y, 
+                                       context.enemy.safezoneTarget.transform.position.z ) ;        
+                    context.gameObject.transform.LookAt(targetPos);
+                break;
                 case Blackboard.LookDir.Scanning:
                     if (turnTimer < turnDur) {
                         turnTimer += Time.deltaTime;

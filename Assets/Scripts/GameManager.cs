@@ -82,7 +82,6 @@ public class GameManager : MonoBehaviour
     public void Pause(bool state) {
         pauseManager.Pause(state);
         gameState = state ? GameState.Paused : GameState.Running;
-        Debug.Log("Pause: " + state);
     }
 
 }

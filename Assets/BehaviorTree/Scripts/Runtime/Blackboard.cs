@@ -10,7 +10,7 @@ namespace KiwiBT {
     [System.Serializable]
     public class Blackboard {
 
-        public enum LookDir { Forward, Scanning, AtPlayer };
+        public enum LookDir { Forward, Scanning, AtPlayer, AtSafezone };
         public LookDir lookDir;
         public Vector3 moveToPosition;
  
