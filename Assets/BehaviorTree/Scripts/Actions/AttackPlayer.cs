@@ -42,6 +42,8 @@ public class AttackPlayer : ActionNode
                 if (Vector3.Distance(context.transform.position, context.enemy.bloodletter.transform.position) <= context.enemy.killRadius) {
                     if (!context.enemy.attacking) { 
                         context.enemy.StartCoroutine(context.enemy.TerrorizePlayer());
+                        if (context.enemy.director.interactables.Contains(context.enemy.safezoneTarget))
+                            context.enemy.director.interactables.Remove(context.enemy.safezoneTarget);
                         Destroy(context.enemy.safezoneTarget.gameObject);
                         context.enemy.safezone = false;
                         context.enemy.safezoneTarget = null;
