@@ -22,21 +22,23 @@ public class Door : HoldInteractable
     }
 
     public override void Interact() {
-        if (!hasInteracted) {
-            FirstInteractionCallback?.Invoke();
-            hasInteracted = true;
-        }
+        base.Interact();
         if (doorType == DoorType.Free) OpenCloseDoor(!open);
-        else StartCoroutine(OpenSite());
+        else {
+            Debug.Log("Open site co");
+            StartCoroutine(OpenSite());
+        }
     }
 
     protected override IEnumerator OpenSite() {
+        Debug.Log("Open Site");
         if ((doorType == DoorType.Blood && bloodletter.bloodLevel >= cost) 
         || (doorType == DoorType.Toll && bloodletter.tollCount >= cost))
             yield return base.OpenSite();
     }
 
     protected override IEnumerator PilferSite() {
+        Debug.Log("Pilfer Site");
         yield return base.PilferSite();
 
 
