@@ -341,15 +341,15 @@ MonoBehaviour:
   inRange: 0
   inView: 0
   locked: 0
-  openSFX: {fileID: 0}
-  loopSFX: {fileID: 0}
-  closeSFX: {fileID: 0}
-  openDelay: 0
-  maxContent: 5
-  content: 0
-  consumptionRate: 0.1
+  openSFX: {fileID: 11400000, guid: db2d709594f994c34bfa702aaeb213fe, type: 2}
+  loopSFX: {fileID: 11400000, guid: ab2c231e52bdd48ee9916f2f809e049a, type: 2}
+  closeSFX: {fileID: 11400000, guid: db2d709594f994c34bfa702aaeb213fe, type: 2}
+  openDelay: 1
+  timer: 0
+  pilferDuration: 5
   interacting: 0
   doorType: 2
+  cost: 0
   tollStep: 0
 --- !u!82 &2941140642684932988
 AudioSource:

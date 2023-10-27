@@ -41,10 +41,10 @@ public class DebugUI : MonoBehaviour {
 
     public IEnumerator DisplayHoldInteract(HoldInteractable interact) {
         radialBar.gameObject.SetActive(true);
-        radialBar.fillAmount = 1 - interact.content/interact.maxContent;
+        radialBar.fillAmount = 1 - interact.timer/interact.pilferDuration;
         while (interact.interacting) {
             yield return null;
-            radialBar.fillAmount = 1 - interact.content/interact.maxContent;
+            radialBar.fillAmount = 1 - interact.timer/interact.pilferDuration;
         }
         radialBar.gameObject.SetActive(false);
     }

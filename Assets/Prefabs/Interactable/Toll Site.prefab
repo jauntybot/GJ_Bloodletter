@@ -720,7 +720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bloodletter: {fileID: 0}
   interactOnce: 0
-  interactRadius: 2.5
+  interactRadius: 3.5
   inRange: 0
   inView: 0
   locked: 0
@@ -728,9 +728,8 @@ MonoBehaviour:
   loopSFX: {fileID: 11400000, guid: f700133b286924208b758392a80cbe46, type: 2}
   closeSFX: {fileID: 11400000, guid: a098db30bd34b406cbdf8580dc92aac3, type: 2}
   openDelay: 1.5
-  maxContent: 15
-  content: 0
-  consumptionRate: 1.25
+  timer: 0
+  pilferDuration: 5
   interacting: 0
 --- !u!82 &1171416205256783555
 AudioSource:
