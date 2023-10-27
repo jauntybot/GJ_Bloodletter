@@ -10204,6 +10204,12 @@ PrefabInstance:
       propertyPath: cost
       value: 33
       objectReference: {fileID: 0}
+    - target: {fileID: 6341823966376490968, guid: 9696c1f6fa7e54489a3df92dd9599fa7,
+        type: 3}
+      propertyPath: loopSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: edc980f9f2b3247738a9dcf466c9b448,
+        type: 2}
     - target: {fileID: 7101208565192601345, guid: 9696c1f6fa7e54489a3df92dd9599fa7,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -29195,6 +29201,12 @@ PrefabInstance:
       propertyPath: cost
       value: 33
       objectReference: {fileID: 0}
+    - target: {fileID: 6341823966376490968, guid: 9696c1f6fa7e54489a3df92dd9599fa7,
+        type: 3}
+      propertyPath: loopSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: edc980f9f2b3247738a9dcf466c9b448,
+        type: 2}
     - target: {fileID: 7101208565192601345, guid: 9696c1f6fa7e54489a3df92dd9599fa7,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -38996,7 +39008,7 @@ PrefabInstance:
     - target: {fileID: 4581628561963182597, guid: 9cd00a9937c52a145a78b786526b979e,
         type: 3}
       propertyPath: m_AmplitudeGain
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6190265383263895254, guid: 9cd00a9937c52a145a78b786526b979e,
         type: 3}
@@ -56071,7 +56083,7 @@ Terrain:
   m_ScaleInLightmap: 0.0256
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 65
   m_AllowAutoConnect: 1
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
@@ -67506,6 +67518,12 @@ PrefabInstance:
       propertyPath: cost
       value: 33
       objectReference: {fileID: 0}
+    - target: {fileID: 6341823966376490968, guid: 9696c1f6fa7e54489a3df92dd9599fa7,
+        type: 3}
+      propertyPath: loopSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: edc980f9f2b3247738a9dcf466c9b448,
+        type: 2}
     - target: {fileID: 7101208565192601345, guid: 9696c1f6fa7e54489a3df92dd9599fa7,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -73501,6 +73519,12 @@ PrefabInstance:
       propertyPath: cost
       value: 33
       objectReference: {fileID: 0}
+    - target: {fileID: 6341823966376490968, guid: 9696c1f6fa7e54489a3df92dd9599fa7,
+        type: 3}
+      propertyPath: loopSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: edc980f9f2b3247738a9dcf466c9b448,
+        type: 2}
     - target: {fileID: 7101208565192601345, guid: 9696c1f6fa7e54489a3df92dd9599fa7,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -80627,6 +80651,12 @@ PrefabInstance:
       propertyPath: cost
       value: 33
       objectReference: {fileID: 0}
+    - target: {fileID: 6341823966376490968, guid: 9696c1f6fa7e54489a3df92dd9599fa7,
+        type: 3}
+      propertyPath: loopSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: edc980f9f2b3247738a9dcf466c9b448,
+        type: 2}
     - target: {fileID: 7101208565192601345, guid: 9696c1f6fa7e54489a3df92dd9599fa7,
         type: 3}
       propertyPath: m_StaticEditorFlags

@@ -25,26 +25,25 @@ public class Door : HoldInteractable
         base.Interact();
         if (doorType == DoorType.Free) OpenCloseDoor(!open);
         else {
-            Debug.Log("Open site co");
             StartCoroutine(OpenSite());
         }
     }
 
     protected override IEnumerator OpenSite() {
-        Debug.Log("Open Site");
         if ((doorType == DoorType.Blood && bloodletter.bloodLevel >= cost) 
         || (doorType == DoorType.Toll && bloodletter.tollCount >= cost))
             yield return base.OpenSite();
     }
 
-    protected override IEnumerator PilferSite() {
-        Debug.Log("Pilfer Site");
-        yield return base.PilferSite();
-
-
-    }
-
     protected override void ExhaustSite() {
+        switch (doorType) {
+            case DoorType.Toll:
+                bloodletter.tollCount -= cost;
+            break;
+            case DoorType.Blood:
+                bloodletter.bloodLevel -= cost;
+            break;  
+        }
         doorType = DoorType.Free;
         DebugUI.instance.textPopUp.DismissMessage();
         highlight.message = "PRESS 'LMB' TO " + (open ? "CLOSE." : "OPEN.");
