@@ -395,7 +395,7 @@ MonoBehaviour:
     enemyCheck: 0
   description: AT SAFEZONE
   drawGizmos: 0
-  changeDir: 0
+  changeDir: 1
   _lookDir: 3
   turnDur: 0
   turnTimer: 0
