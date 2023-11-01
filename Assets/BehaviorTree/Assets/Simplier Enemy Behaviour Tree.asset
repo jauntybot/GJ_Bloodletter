@@ -1152,7 +1152,6 @@ MonoBehaviour:
   children:
   - {fileID: 5635967175335808376}
   - {fileID: 4461019987419154100}
-  - {fileID: 3413521387082857767}
 --- !u!114 &-2031897709158671532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1429,6 +1428,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
+  - {fileID: 3413521387082857767}
   - {fileID: 8918844742780051851}
   - {fileID: 1364477136953588924}
 --- !u!114 &-193888262896022785
@@ -2125,7 +2125,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: f9f6946a5526a254195904e34a0096e2
-  position: {x: 444.80005, y: 1212}
+  position: {x: 444.79996, y: 1083.2001}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
