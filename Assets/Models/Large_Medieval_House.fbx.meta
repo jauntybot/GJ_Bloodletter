@@ -7,8 +7,38 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Mainwoodplanks
+    second: {fileID: 2100000, guid: 4e3a6d63e95b34722b6d14fc224d9d81, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rock
+    second: {fileID: 2100000, guid: 9f2a8a226ae924058bfaf702c02592ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window
+    second: {fileID: 2100000, guid: 18550c627be9c4e80aaf50e5be62651a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wooden door
+    second: {fileID: 2100000, guid: 657a42c44f4ac4acfb6ceb9c213a135c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Woodenbeams
     second: {fileID: 2100000, guid: 3ca7a3c36c2f1440aa1096d7bc3415f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Woodshingles
+    second: {fileID: 2100000, guid: 88e5f5c91a4a44a22a9c7cb8a2fac17c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal
+    second: {fileID: 2100000, guid: ae10dd362072d491499a903fa00ab9d2, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
