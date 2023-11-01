@@ -56,7 +56,8 @@ public class UpdateLookDir : ActionNode
                     targetPos = new Vector3(context.enemy.bloodletter.transform.position.x, 
                                        context.gameObject.transform.position.y, 
                                        context.enemy.bloodletter.transform.position.z ) ;        
-                    context.gameObject.transform.LookAt(targetPos);
+                    Quaternion lookRot = Quaternion.LookRotation(context.bloodletter.transform.position - context.transform.position);
+                    
                 break;
                 case Blackboard.LookDir.AtSafezone:
                     if (context.enemy.safezoneTarget == null) return State.Failure;

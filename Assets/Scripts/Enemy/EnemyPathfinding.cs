@@ -38,6 +38,7 @@ public class EnemyPathfinding : MonoBehaviour {
     [SerializeField] float hideDur;
     public bool safezone;
     public Interactable safezoneTarget;
+    [SerializeField] Material eyeMaterial;
 
 
     [Header("Detection Variables")] [Range(0,100)]
@@ -45,6 +46,7 @@ public class EnemyPathfinding : MonoBehaviour {
     public bool detecting;
     public float detectionDelta;
     public List<DetectionCone> detectionCones;
+    [SerializeField] AnimationCurve detectionFalloff;
     [SerializeField] float detectionDrainRate;
 
 
@@ -67,6 +69,7 @@ public class EnemyPathfinding : MonoBehaviour {
     void Start() {
         agent = GetComponent<NavMeshAgent>();
         //audioSource = GetComponent<AudioSource>();
+        audioSource.outputAudioMixerGroup = roamLoopSFX.outputMixerGroup;
         bloodletter = Bloodletter.instance;
         director = GetComponent<EnemyDirector>();
 
@@ -91,15 +94,21 @@ public class EnemyPathfinding : MonoBehaviour {
                 audioSource.clip = roamLoopSFX.Get();
                 audioSource.Play();
                 director.downtimeThreshold = Random.Range(30f, 60f);
+
+                eyeMaterial.SetColor("_EmColor", Color.magenta);
             break;
             case EnemyState.Tracking:
                 audioSource.clip = trackLoopSFX.Get();
                 audioSource.Play();
+
+                eyeMaterial.SetColor("_EmColor", Color.yellow);
             break;
             case EnemyState.Chasing:
                 audioSource.clip = chaseLoopSFX.Get();
                 audioSource.Play();
                 PlaySound(chaseStingSFX);
+                
+                eyeMaterial.SetColor("_EmColor", Color.red);
             break;
         }
         state = _state;
@@ -109,46 +118,56 @@ public class EnemyPathfinding : MonoBehaviour {
 
     public IEnumerator PassiveDetection() {
         StartCoroutine(DetectionDelta());
-        float delta = 0;
+        float delta;
         while (true) {
 // INCREMENT DETECTION LEVEL
             detecting = false;
             if (state != EnemyState.Lurking) {
+// LOOP THROUGH DETECTION CONES
                 foreach (DetectionCone cone in detectionCones) {
-                    if (Vector3.Distance(transform.position, bloodletter.transform.position) < cone.dist) {
+// CHECK IF PLAYER IS IN RANGE OF CONE
+                    float dist = Vector3.Distance(transform.position, bloodletter.transform.position);
+                    if (dist < cone.dist) {
                         Vector3 dir = (bloodletter.transform.position - transform.position).normalized;
+// SPHERE CONE SHAPE
                         if (cone.coneShape == DetectionCone.ConeShape.Sphere) {
+// VIEW UNOBSTRUCTED
                             if (!Physics.Linecast(transform.position, bloodletter.transform.position, cone.viewMask)) {
-                                delta = bloodletter.exposureLevel/1000 * cone.detectionMultiplier;
+                                delta = bloodletter.exposureLevel * cone.falloffCurve.Evaluate((cone.dist-dist)/cone.dist);
+// PLAYER EXPOSURE REGISTERED FOR DETECTION
                                 if (delta >= cone.deltaThreshold) {
                                     if (detectionLevel < 100)
-                                        detectionLevel += delta;
+                                        detectionLevel += delta/100 *  cone.detectionMultiplier;
                                     if (!detecting) {
                                         detecting = true;
                                         director.downtimeTimer -= 5;
                                         director.downtimeTimer = Mathf.Clamp(director.downtimeTimer, 0, 100);
                                     }
                                     cone.detecting = true;
-                                }
+                                } else cone.detecting = false;
                             } else {
                                 cone.inRange = false;
                                 cone.detecting = false;
                             }
+// CONE CONE SHAPE
                         } else {
                             float angleDelta = Vector3.Angle(transform.forward, dir);
                             if (angleDelta < cone.viewAngle / 2f) {
+// VIEW UNOBSTRUCTED                                
                                 if (!Physics.Linecast(transform.position, bloodletter.transform.position, cone.viewMask)) {
-                                    delta = bloodletter.exposureLevel/1000 * cone.detectionMultiplier;
+                                    delta = bloodletter.exposureLevel * cone.falloffCurve.Evaluate((cone.dist-dist)/cone.dist);
+                                    Debug.Log(cone.name + " delta: " + delta);
+// PLAYER EXPOSURE REGISTERED FOR DETECTION                                    
                                     if (delta >= cone.deltaThreshold) {
                                         if (detectionLevel < 100)
-                                            detectionLevel += delta;
+                                            detectionLevel += delta/100 * cone.detectionMultiplier;
                                         if (!detecting) {
                                             detecting = true;
                                             director.downtimeTimer -= 5;
                                             director.downtimeTimer = Mathf.Clamp(director.downtimeTimer, 0, 100);
                                         }
                                         cone.detecting = true;
-                                    }
+                                    } else cone.detecting = false;
                                 } else cone.detecting = false;
                                 cone.inRange = true;
                             } 
@@ -164,13 +183,18 @@ public class EnemyPathfinding : MonoBehaviour {
                         }
                 }    
             }
+// CHECK IF STILL DETECTING
+            if (detecting) {
+                bool d = false;
+                foreach (DetectionCone cone in detectionCones) { if (cone.detecting) d = true; }
+                detecting = d;
 
+                director.hostilityLevel += director.hostilityGainRate * director.hostilityMod * director.terrorLevel;
+            } 
             if (!detecting && detectionLevel > 0) 
                 detectionLevel -= detectionDrainRate;
-            if (detecting)
-                director.hostilityLevel += director.hostilityGainRate * director.hostilityMod * director.terrorLevel;
     
-            larvaMat.SetFloat("_VertexResolution", Mathf.Lerp(6, 32,Mathf.InverseLerp(0, 60, bloodletter.enemyTerror)));
+            //larvaMat.SetFloat("_VertexResolution", Mathf.Lerp(6, 32,Mathf.InverseLerp(0, 60, bloodletter.enemyTerror)));
 
             yield return null;
         }
@@ -212,6 +236,7 @@ public class EnemyPathfinding : MonoBehaviour {
 
     public IEnumerator HideAnimation(bool state) {
         hiding = true;
+        while (bloodletter.fovCone.detecting == true) yield return null;
         float fromVol = 1;
         float toVol = 0;
         if (state) {
@@ -225,18 +250,6 @@ public class EnemyPathfinding : MonoBehaviour {
         } else
             agent.enabled = state;
             
-        float timer = 0;
-        Vector3 startPos = transform.position, targetPos = transform.position + new Vector3(0, 3, 0) * (state ? 1 : -1);
-        while (timer < hideDur) {
-            timer += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPos, targetPos, timer/hideDur);
-            audioSource.volume = Mathf.Lerp(fromVol, toVol, timer/hideDur);
-            yield return null;
-        }
-        transform.position = targetPos;
-        yield return null;
-        hidden = !state;
-        
         if (!state) {
             foreach(GameObject obj in gfx) 
                 obj.SetActive(state);
@@ -245,6 +258,21 @@ public class EnemyPathfinding : MonoBehaviour {
             agent.enabled = state;
             StartCoroutine(DampenAudio());
         }
+
+// FADE OUT AUDIO SOURCES
+        float timer = 0;
+        //Vector3 startPos = transform.position, targetPos = transform.position + new Vector3(0, 3, 0) * (state ? 1 : -1);
+        while (timer < hideDur) {
+            timer += Time.deltaTime;
+            //transform.position = Vector3.Lerp(startPos, targetPos, timer/hideDur);
+            audioSource.volume = Mathf.Lerp(fromVol, toVol, timer/hideDur);
+            yield return null;
+        }
+
+        //transform.position = targetPos;
+        yield return null;
+        hidden = !state;
+        
         hiding = false;
     }
 
@@ -350,6 +378,7 @@ public class DetectionCone {
     public enum ConeShape { Cone, Sphere };
     public ConeShape coneShape;
     public LayerMask viewMask;
+    public AnimationCurve falloffCurve;
     public bool detecting, inRange;
 
 
