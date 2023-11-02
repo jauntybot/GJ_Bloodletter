@@ -15,7 +15,10 @@ public class ChangeState : ActionNode
     }
 
     protected override State OnUpdate() {
-        context.enemy.ChangeState(_state);
-        return State.Success;
+        if (context.enemy.state != _state) {
+            context.enemy.ChangeState(_state);
+            return State.Success;
+        }
+        return State.Failure;
     }
 }

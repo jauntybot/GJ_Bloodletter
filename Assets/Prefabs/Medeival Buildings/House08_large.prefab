@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1035701086332941519}
   - component: {fileID: 2316112711153148577}
   - component: {fileID: 2469220242221276209}
-  - component: {fileID: 1655980332601384901}
   - component: {fileID: 6740878815325678412}
+  - component: {fileID: -3330482809497271836}
   m_Layer: 0
   m_Name: House08_large
   m_TagString: Untagged
@@ -89,22 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &1655980332601384901
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8978359249978135130}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 600.94403, y: 497.69202, z: 385.53702}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 496.93503, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!65 &6740878815325678412
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -126,3 +110,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1163.0437, y: 995.3831, z: 735.0712}
   m_Center: {x: 2.9457092, y: 496.93536, z: 2.7478354}
+--- !u!114 &-3330482809497271836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8978359249978135130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff

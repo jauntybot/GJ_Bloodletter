@@ -27,6 +27,7 @@ public class Teleport : ActionNode
             Debug.Log(navHit.position);
             switch(teleportType) {
                 case TeleportType.DistAwayFromPlayer:
+                    Debug.Log(context.enemy.director.interactedCount/(context.enemy.director.interactables.Count - 1) * value);
                     if (Vector3.Distance(navHit.position, context.bloodletter.transform.position) <= (byPlaytime ? context.enemy.director.interactedCount/(context.enemy.director.interactables.Count - 1) * value : value))
                         return State.Failure;
                 break;
@@ -42,7 +43,7 @@ public class Teleport : ActionNode
                     }
                 }
             }
-            context.transform.position = navHit.position - new Vector3(0, 3, 0);
+            context.transform.position = navHit.position;
             return State.Success;
         } 
         return State.Failure;

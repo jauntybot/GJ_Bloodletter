@@ -156,7 +156,6 @@ public class EnemyPathfinding : MonoBehaviour {
 // VIEW UNOBSTRUCTED                                
                                 if (!Physics.Linecast(transform.position, bloodletter.transform.position, cone.viewMask)) {
                                     delta = bloodletter.exposureLevel * cone.falloffCurve.Evaluate((cone.dist-dist)/cone.dist);
-                                    Debug.Log(cone.name + " delta: " + delta);
 // PLAYER EXPOSURE REGISTERED FOR DETECTION                                    
                                     if (delta >= cone.deltaThreshold) {
                                         if (detectionLevel < 100)

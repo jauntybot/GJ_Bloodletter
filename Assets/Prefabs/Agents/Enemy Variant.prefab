@@ -170,6 +170,231 @@ PrefabInstance:
       propertyPath: eyeMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 8fa881f8395d06b4eb02d624e4cbfc3a, type: 2}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].dist
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionFalloff.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].viewAngle
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[0].deltaThreshold
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[1].deltaThreshold
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[2].deltaThreshold
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].deltaThreshold
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionFalloff.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].viewMask.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionFalloff.m_Curve.Array.data[0].value
+      value: 0.09984162
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionFalloff.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionFalloff.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionFalloff.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[0].detectionMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[2].detectionMultiplier
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].detectionMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[0].falloffCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[1].falloffCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[2].falloffCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].falloffCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[0].falloffCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[1].falloffCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[2].falloffCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].falloffCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[0].falloffCurve.m_Curve.Array.data[0].value
+      value: 0.09984162
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[0].falloffCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[1].falloffCurve.m_Curve.Array.data[0].value
+      value: 0.09984162
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[1].falloffCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[2].falloffCurve.m_Curve.Array.data[0].value
+      value: 0.09984162
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[2].falloffCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].falloffCurve.m_Curve.Array.data[0].value
+      value: 0.09984162
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].falloffCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[0].falloffCurve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[1].falloffCurve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[2].falloffCurve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].falloffCurve.m_Curve.Array.data[0].inSlope
+      value: 0.068805546
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].falloffCurve.m_Curve.Array.data[1].inSlope
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[0].falloffCurve.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[1].falloffCurve.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[2].falloffCurve.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].falloffCurve.m_Curve.Array.data[0].outSlope
+      value: 0.068805546
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].falloffCurve.m_Curve.Array.data[1].inWeight
+      value: 0.13676232
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].falloffCurve.m_Curve.Array.data[1].outSlope
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].falloffCurve.m_Curve.Array.data[0].outWeight
+      value: 0.57017547
+      objectReference: {fileID: 0}
     - target: {fileID: 2160673951556383848, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
         type: 3}
       propertyPath: m_Name
