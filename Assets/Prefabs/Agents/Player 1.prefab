@@ -522,11 +522,21 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5038823845995218877, guid: 3e545542a8729834da5abe8faedaafab,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1613574657167236361}
   m_SourcePrefab: {fileID: 100100000, guid: 3e545542a8729834da5abe8faedaafab, type: 3}
 --- !u!4 &445371439527866152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3840052362551888005, guid: 3e545542a8729834da5abe8faedaafab,
+    type: 3}
+  m_PrefabInstance: {fileID: 3703328549422737325}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &1184212662217488565 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 2525383138282675992, guid: 3e545542a8729834da5abe8faedaafab,
     type: 3}
   m_PrefabInstance: {fileID: 3703328549422737325}
   m_PrefabAsset: {fileID: 0}
@@ -536,3 +546,53 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3703328549422737325}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8541536454536830992 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5038823845995218877, guid: 3e545542a8729834da5abe8faedaafab,
+    type: 3}
+  m_PrefabInstance: {fileID: 3703328549422737325}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1613574657167236361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541536454536830992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2e4e74a291156488d510aee11eb33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skyboxMat: {fileID: 2100000, guid: f2b5f3f20933f434e850db1b710542fd, type: 2}
+  pointLight: {fileID: 1184212662217488565}
+  pointLightRange: {x: 30, y: 15}
+  skyboxExposureRange: {x: 2.5, y: 0}
+  fogStart: {r: 0.20784314, g: 0, b: 0, a: 1}
+  falloffCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.07284546
+      inSlope: 3.18349
+      outSlope: 3.18349
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.05844941
+    - serializedVersion: 3
+      time: 0.8186035
+      value: 1
+      inSlope: -0.048467897
+      outSlope: -0.048467897
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.50074464
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  falloffDist: 25
+  effectAmp: 2
+  effectFreq: 2

@@ -136,12 +136,12 @@ public class EnemyPathfinding : MonoBehaviour {
                                 delta = bloodletter.exposureLevel * cone.falloffCurve.Evaluate((cone.dist-dist)/cone.dist);
 // PLAYER EXPOSURE REGISTERED FOR DETECTION
                                 if (delta >= cone.deltaThreshold) {
-                                    if (detectionLevel < 100)
+                                    if (detectionLevel < cone.detectionCeiling)
                                         detectionLevel += delta/100 *  cone.detectionMultiplier;
                                     if (!detecting) {
                                         detecting = true;
-                                        director.downtimeTimer -= 5;
-                                        director.downtimeTimer = Mathf.Clamp(director.downtimeTimer, 0, 100);
+                                        // director.downtimeTimer -= 5;
+                                        // director.downtimeTimer = Mathf.Clamp(director.downtimeTimer, 0, 100);
                                     }
                                     cone.detecting = true;
                                 } else cone.detecting = false;
@@ -158,12 +158,12 @@ public class EnemyPathfinding : MonoBehaviour {
                                     delta = bloodletter.exposureLevel * cone.falloffCurve.Evaluate((cone.dist-dist)/cone.dist);
 // PLAYER EXPOSURE REGISTERED FOR DETECTION                                    
                                     if (delta >= cone.deltaThreshold) {
-                                        if (detectionLevel < 100)
+                                        if (detectionLevel < cone.detectionCeiling)
                                             detectionLevel += delta/100 * cone.detectionMultiplier;
                                         if (!detecting) {
                                             detecting = true;
-                                            director.downtimeTimer -= 5;
-                                            director.downtimeTimer = Mathf.Clamp(director.downtimeTimer, 0, 100);
+                                            // director.downtimeTimer -= 5;
+                                            // director.downtimeTimer = Mathf.Clamp(director.downtimeTimer, 0, 100);
                                         }
                                         cone.detecting = true;
                                     } else cone.detecting = false;
@@ -373,7 +373,9 @@ public class DetectionCone {
 
     [Header("Cone Properties")]
     public float dist;
-    public float viewAngle, detectionMultiplier, deltaThreshold;
+    public float viewAngle, detection, detectionMultiplier, deltaThreshold;
+    [Range(0, 100)]
+    public float detectionCeiling = 100;
     public enum ConeShape { Cone, Sphere };
     public ConeShape coneShape;
     public LayerMask viewMask;

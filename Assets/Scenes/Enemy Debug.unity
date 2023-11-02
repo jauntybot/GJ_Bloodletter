@@ -38,7 +38,8 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.7787306, g: 0.22018883, b: 0.21295702, a: 1}
+  m_IndirectSpecularColor: {r: 0.000055745997, g: 0.00001573987, b: 0.000015222577,
+    a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5809,44 +5810,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8541536454536830992, guid: 9cd00a9937c52a145a78b786526b979e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1043060686}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cd00a9937c52a145a78b786526b979e, type: 3}
---- !u!108 &1043060684 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 1184212662217488565, guid: 9cd00a9937c52a145a78b786526b979e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1043060683}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1043060685 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8541536454536830992, guid: 9cd00a9937c52a145a78b786526b979e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1043060683}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1043060686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1043060685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c2e4e74a291156488d510aee11eb33e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skyboxMat: {fileID: 2100000, guid: f2b5f3f20933f434e850db1b710542fd, type: 2}
-  pointLight: {fileID: 1043060684}
-  pointLightRange: {x: 30, y: 15}
-  skyboxExposureRange: {x: 2.5, y: 0}
-  fogStart: {r: 0.20784314, g: 0, b: 0, a: 1}
-  falloffDist: 25
-  effectAmp: 1
-  effectFreq: 1
 --- !u!1 &1063433248
 GameObject:
   m_ObjectHideFlags: 0
@@ -12924,6 +12889,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
+        type: 3}
+      propertyPath: state
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
+        type: 3}
+      propertyPath: detectionCones.Array.data[0].dist
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
+        type: 3}
+      propertyPath: detectionCones.Array.data[2].dist
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].dist
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
+        type: 3}
+      propertyPath: detectionCones.Array.data[0].viewAngle
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
+        type: 3}
+      propertyPath: detectionCones.Array.data[1].viewAngle
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
+        type: 3}
+      propertyPath: detectionCones.Array.data[2].detectionCeiling
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].falloffCurve.m_Curve.Array.data[0].time
+      value: 0.27711487
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
+        type: 3}
+      propertyPath: detectionCones.Array.data[3].falloffCurve.m_Curve.Array.data[0].value
+      value: 0.020373844
+      objectReference: {fileID: 0}
+    - target: {fileID: 8825619218060027128, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
