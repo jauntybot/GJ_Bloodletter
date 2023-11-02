@@ -599,6 +599,7 @@ MonoBehaviour:
   description: TRACKING
   drawGizmos: 0
   _state: 3
+  forceChange: 0
 --- !u!114 &-5717703786928017618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -909,6 +910,7 @@ MonoBehaviour:
   description: LURKING
   drawGizmos: 0
   _state: 0
+  forceChange: 0
 --- !u!114 &-3853992931415577353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1108,7 +1110,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: f391cf6ef2e1f764495a668d06406b54
-  position: {x: 1953.5999, y: 572}
+  position: {x: 1953.5996, y: 571.99994}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -1299,6 +1301,7 @@ MonoBehaviour:
   description: LURKING
   drawGizmos: 0
   _state: 0
+  forceChange: 1
 --- !u!114 &-1766461918497755508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1375,6 +1378,7 @@ MonoBehaviour:
   description: CHASING
   drawGizmos: 0
   _state: 4
+  forceChange: 0
 --- !u!114 &-825425184005387828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1507,6 +1511,7 @@ MonoBehaviour:
   description: LURKING
   drawGizmos: 0
   _state: 0
+  forceChange: 0
 --- !u!114 &-48428909100357116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1531,6 +1536,7 @@ MonoBehaviour:
   description: TRACKING
   drawGizmos: 0
   _state: 3
+  forceChange: 0
 --- !u!114 &-21598880841831851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1619,7 +1625,6 @@ MonoBehaviour:
   - {fileID: 2199623541571727263}
   - {fileID: -5929782545092389831}
   - {fileID: 2656297156174075810}
-  - {fileID: 3120431483402551095}
   - {fileID: -4733894971639797387}
   - {fileID: -6834558433728463768}
   - {fileID: -5569705417874098170}
@@ -1979,6 +1984,7 @@ MonoBehaviour:
   description: LURKING
   drawGizmos: 0
   _state: 0
+  forceChange: 0
 --- !u!114 &2219671446437205752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2159,33 +2165,10 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     waitDur: 0
     enemyCheck: 0
-  description: 
+  description: ROAMING
   drawGizmos: 0
   _state: 1
---- !u!114 &3120431483402551095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bd73b19e8f5ce6409d7270c891bca95, type: 3}
-  m_Name: UpdatePOI
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 5c141718520068349a470d34c4f7f50f
-  position: {x: 1502.4, y: 444.0001}
-  blackboard:
-    lookDir: 0
-    moveToPosition: {x: 0, y: 0, z: 0}
-    waitDur: 0
-    enemyCheck: 0
-  description: 
-  drawGizmos: 0
-  poiType: 0
+  forceChange: 0
 --- !u!114 &3413521387082857767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3064,6 +3047,7 @@ MonoBehaviour:
   description: CHASING
   drawGizmos: 0
   _state: 4
+  forceChange: 0
 --- !u!114 &8918844742780051851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3140,3 +3124,4 @@ MonoBehaviour:
   description: ROAMING
   drawGizmos: 0
   _state: 1
+  forceChange: 0
