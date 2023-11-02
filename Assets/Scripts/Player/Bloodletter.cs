@@ -154,7 +154,7 @@ public class Bloodletter : MonoBehaviour {
                                 fovCone.detecting = true;
                             }
                             terrorMod = terrorProximity.Evaluate((fovCone.dist - Vector3.Distance(transform.position, enemy.transform.position))/fovCone.dist) * 100;
-                        }
+                        } else fovCone.detecting = false;
                         fovCone.inRange = true;
                     } else {
                         terrorMod -= terrorRate;
@@ -163,10 +163,14 @@ public class Bloodletter : MonoBehaviour {
                         fovCone.inRange = false;
                     }
                 } else {
+                    fovCone.detecting = false;
+                    fovCone.inRange = false;
                     terrorMod -= terrorRate;
                     terrorMod = Mathf.Clamp(terrorMod, -0.25f, 1);
                 }
             } else {
+                fovCone.detecting = false;
+                fovCone.inRange = false;
                 terrorMod -= terrorRate;
                 terrorMod = Mathf.Clamp(terrorMod, -0.25f, 1);
             }
