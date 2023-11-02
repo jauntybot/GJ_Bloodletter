@@ -399,6 +399,7 @@ GameObject:
   - component: {fileID: 948513739522517545}
   - component: {fileID: 8224393149476468071}
   - component: {fileID: 5298621853029278723}
+  - component: {fileID: 2666214730491837092}
   m_Layer: 0
   m_Name: Bloodletter 1
   m_TagString: Player
@@ -576,7 +577,6 @@ MonoBehaviour:
   walkSpeed: 1.75
   sprintMultiplierRange: {x: 1.33, y: 2.5}
   standMultiplier: 0.5
-  _moveSpeed: 0
   _speedMultiplier: 0
   staminaDrainRate: 5
   staminaDelay: 2
@@ -586,18 +586,6 @@ MonoBehaviour:
   bloodDrainRate: 2.2
   bloodDelay: 0.5
   bloodRegenRate: 0.5
-  tickDur: 0.75
-  tick: 0
-  cam: {fileID: 1041412191401356060}
-  interactionMask:
-    serializedVersion: 2
-    m_Bits: 64
-  bloodletSFXDelay: 0.75
-  decalSprintDelay: 0.25
-  decalWalkDelay: 0.75
-  footstepDelay: 0.75
-  footstepRunDelay: 1
-  heavyBreathingDelay: 1
   regenAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -631,6 +619,18 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  tickDur: 0.75
+  tick: 0
+  cam: {fileID: 1041412191401356060}
+  interactionMask:
+    serializedVersion: 2
+    m_Bits: 64
+  bloodletSFXDelay: 0.75
+  decalSprintDelay: 0.25
+  decalWalkDelay: 0.75
+  footstepDelay: 0.75
+  footstepRunDelay: 1
+  heavyBreathingDelay: 1
   exposureLevel: 0
   exposureCurve:
     serializedVersion: 2
@@ -667,12 +667,20 @@ MonoBehaviour:
     name: FOV
     dist: 60
     viewAngle: 98
+    detection: 0
     detectionMultiplier: 1
     deltaThreshold: 0
+    detectionCeiling: 100
     coneShape: 0
     viewMask:
       serializedVersion: 2
       m_Bits: 192
+    falloffCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
     detecting: 0
     inRange: 0
   enemyTerror: 0
@@ -1050,6 +1058,50 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2666214730491837092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5038823845995218877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2e4e74a291156488d510aee11eb33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skyboxMat: {fileID: 2100000, guid: f2b5f3f20933f434e850db1b710542fd, type: 2}
+  pointLight: {fileID: 2525383138282675992}
+  pointLightRange: {x: 30, y: 15}
+  skyboxExposureRange: {x: 2.5, y: 0}
+  fogStart: {r: 0.20784314, g: 0, b: 0, a: 1}
+  falloffCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.07284546
+      inSlope: 3.18349
+      outSlope: 3.18349
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.05844941
+    - serializedVersion: 3
+      time: 0.8186035
+      value: 1
+      inSlope: -0.048467897
+      outSlope: -0.048467897
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.50074464
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  falloffDist: 25
+  effectAmp: 2
+  effectFreq: 2
 --- !u!1 &5732280588475847699
 GameObject:
   m_ObjectHideFlags: 0
