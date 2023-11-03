@@ -33,6 +33,8 @@ public class Bloodletter : MonoBehaviour {
     bool sprinting;
     [SerializeField]
     bool crouching, staminaRegen, heavyBreathing, bloodletting, bloodRegen;
+    public bool interacting;
+    public Interactable interactingWith;
 
     [Header("Prefabs")]
     [SerializeField] GameObject bloodDecal;
@@ -79,7 +81,7 @@ public class Bloodletter : MonoBehaviour {
     [Range(0,100)]
     public float exposureLevel;
     [SerializeField] AnimationCurve exposureCurve;
-    [SerializeField] float expBase, expStill, expCrouch, expWalk, expSprint, expBloodletting, expInfected;
+    [SerializeField] float expBase, expStill, expCrouch, expWalk, expSprint, expBloodletting, expInfected, expInteracting;
     public DetectionCone fovCone;
     [Range(0, 60)] public float enemyTerror;
     public AnimationCurve terrorProximity;
@@ -112,6 +114,8 @@ public class Bloodletter : MonoBehaviour {
     }
 
     public void Init() {
+        ResetShaders();
+
         alive = true;
         enemy = EnemyPathfinding.instance;
         
@@ -469,6 +473,7 @@ public class Bloodletter : MonoBehaviour {
             else exposureLevel += expStill;
             if (crouching) exposureLevel += expCrouch;
             if (bloodletting) exposureLevel += expBloodletting;
+            if (interacting) exposureLevel += expInteracting;
             exposureLevel += expInfected * infectionLevel/100;
             exposureLevel = exposureCurve.Evaluate(exposureLevel/100) * 100;
             yield return null;
@@ -497,6 +502,8 @@ public class Bloodletter : MonoBehaviour {
                 if (Physics.Raycast(ray, out hit, 100f, interactionMask)) {
                     Interactable target = hit.collider.GetComponentInParent<Interactable>();
                     target.OnInteract();
+                    interacting = true;
+                    interactingWith = target;
                 }
             }
 

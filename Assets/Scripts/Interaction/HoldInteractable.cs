@@ -56,12 +56,14 @@ public class HoldInteractable : Interactable {
                 yield return null;
                 if (!Input.GetMouseButton(0)) {
                     interacting = false;
+                    bloodletter.interacting = false;
                     break;
                 }
             }
             timer += 1;
             if (!Input.GetMouseButton(0) || !inRange) {
                 interacting = false;
+                bloodletter.interacting = false;
                 break;
             }
             yield return null;    
@@ -73,7 +75,8 @@ public class HoldInteractable : Interactable {
         if (timer >= pilferDuration) {
             ExhaustSite();
         }
-        
+        bloodletter.interacting = false;
+        bloodletter.interactingWith = null;
         interacting = false;
     }
 

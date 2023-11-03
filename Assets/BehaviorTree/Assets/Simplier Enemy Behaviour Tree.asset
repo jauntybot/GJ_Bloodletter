@@ -53,6 +53,7 @@ MonoBehaviour:
   stoppingDistance: 0.1
   acceleration: 40
   tolerance: 1
+  moveDur: 2
 --- !u!114 &-9002665886772807731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,6 +811,7 @@ MonoBehaviour:
   stoppingDistance: 0.1
   acceleration: 40
   tolerance: 1
+  moveDur: 0.5
 --- !u!114 &-4997719276754839594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1042,6 +1044,7 @@ MonoBehaviour:
   stoppingDistance: 1.5
   acceleration: 40
   tolerance: 3
+  moveDur: 0.5
 --- !u!114 &-2709376450093331873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2754,6 +2757,7 @@ MonoBehaviour:
   stoppingDistance: 0.1
   acceleration: 40
   tolerance: 1
+  moveDur: 2
 --- !u!114 &6973079612594482610
 MonoBehaviour:
   m_ObjectHideFlags: 0

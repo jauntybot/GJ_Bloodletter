@@ -86,6 +86,8 @@ public class EnemyPathfinding : MonoBehaviour {
         switch (_state) {
             default:
             case EnemyState.Lurking:
+                detectionLevel -= 50;
+                if (detectionLevel < 0) detectionLevel = 0;
                 if (state == EnemyState.Lurking)
                     director.hostilityLevel += 10f;
                 director.downtimeThreshold = Random.Range(10f, 30f);
@@ -194,6 +196,14 @@ public class EnemyPathfinding : MonoBehaviour {
                 detectionLevel -= detectionDrainRate;
     
             //larvaMat.SetFloat("_VertexResolution", Mathf.Lerp(6, 32,Mathf.InverseLerp(0, 60, bloodletter.enemyTerror)));
+
+// DETECT ACTIVE INTERACTIONS
+        if (state == EnemyState.Roaming) {
+            if (Vector3.Distance(transform.position, bloodletter.transform.position) <= detectionCones[2].dist && bloodletter.interacting) {
+                director.UpdatePOI(bloodletter.interactingWith.transform.position);
+                ChangeState(EnemyState.Tracking);
+            }
+        }
 
             yield return null;
         }

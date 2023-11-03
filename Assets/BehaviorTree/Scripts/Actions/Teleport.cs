@@ -12,6 +12,7 @@ public class Teleport : ActionNode
     public bool outsideOfVision;
     public float value;
     public bool byPlaytime;
+    int layerIndex = 1 << 4;
 
 
     protected override void OnStart() {
@@ -22,13 +23,12 @@ public class Teleport : ActionNode
 
     protected override State OnUpdate() {
         NavMeshHit navHit;
-        Debug.Log("try hit");
-        if(NavMesh.SamplePosition(blackboard.moveToPosition, out navHit, 100, 5)) {
+        if(NavMesh.SamplePosition(blackboard.moveToPosition, out navHit, 4, layerIndex)) {
             Debug.Log(navHit.position);
             switch(teleportType) {
                 case TeleportType.DistAwayFromPlayer:
-                    Debug.Log(context.enemy.director.interactedCount/(context.enemy.director.interactables.Count - 1) * value);
-                    if (Vector3.Distance(navHit.position, context.bloodletter.transform.position) <= (byPlaytime ? context.enemy.director.interactedCount/(context.enemy.director.interactables.Count - 1) * value : value))
+                    Debug.Log(context.enemy.director.exitProgress);
+                    if (Vector3.Distance(navHit.position, context.bloodletter.transform.position) <= (1 - context.enemy.director.exitProgress) * value)
                         return State.Failure;
                 break;
             }

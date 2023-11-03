@@ -532,7 +532,9 @@ MonoBehaviour:
   heavyBreathing: 0
   bloodletting: 0
   bloodRegen: 0
-  bloodDecal: {fileID: 5722726836972988023, guid: f267f9076ce2d32419b58e2431db6523,
+  interacting: 0
+  interactingWith: {fileID: 0}
+  bloodDecal: {fileID: 5722726836972988023, guid: ef97540b4d1f140079d49dd0f3dcb4d8,
     type: 3}
   handAnims:
   - {fileID: 4786031610517544066}
@@ -579,10 +581,10 @@ MonoBehaviour:
   standMultiplier: 0.5
   _speedMultiplier: 0
   staminaDrainRate: 5
-  staminaDelay: 2
-  staminaRegenRamp: 0
-  staminaRegenRate: 3
-  sprintDelay: 1
+  staminaDelay: 3
+  staminaRegenRamp: 10
+  staminaRegenRate: 8
+  sprintDelay: 0.5
   bloodDrainRate: 2.2
   bloodDelay: 0.5
   bloodRegenRate: 0.5
@@ -591,7 +593,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.011779785
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -599,10 +601,10 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.68418425
-      value: 0.19521716
-      inSlope: 0.78086865
-      outSlope: 0.78086865
+      time: 0.59983367
+      value: 0.181057
+      inSlope: 0.6771089
+      outSlope: 0.6771089
       tangentMode: 136
       weightedMode: 0
       inWeight: 0.33333334
@@ -663,6 +665,7 @@ MonoBehaviour:
   expSprint: 25
   expBloodletting: 25
   expInfected: 25
+  expInteracting: 0
   fovCone:
     name: FOV
     dist: 60
@@ -758,7 +761,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -803,7 +806,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -899,7 +902,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1311,7 +1314,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.32156864, g: 0.078431375, b: 0.078431375, a: 1}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1400,7 +1403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeInWhenSceneStarts: 1
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
-  fadeTime: 1
+  fadeTime: 2
 --- !u!124 &5679702069096081626
 Behaviour:
   m_ObjectHideFlags: 0
