@@ -66,7 +66,7 @@ public class EnemyPathfinding : MonoBehaviour {
 
 
 
-    void Start() {
+    public void Init() {
         agent = GetComponent<NavMeshAgent>();
         //audioSource = GetComponent<AudioSource>();
         audioSource.outputAudioMixerGroup = roamLoopSFX.outputMixerGroup;
