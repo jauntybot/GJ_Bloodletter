@@ -45,6 +45,7 @@ public class EnemyDirector : MonoBehaviour {
         }
 
         poi.parent = transform.parent;
+        enemy.Init();
     }
 
 
