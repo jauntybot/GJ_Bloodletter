@@ -25,6 +25,8 @@ public class EnemyDirector : MonoBehaviour {
     public float downtimeThreshold;
     [SerializeField] AnimationCurve downtimeCurve;
     
+    public float exitProgress { get { return bloodletter.tollCount / GameManager.instance.exit.cost; }}
+
     public List<Interactable> interactables;
     public float interactedCount;
 
@@ -66,11 +68,10 @@ public class EnemyDirector : MonoBehaviour {
 
     public IEnumerator Downtime() {
         downtimeTimer = 0f;
-        float timer = 0f;
         while (downtimeTimer <= downtimeThreshold) {
             if (!enemy.detecting) {
-                downtimeTimer += Time.deltaTime;
-                downtime = downtimeCurve.Evaluate(downtimeTimer/downtimeThreshold) * 100;
+                downtimeTimer += Time.deltaTime * downtimeCurve.Evaluate(Vector3.Distance(bloodletter.transform.position, enemy.transform.position)/enemy.detectionCones[2].dist) * 4;
+                downtime = downtimeTimer/downtimeThreshold * 100;
             }
                 
             yield return null;

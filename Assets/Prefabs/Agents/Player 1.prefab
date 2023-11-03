@@ -275,17 +275,17 @@ PrefabInstance:
     - target: {fileID: 8558229603941195183, guid: b74b4d61641804e4db5f48d28e3ab104,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.007548366
+      value: 0.0075416565
       objectReference: {fileID: 0}
     - target: {fileID: 8558229603941195183, guid: b74b4d61641804e4db5f48d28e3ab104,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7050389
+      value: 1.7050344
       objectReference: {fileID: 0}
     - target: {fileID: 8558229603941195183, guid: b74b4d61641804e4db5f48d28e3ab104,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.00095925113
+      value: 0.0009765625
       objectReference: {fileID: 0}
     - target: {fileID: 8558229603941195183, guid: b74b4d61641804e4db5f48d28e3ab104,
         type: 3}
@@ -363,26 +363,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4542215002466608544}
     m_Modifications:
-    - target: {fileID: 948513739522517545, guid: 3e545542a8729834da5abe8faedaafab,
-        type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1041412191401356060, guid: 3e545542a8729834da5abe8faedaafab,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1041412191401356060, guid: 3e545542a8729834da5abe8faedaafab,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1041412191401356060, guid: 3e545542a8729834da5abe8faedaafab,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1808239837428549413, guid: 3e545542a8729834da5abe8faedaafab,
         type: 3}
       propertyPath: fpsCam
@@ -395,54 +375,8 @@ PrefabInstance:
       objectReference: {fileID: 7415100406228873278}
     - target: {fileID: 1808239837428549413, guid: 3e545542a8729834da5abe8faedaafab,
         type: 3}
-      propertyPath: bloodDecal
+      propertyPath: footstepAudioSource
       value: 
-      objectReference: {fileID: 5722726836972988023, guid: ef97540b4d1f140079d49dd0f3dcb4d8,
-        type: 3}
-    - target: {fileID: 1808239837428549413, guid: 3e545542a8729834da5abe8faedaafab,
-        type: 3}
-      propertyPath: sprintDelay
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 3e545542a8729834da5abe8faedaafab,
-        type: 3}
-      propertyPath: staminaDelay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 3e545542a8729834da5abe8faedaafab,
-        type: 3}
-      propertyPath: staminaRegenRamp
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 3e545542a8729834da5abe8faedaafab,
-        type: 3}
-      propertyPath: staminaRegenRate
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 3e545542a8729834da5abe8faedaafab,
-        type: 3}
-      propertyPath: regenAnimationCurve.m_Curve.Array.data[1].time
-      value: 0.59983367
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 3e545542a8729834da5abe8faedaafab,
-        type: 3}
-      propertyPath: regenAnimationCurve.m_Curve.Array.data[0].value
-      value: 0.011779785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 3e545542a8729834da5abe8faedaafab,
-        type: 3}
-      propertyPath: regenAnimationCurve.m_Curve.Array.data[1].value
-      value: 0.181057
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 3e545542a8729834da5abe8faedaafab,
-        type: 3}
-      propertyPath: regenAnimationCurve.m_Curve.Array.data[1].inSlope
-      value: 0.6771089
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808239837428549413, guid: 3e545542a8729834da5abe8faedaafab,
-        type: 3}
-      propertyPath: regenAnimationCurve.m_Curve.Array.data[1].outSlope
-      value: 0.6771089
       objectReference: {fileID: 0}
     - target: {fileID: 3840052362551888005, guid: 3e545542a8729834da5abe8faedaafab,
         type: 3}
@@ -499,27 +433,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bloodletter 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7389527517728659835, guid: 3e545542a8729834da5abe8faedaafab,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7389527517728659835, guid: 3e545542a8729834da5abe8faedaafab,
-        type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7713163934623707200, guid: 3e545542a8729834da5abe8faedaafab,
-        type: 3}
-      propertyPath: fadeTime
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8224393149476468071, guid: 3e545542a8729834da5abe8faedaafab,
         type: 3}
       propertyPath: m_ExposedReferences.m_References.Array.data[1].second
       value: 
       objectReference: {fileID: 7415100406228873278}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5298621853029278723, guid: 3e545542a8729834da5abe8faedaafab, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

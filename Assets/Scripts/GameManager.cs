@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     Bloodletter bloodletter;
     PauseManager pauseManager;
+    public Door exit;
 
     public enum GameState { Menu, Running, Paused, Gameover };
     public GameState gameState;
@@ -72,6 +73,12 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         bloodletter = Bloodletter.instance;
+        if (bloodletter) {
+            var doors = FindObjectsByType(typeof(Door), FindObjectsSortMode.None);
+            foreach(Door door in doors) {
+                if (door.goal) exit = door;
+            }
+        }
         pauseManager = PauseManager.instance;
     }
 

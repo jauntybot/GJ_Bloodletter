@@ -11,7 +11,7 @@ public class Door : HoldInteractable
     public int cost;
     [SerializeField] float tollStep = 0;
     bool open;
-
+    public bool goal;
 
     protected override void Start() {
         Init();

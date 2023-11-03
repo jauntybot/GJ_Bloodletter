@@ -36,7 +36,7 @@ public class AtmosphereController : MonoBehaviour
         
             
 
-            Debug.Log("Strength: " + strength + ", sinMod: " + sinMod);
+            //Debug.Log("Strength: " + strength + ", sinMod: " + sinMod);
             skyboxMat.SetFloat("_Exposure", Mathf.Lerp(skyboxExposureRange.x, skyboxExposureRange.y, Mathf.InverseLerp(0, effectAmp * effectFreq, sinMod * strength)));
             pointLight.intensity = Mathf.Lerp(pointLightRange.x, pointLightRange.y, Mathf.InverseLerp(0, effectAmp * effectFreq, sinMod * strength));
             RenderSettings.fogColor = Color.Lerp(fogStart, Color.black, sinMod / effectAmp * effectFreq);

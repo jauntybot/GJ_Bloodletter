@@ -24,15 +24,19 @@ public class UpdateLookDir : ActionNode
                 break;
                 case Blackboard.LookDir.AtPlayer:
                     context.agent.updateRotation = false;
+                    targetRot = Quaternion.LookRotation(context.bloodletter.transform.position - context.transform.position);
+                break;
+                case Blackboard.LookDir.AtSafezone:
+                    context.agent.updateRotation = false;
+                    targetRot = Quaternion.LookRotation(context.enemy.safezoneTarget.transform.position - context.transform.position);
                 break;
                 case Blackboard.LookDir.Scanning:
                     context.agent.updateRotation = false;
 
-
-                    float rnd = Random.Range(80, 200);
+                    float rnd = Random.Range(45, 120);
                     if (Random.Range(0, 1) != 0) rnd = -rnd;
 
-                    targetRot = Quaternion.AngleAxis(rnd, Vector3.up);
+                    targetRot = startRot * Quaternion.AngleAxis(rnd, Vector3.up);
                 break;
             }
         }
@@ -54,17 +58,17 @@ public class UpdateLookDir : ActionNode
                 break;
                 case Blackboard.LookDir.AtPlayer:     
                     if (turnTimer < turnDur) {
-                        Quaternion lookRot = Quaternion.LookRotation(context.bloodletter.transform.position - context.transform.position);
-                        context.transform.rotation = Quaternion.Slerp(startRot, lookRot, turnTimer/turnDur);
+                        turnTimer += Time.deltaTime;
+                        context.transform.rotation = Quaternion.Slerp(startRot, targetRot, turnTimer/turnDur);
                         return State.Running;
                     }
                 break;
                 case Blackboard.LookDir.AtSafezone:
-                    if (context.enemy.safezoneTarget == null) return State.Failure;
-                    targetPos = new Vector3(context.enemy.safezoneTarget.transform.position.x, 
-                                       context.gameObject.transform.position.y, 
-                                       context.enemy.safezoneTarget.transform.position.z ) ;        
-                    context.gameObject.transform.LookAt(targetPos);
+                    if (turnTimer < turnDur) {
+                        turnTimer += Time.deltaTime;
+                        context.transform.rotation = Quaternion.Slerp(startRot, targetRot, turnTimer/turnDur);
+                        return State.Running;
+                    }
                 break;
                 case Blackboard.LookDir.Scanning:
                     if (turnTimer < turnDur) {

@@ -12,10 +12,14 @@ public class MoveToPosition : ActionNode
     public float acceleration = 40.0f;
     public float tolerance = 1.0f;
 
+    float timer;
+    [SerializeField] float moveDur = 2;
+
     protected override void OnStart() {
         context.agent.stoppingDistance = stoppingDistance;
         context.agent.speed = speed;
         context.agent.acceleration = acceleration;
+        timer = 0;
 
         switch (pos) {
 
@@ -56,6 +60,12 @@ public class MoveToPosition : ActionNode
         if (context.enemy.energyLevel >= context.enemy.energyDrainRate * speed)
             context.enemy.energyLevel -= context.enemy.energyDrainRate * speed;        
         else return State.Failure;
+
+        if (timer < moveDur) {
+            timer += Time.deltaTime;
+        } else {
+            return State.Success;
+        }
         
         return State.Running;
     }
