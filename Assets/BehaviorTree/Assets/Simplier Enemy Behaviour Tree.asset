@@ -385,7 +385,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: bca96f3a916d9184891b584f58313bd5
-  position: {x: -2288.8, y: 1079.2001}
+  position: {x: -2453, y: 1079}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -1007,7 +1007,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0a12b39d6df9d2948ae91a318e85297a
-  position: {x: -2439.2, y: 951.19995}
+  position: {x: -2603, y: 951}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -1018,6 +1018,7 @@ MonoBehaviour:
   children:
   - {fileID: 6611090869426743809}
   - {fileID: -6896683376882333852}
+  - {fileID: -1242530094812841770}
   - {fileID: -66340117436489657}
 --- !u!114 &-3217023857846917829
 MonoBehaviour:
@@ -1385,6 +1386,30 @@ MonoBehaviour:
   child: {fileID: -8721546259500530505}
   restartOnSuccess: 1
   restartOnFailure: 1
+--- !u!114 &-1242530094812841770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f3d8f91e78c97488a12ee3a2584210, type: 3}
+  m_Name: EnemyDisappear
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 85f619c0aecd1432590f70acd70544cc
+  position: {x: -2303, y: 1079}
+  blackboard:
+    lookDir: 0
+    moveToPosition: {x: 0, y: 0, z: 0}
+    waitDur: 0
+    enemyCheck: 0
+  description: HIDE
+  drawGizmos: 0
+  disappear: 1
 --- !u!114 &-958742240970396479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1610,7 +1635,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 78658cfddd9027842bcd5967162fec3d
-  position: {x: -2138.4, y: 1079.2001}
+  position: {x: -2153, y: 1079}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -1803,6 +1828,7 @@ MonoBehaviour:
   - {fileID: -5568712032285587523}
   - {fileID: -380594956952917986}
   - {fileID: -958742240970396479}
+  - {fileID: -1242530094812841770}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -2719,7 +2745,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 9cc65dfe43c7d114780c953d7b706611
-  position: {x: -2439.2, y: 821.6}
+  position: {x: -2603, y: 822}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -2773,7 +2799,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 10cd2640797a565419e09fa50ffdabd9
-  position: {x: -2439.2, y: 1079.2001}
+  position: {x: -2603, y: 1079}
   blackboard:
     lookDir: 0
     moveToPosition: {x: 0, y: 0, z: 0}
