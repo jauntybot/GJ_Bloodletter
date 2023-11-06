@@ -61,7 +61,7 @@ PrefabInstance:
     - target: {fileID: 6172462862812297538, guid: cf54fafa46a004721999ce23dc9a6776,
         type: 3}
       propertyPath: m_Name
-      value: house5 Variant
+      value: House05_tall_clay
       objectReference: {fileID: 0}
     - target: {fileID: 8105606549615633186, guid: cf54fafa46a004721999ce23dc9a6776,
         type: 3}
