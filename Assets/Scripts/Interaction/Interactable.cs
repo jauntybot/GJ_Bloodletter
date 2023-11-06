@@ -45,6 +45,8 @@ public class Interactable : MonoBehaviour {
 // Check if player can unlock this
             if (locked) {}
             if (!locked) {
+                bloodletter.interacting = true;
+                bloodletter.interactingWith = this;
                 Interact();
             }
         }

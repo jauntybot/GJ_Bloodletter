@@ -198,12 +198,12 @@ public class EnemyPathfinding : MonoBehaviour {
             //larvaMat.SetFloat("_VertexResolution", Mathf.Lerp(6, 32,Mathf.InverseLerp(0, 60, bloodletter.enemyTerror)));
 
 // DETECT ACTIVE INTERACTIONS
-        if (state == EnemyState.Roaming) {
-            if (Vector3.Distance(transform.position, bloodletter.transform.position) <= detectionCones[2].dist && bloodletter.interacting) {
-                director.UpdatePOI(bloodletter.interactingWith.transform.position);
-                ChangeState(EnemyState.Tracking);
+            if (state == EnemyState.Roaming) {
+                if (Vector3.Distance(transform.position, bloodletter.transform.position) <= detectionCones[2].dist && bloodletter.interacting) {
+                    director.UpdatePOI(bloodletter.interactingWith.transform.position);
+                    ChangeState(EnemyState.Tracking);
+                }
             }
-        }
 
             yield return null;
         }
@@ -243,29 +243,34 @@ public class EnemyPathfinding : MonoBehaviour {
             StartCoroutine(HideAnimation(state));
     }
 
-    public IEnumerator HideAnimation(bool state) {
+    [HideInInspector] public bool waitingToHide;
+    public IEnumerator HideAnimation(bool hide) {
         hiding = true;
-        while (bloodletter.fovCone.detecting == true) yield return null;
+// WAITING TO HIDE
+        while (bloodletter.fovCone.detecting == true) {
+            waitingToHide = true;
+            yield return null;
+        }
+        waitingToHide = false;
+        if (energyLevel >= 10)
+            energyLevel -= 10;
+            
         float fromVol = 1;
         float toVol = 0;
-        if (state) {
+        if (!hide) {
             foreach(GameObject obj in gfx) 
-                obj.SetActive(state);
+                obj.SetActive(true);
             audioSource.clip = roamLoopSFX.Get();
             audioSource.Play();
             audioSource.volume = 0;
             fromVol = 0;
             toVol = 1;
-        } else
-            agent.enabled = state;
-            
-        if (!state) {
-            foreach(GameObject obj in gfx) 
-                obj.SetActive(state);
-            audioSource.Stop();   
-        } else {
-            agent.enabled = state;
+
+            agent.enabled = true;
             StartCoroutine(DampenAudio());
+        } else {
+            foreach(GameObject obj in gfx) 
+                obj.SetActive(false);
         }
 
 // FADE OUT AUDIO SOURCES
@@ -280,8 +285,11 @@ public class EnemyPathfinding : MonoBehaviour {
 
         //transform.position = targetPos;
         yield return null;
-        hidden = !state;
-        
+        hidden = hide;
+        if (hide) {
+            audioSource.Stop();   
+            agent.enabled = false;
+        }
         hiding = false;
     }
 
