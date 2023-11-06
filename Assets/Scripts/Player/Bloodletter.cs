@@ -71,6 +71,7 @@ public class Bloodletter : MonoBehaviour {
     
 	public Camera cam;
 	public LayerMask interactionMask;
+    [HideInInspector] public BloodBasin currentBasin;
 
     [Header("Rates")]
     [SerializeField] float bloodletSFXDelay;
@@ -335,6 +336,9 @@ public class Bloodletter : MonoBehaviour {
                 if (infectionLevel > 0)
                     infectionLevel -= bloodDrainRate * _speedMultiplier / 2;
             }
+            if (currentBasin) {
+                currentBasin.bloodLevel += bloodDrainRate;
+            }
             
             yield return null;
         }
@@ -490,8 +494,10 @@ public class Bloodletter : MonoBehaviour {
 
     float freq = 0;
     public void Update() {
+// PAUSE INPUT
         if (GameManager.instance.gameState != GameManager.GameState.Menu && Input.GetButtonDown("Pause"))
             GameManager.instance.Pause(GameManager.instance.gameState == GameManager.GameState.Running ? true : false);
+            
         if (alive && GameManager.instance.gameState == GameManager.GameState.Running) {
 // MOUSE INPUT
 // INTERACTION INPUT
@@ -502,8 +508,6 @@ public class Bloodletter : MonoBehaviour {
                 if (Physics.Raycast(ray, out hit, 100f, interactionMask)) {
                     Interactable target = hit.collider.GetComponentInParent<Interactable>();
                     target.OnInteract();
-                    interacting = true;
-                    interactingWith = target;
                 }
             }
 

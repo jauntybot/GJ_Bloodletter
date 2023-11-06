@@ -27,7 +27,7 @@ public class UpdateLookDir : ActionNode
                     targetRot = Quaternion.LookRotation(context.bloodletter.transform.position - context.transform.position);
                 break;
                 case Blackboard.LookDir.AtSafezone:
-                    if (context.enemy.safezoneTarget = null) {
+                    if (context.enemy.safezoneTarget == null) {
                         blackboard.lookDir = Blackboard.LookDir.Forward;
                         context.agent.updateRotation = true;
                         break;
