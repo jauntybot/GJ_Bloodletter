@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class WellSite : BloodBasin {
 
+    GameManager gameManager;
 
-    protected override void BasinFilled() {
+
+    
+
+
+    public override void BasinFilled() {
         base.BasinFilled();
+
+
     }
 
 }

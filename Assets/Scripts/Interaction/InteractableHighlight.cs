@@ -29,7 +29,12 @@ public class InteractableHighlight : MonoBehaviour {
             if (interactable.inRange && interactable.inView && !active) {
                 active = true;
                 foreach (MeshRenderer r in mrs) {
-                    r.SetMaterials(new List<Material>{r.material, highlightMat});
+                    List<Material> mats = new List<Material>();
+                    foreach (Material mat in r.materials)
+                        mats.Add(mat);
+                    
+                    mats.Add(highlightMat);
+                    r.SetMaterials(mats);
                 }
                 if (displayMessage) {
                     DebugUI.instance.textPopUp.DisplayMessage(message);
@@ -37,7 +42,12 @@ public class InteractableHighlight : MonoBehaviour {
             } else if (active && (!interactable.inRange || !interactable.inView)) {
                 active = false;
                 foreach (MeshRenderer r in mrs) {
-                    r.SetMaterials(new List<Material>{r.material});
+                    List<Material> mats = new List<Material>();
+                    foreach (Material mat in r.materials) 
+                            mats.Add(mat);
+                    
+                    mats.RemoveAt(mats.Count - 1);
+                    r.SetMaterials(mats);
                 }
                 if (displayMessage) {
                     DebugUI.instance.textPopUp.DismissMessage();
@@ -48,6 +58,11 @@ public class InteractableHighlight : MonoBehaviour {
             if (interactable.inRange && interactable.inView && !active) {
                 active = true;
                 foreach (SkinnedMeshRenderer r in smrs) {
+                    List<Material> mats = new List<Material>();
+                    foreach (Material mat in r.materials) {
+                        if (mat != highlightMat)
+                            mats.Add(mat);
+                    }
                     r.SetMaterials(new List<Material>{r.material, highlightMat});
                 }
                 if (displayMessage) {
@@ -56,6 +71,11 @@ public class InteractableHighlight : MonoBehaviour {
             } else if (active && (!interactable.inRange || !interactable.inView)) {
                 active = false;
                 foreach (SkinnedMeshRenderer r in smrs) {
+                    List<Material> mats = new List<Material>();
+                    foreach (Material mat in r.materials)     
+                        mats.Add(mat);
+                    
+                    mats.Remove(highlightMat);
                     r.SetMaterials(new List<Material>{r.material});
                 }
                 if (displayMessage) {

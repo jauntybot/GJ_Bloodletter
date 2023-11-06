@@ -336,8 +336,11 @@ public class Bloodletter : MonoBehaviour {
                 if (infectionLevel > 0)
                     infectionLevel -= bloodDrainRate * _speedMultiplier / 2;
             }
+// BLOOD BASIN LOGIC
             if (currentBasin) {
-                currentBasin.bloodLevel += bloodDrainRate;
+                if (currentBasin.bloodLevel < currentBasin.capacity)
+                    currentBasin.bloodLevel += bloodDrainRate;
+                else currentBasin.BasinFilled();
             }
             
             yield return null;

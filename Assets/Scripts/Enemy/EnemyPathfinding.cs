@@ -61,7 +61,7 @@ public class EnemyPathfinding : MonoBehaviour {
     
 
     [Header("Kill Variables")]
-    public float killRadius;
+
     public bool attacking;
 
 
