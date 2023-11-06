@@ -32,10 +32,9 @@ public class BloodBasin : Interactable {
         }
     }
 
-    protected virtual void BasinFilled() {
+    public virtual void BasinFilled() {
         bloodLevel = capacity;
-
-
     }
 
 }
+ 

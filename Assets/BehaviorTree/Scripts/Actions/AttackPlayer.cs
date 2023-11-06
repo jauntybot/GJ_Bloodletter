@@ -9,7 +9,7 @@ public class AttackPlayer : ActionNode
 
     public enum AttackType { Terrorize, Kill, Safezone };
     public AttackType attackType;
-    
+    [SerializeField] float attackRadius;
 
     protected override void OnStart() {
     }
@@ -20,7 +20,7 @@ public class AttackPlayer : ActionNode
     protected override State OnUpdate() {
         if (!context.enemy.attacking) {
             if (attackType != AttackType.Safezone) {
-                if (Vector3.Distance(context.transform.position, context.enemy.bloodletter.transform.position) <= context.enemy.killRadius) {
+                if (Vector3.Distance(context.transform.position, context.enemy.bloodletter.transform.position) <= attackRadius) {
                     if (!context.enemy.attacking && context.enemy.bloodletter.alive) {
                         // context.agent.updateRotation = false;
                         // blackboard.lookDir = Blackboard.LookDir.AtPlayer;
@@ -39,7 +39,7 @@ public class AttackPlayer : ActionNode
                     }
                 }
             } else { 
-                if (Vector3.Distance(context.transform.position, context.enemy.bloodletter.transform.position) <= context.enemy.killRadius) {
+                if (Vector3.Distance(context.transform.position, context.enemy.bloodletter.transform.position) <= attackRadius) {
                     if (!context.enemy.attacking) { 
                         context.enemy.StartCoroutine(context.enemy.TerrorizePlayer());
                         if (context.enemy.director.interactables.Contains(context.enemy.safezoneTarget))

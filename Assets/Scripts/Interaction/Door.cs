@@ -6,7 +6,7 @@ using UnityEngine;
 public class Door : HoldInteractable
 {
 
-    public enum DoorType { Free, Toll, Blood };
+    public enum DoorType { Free, Key, Blood, Well };
     public DoorType doorType;
     public int cost;
     [SerializeField] float tollStep = 0;
@@ -17,8 +17,8 @@ public class Door : HoldInteractable
         Init();
         if (doorType == DoorType.Blood)
             highlight.message = "EXCHANGE BLOOD TO UNLOCK.";
-        if (doorType == DoorType.Toll)
-            highlight.message = "EXCHANGE " + cost + " TOLL TO UNLOCK.";
+        if (doorType == DoorType.Key)
+            highlight.message = "EXCHANGE " + cost + " KEY" + ((cost > 1) ? "S" : "")+ " TO UNLOCK.";
     }
 
     public override void Interact() {
@@ -31,13 +31,13 @@ public class Door : HoldInteractable
 
     protected override IEnumerator OpenSite() {
         if ((doorType == DoorType.Blood && bloodletter.bloodLevel >= cost) 
-        || (doorType == DoorType.Toll && bloodletter.tollCount >= cost))
+        || (doorType == DoorType.Key && bloodletter.tollCount >= cost))
             yield return base.OpenSite();
     }
 
     protected override void ExhaustSite() {
         switch (doorType) {
-            case DoorType.Toll:
+            case DoorType.Key:
                 bloodletter.tollCount -= cost;
             break;
             case DoorType.Blood:
