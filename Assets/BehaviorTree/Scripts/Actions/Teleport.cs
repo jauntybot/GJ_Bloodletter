@@ -11,7 +11,6 @@ public class Teleport : ActionNode
     public TeleportType teleportType;
     public bool outsideOfVision;
     public float value;
-    public bool byPlaytime;
     int layerIndex = 1 << 4;
 
 
@@ -34,10 +33,10 @@ public class Teleport : ActionNode
             }
             if (outsideOfVision) {
                 if (Vector3.Distance(navHit.position, context.bloodletter.transform.position) <= context.bloodletter.fovCone.dist) {
-                    Vector3 dir = (context.bloodletter.transform.position - navHit.position).normalized;
+                    Vector3 dir = (navHit.position - context.bloodletter.transform.position).normalized;
                     float angleDelta = Vector3.Angle(context.bloodletter.transform.forward, dir);
                     if (angleDelta < context.bloodletter.fovCone.viewAngle / 2f) {
-                        if (!Physics.Linecast(context.bloodletter.transform.position, navHit.position, context.bloodletter.fovCone.viewMask)) {
+                        if (!Physics.Linecast(context.bloodletter.transform.position, navHit.position + new Vector3(0,1.5f,0), context.bloodletter.fovCone.viewMask)) {
                             return State.Failure;
                         }
                     }

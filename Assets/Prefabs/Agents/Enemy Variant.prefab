@@ -167,6 +167,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
         type: 3}
+      propertyPath: hidden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
+        type: 3}
       propertyPath: eyeMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 8fa881f8395d06b4eb02d624e4cbfc3a, type: 2}
@@ -278,7 +283,7 @@ PrefabInstance:
     - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
         type: 3}
       propertyPath: detectionCones.Array.data[3].detectionMultiplier
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
         type: 3}
@@ -323,7 +328,7 @@ PrefabInstance:
     - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
         type: 3}
       propertyPath: detectionCones.Array.data[3].falloffCurve.m_Curve.Array.data[1].time
-      value: 1
+      value: 0.75079346
       objectReference: {fileID: 0}
     - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
         type: 3}
@@ -358,7 +363,7 @@ PrefabInstance:
     - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
         type: 3}
       propertyPath: detectionCones.Array.data[3].falloffCurve.m_Curve.Array.data[0].value
-      value: 0.020373844
+      value: 0.00819733
       objectReference: {fileID: 0}
     - target: {fileID: 2090922146709798870, guid: 74ff7fb591fcb3e4c8ba3799154d5c82,
         type: 3}

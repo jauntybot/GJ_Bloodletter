@@ -19,16 +19,11 @@ public class EnemyPathfinding : MonoBehaviour {
         EnemyPathfinding.instance = this;
     }
 
-    public EnemyDirector director;
+    [HideInInspector] public EnemyDirector director;
     NavMeshAgent agent;
     [HideInInspector] public Bloodletter bloodletter;
     KiwiBT.BehaviourTreeRunner btRunner;
     
-    [Header("References")]
-    [SerializeField] AudioSource audioSource, sfxSource;
-    [SerializeField] List<GameObject> gfx;
-    [SerializeField] SFX roamLoopSFX, trackLoopSFX, chaseLoopSFX, chaseStingSFX, killStingSFX;
-    [SerializeField] Material larvaMat;
 
     public enum EnemyState { Lurking, Roaming, Ambling, Tracking, Chasing };
     [Header("State Machine")]
@@ -36,9 +31,9 @@ public class EnemyPathfinding : MonoBehaviour {
     public bool hidden;
     [SerializeField] float visibleTerror;
     [SerializeField] float hideDur;
+    public bool attacking;
     public bool safezone;
     public Interactable safezoneTarget;
-    [SerializeField] Material eyeMaterial;
 
 
     [Header("Detection Variables")] [Range(0,100)]
@@ -46,24 +41,26 @@ public class EnemyPathfinding : MonoBehaviour {
     public bool detecting;
     public float detectionDelta;
     public List<DetectionCone> detectionCones;
-    [SerializeField] AnimationCurve detectionFalloff;
     [SerializeField] float detectionDrainRate;
 
 
     
     [Header("Nav Variables")] 
     public Vector2 speedRange;
+    public float proximity { get { return Vector3.Distance(transform.position, Bloodletter.instance.transform.position);} }
     [Range(0,100)] public float energyLevel;
     public float energyRegenRate, energyRegenDelay, energyDrainRate;
     public List<BloodPool> bloodPools = new List<BloodPool>();
     public BloodPool currentPool;
     public LayerMask bloodPoolMask;
-    
 
-    [Header("Kill Variables")]
-
-    public bool attacking;
-
+    [Header("References")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioSource sfxSource;
+    [SerializeField] List<GameObject> gfx;
+    [SerializeField] SFX roamLoopSFX, trackLoopSFX, chaseLoopSFX, chaseStingSFX, killStingSFX;
+    [SerializeField] Material larvaMat;
+    [SerializeField] Material eyeMaterial;  
 
 
     public void Init() {
@@ -93,24 +90,31 @@ public class EnemyPathfinding : MonoBehaviour {
                 director.downtimeThreshold = Random.Range(10f, 30f);
             break;
             case EnemyState.Roaming:
-                audioSource.clip = roamLoopSFX.Get();
-                audioSource.Play();
                 director.downtimeThreshold = Random.Range(30f, 60f);
+                
+                if (state != _state) {
+                    audioSource.clip = roamLoopSFX.Get();
+                    audioSource.Play();
 
-                eyeMaterial.SetColor("_EmColor", Color.magenta);
+                    eyeMaterial.SetColor("_EmColor", Color.magenta);
+                }
             break;
             case EnemyState.Tracking:
-                audioSource.clip = trackLoopSFX.Get();
-                audioSource.Play();
+                if (state != _state) {
+                    audioSource.clip = trackLoopSFX.Get();
+                    audioSource.Play();
 
-                eyeMaterial.SetColor("_EmColor", Color.yellow);
+                    eyeMaterial.SetColor("_EmColor", Color.yellow);
+                }
             break;
             case EnemyState.Chasing:
-                audioSource.clip = chaseLoopSFX.Get();
-                audioSource.Play();
-                PlaySound(chaseStingSFX);
-                
-                eyeMaterial.SetColor("_EmColor", Color.red);
+                if (state != _state) {
+                    audioSource.clip = chaseLoopSFX.Get();
+                    audioSource.Play();
+                    PlaySound(chaseStingSFX);
+                    
+                    eyeMaterial.SetColor("_EmColor", Color.red);
+                }
             break;
         }
         state = _state;
@@ -128,14 +132,13 @@ public class EnemyPathfinding : MonoBehaviour {
 // LOOP THROUGH DETECTION CONES
                 foreach (DetectionCone cone in detectionCones) {
 // CHECK IF PLAYER IS IN RANGE OF CONE
-                    float dist = Vector3.Distance(transform.position, bloodletter.transform.position);
-                    if (dist < cone.dist) {
+                    if (proximity < cone.dist) {
                         Vector3 dir = (bloodletter.transform.position - transform.position).normalized;
 // SPHERE CONE SHAPE
                         if (cone.coneShape == DetectionCone.ConeShape.Sphere) {
 // VIEW UNOBSTRUCTED
                             if (!Physics.Linecast(transform.position, bloodletter.transform.position, cone.viewMask)) {
-                                delta = bloodletter.exposureLevel * cone.falloffCurve.Evaluate((cone.dist-dist)/cone.dist);
+                                delta = bloodletter.exposureLevel * cone.falloffCurve.Evaluate((cone.dist - proximity)/cone.dist);
 // PLAYER EXPOSURE REGISTERED FOR DETECTION
                                 if (delta >= cone.deltaThreshold) {
                                     if (detectionLevel < cone.detectionCeiling)
@@ -157,7 +160,7 @@ public class EnemyPathfinding : MonoBehaviour {
                             if (angleDelta < cone.viewAngle / 2f) {
 // VIEW UNOBSTRUCTED                                
                                 if (!Physics.Linecast(transform.position, bloodletter.transform.position, cone.viewMask)) {
-                                    delta = bloodletter.exposureLevel * cone.falloffCurve.Evaluate((cone.dist-dist)/cone.dist);
+                                    delta = bloodletter.exposureLevel * cone.falloffCurve.Evaluate((cone.dist - proximity)/cone.dist);
 // PLAYER EXPOSURE REGISTERED FOR DETECTION                                    
                                     if (delta >= cone.deltaThreshold) {
                                         if (detectionLevel < cone.detectionCeiling)
@@ -199,8 +202,8 @@ public class EnemyPathfinding : MonoBehaviour {
 
 // DETECT ACTIVE INTERACTIONS
             if (state == EnemyState.Roaming) {
-                if (Vector3.Distance(transform.position, bloodletter.transform.position) <= detectionCones[2].dist && bloodletter.interacting) {
-                    director.UpdatePOI(bloodletter.interactingWith.transform.position);
+                if (proximity <= detectionCones[2].dist && bloodletter.interacting) {
+                    director.UpdatePOI(bloodletter.interactingWith.transform.position, EnemyDirector.POIType.InteractionSite);
                     ChangeState(EnemyState.Tracking);
                 }
             }
@@ -268,6 +271,7 @@ public class EnemyPathfinding : MonoBehaviour {
 
             agent.enabled = true;
             StartCoroutine(DampenAudio());
+            hidden = false;
         } else {
             foreach(GameObject obj in gfx) 
                 obj.SetActive(false);
@@ -285,8 +289,8 @@ public class EnemyPathfinding : MonoBehaviour {
 
         //transform.position = targetPos;
         yield return null;
-        hidden = hide;
         if (hide) {
+            hidden = true;
             audioSource.Stop();   
             agent.enabled = false;
         }
@@ -341,9 +345,8 @@ public class EnemyPathfinding : MonoBehaviour {
     public IEnumerator DampenAudio() {
         dampen = true;
         while (!hidden) {
-            float dist = Vector3.Distance(transform.position, bloodletter.transform.position);
-            if (dist < detectionCones[2].dist) {
-                    mixer.SetFloat("EnvirVol", Mathf.Log10(0.001f + bloodletter.terrorProximity.Evaluate(dist/detectionCones[2].dist)) * 20);
+            if (proximity < detectionCones[2].dist) {
+                    mixer.SetFloat("EnvirVol", Mathf.Log10(0.001f + bloodletter.terrorProximity.Evaluate(proximity/detectionCones[2].dist)) * 20);
                     
             } else {
                 mixer.SetFloat("EnvirVol", Mathf.Log10(1) * 20);
