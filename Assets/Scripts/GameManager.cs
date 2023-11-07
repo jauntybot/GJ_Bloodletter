@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
     Bloodletter bloodletter;
     PauseManager pauseManager;
     public Door exit;
+    public List<WellSite> wells;
+    public int poisonedWellCount;
+    public float exitProgress { get { return poisonedWellCount / wells.Count; }}
+
 
     public enum GameState { Menu, Running, Paused, Gameover };
     public GameState gameState;
@@ -76,10 +80,23 @@ public class GameManager : MonoBehaviour
         if (bloodletter) {
             var doors = FindObjectsByType(typeof(Door), FindObjectsSortMode.None);
             foreach(Door door in doors) {
-                if (door.goal) exit = door;
+                if (door.doorType == Door.DoorType.Well) exit = door;
+            }
+            var _wells = FindObjectsByType(typeof(WellSite), FindObjectsSortMode.None);
+            foreach(WellSite well in _wells) {
+                wells.Add(well);
+                well.ExhaustSiteCallback += PoisonWell;
             }
         }
         pauseManager = PauseManager.instance;
+    }
+
+    public void PoisonWell() {
+        Debug.Log("Well poisoned");
+        poisonedWellCount++;
+        if (poisonedWellCount >= wells.Count) {
+            exit.ExhaustSite();
+        }
     }
 
     public void RestartScene() {

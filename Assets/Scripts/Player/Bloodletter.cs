@@ -340,7 +340,7 @@ public class Bloodletter : MonoBehaviour {
             if (currentBasin) {
                 if (currentBasin.bloodLevel < currentBasin.capacity)
                     currentBasin.bloodLevel += bloodDrainRate;
-                else currentBasin.BasinFilled();
+                else if (!currentBasin.filled) currentBasin.BasinFilled();
             }
             
             yield return null;

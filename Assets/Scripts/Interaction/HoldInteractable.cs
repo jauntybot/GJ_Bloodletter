@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(AudioSource))]
+
 public class HoldInteractable : Interactable {
 
 
-    protected AudioSource audioSource;
     [SerializeField] protected SFX openSFX, loopSFX, closeSFX;
     [SerializeField] protected float openDelay;
-    protected Animator anim;
     [HideInInspector] public float timer;
     public float pilferDuration;
     
@@ -80,10 +77,12 @@ public class HoldInteractable : Interactable {
         interacting = false;
     }
 
-    protected virtual void ExhaustSite() {
+    public virtual void ExhaustSite() {
+        ExhaustSiteCallback?.Invoke();
         locked = true;
         inRange = false; inView = false;
         anim.SetBool("Empty", true);
+        ExhaustSiteCallback?.Invoke();
     }
 
     public virtual void PlaySound(SFX sfx = null) {

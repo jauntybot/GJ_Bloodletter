@@ -27,8 +27,8 @@ public class Teleport : ActionNode
             Debug.Log(navHit.position);
             switch(teleportType) {
                 case TeleportType.DistAwayFromPlayer:
-                    Debug.Log(context.enemy.director.exitProgress);
-                    if (Vector3.Distance(navHit.position, context.bloodletter.transform.position) <= (1 - context.enemy.director.exitProgress) * value)
+                    Debug.Log(GameManager.instance.exitProgress);
+                    if (Vector3.Distance(navHit.position, context.bloodletter.transform.position) <= (1 - GameManager.instance.exitProgress) * value)
                         return State.Failure;
                 break;
             }

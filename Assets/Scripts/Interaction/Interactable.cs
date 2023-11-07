@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(InteractableHighlight))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 public class Interactable : MonoBehaviour {
 
-    [SerializeField] protected Bloodletter bloodletter;
+// REFERENCES
+    protected Bloodletter bloodletter;
     protected InteractableHighlight highlight;
+    protected AudioSource audioSource;
+    protected Animator anim;
+
+// PARAMETERS
     public bool interactOnce;
     protected bool hasInteracted;
     public float interactRadius = 2.5f;
@@ -15,6 +22,7 @@ public class Interactable : MonoBehaviour {
 
     public delegate void OnInteraction();
     public OnInteraction FirstInteractionCallback;
+    public OnInteraction ExhaustSiteCallback;
 
 
     protected virtual void Start() {
@@ -24,6 +32,8 @@ public class Interactable : MonoBehaviour {
     public virtual void Init() {
         bloodletter = Bloodletter.instance;
         highlight = GetComponent<InteractableHighlight>();
+        audioSource = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
     }
     
     protected virtual void Update() {

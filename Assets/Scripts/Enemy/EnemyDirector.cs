@@ -25,7 +25,7 @@ public class EnemyDirector : MonoBehaviour {
     public float downtimeThreshold;
     [SerializeField] AnimationCurve downtimeCurve;
     
-    public float exitProgress { get { return bloodletter.tollCount / GameManager.instance.exit.cost; }}
+    
 
     public List<Interactable> interactables;
     public float interactedCount;

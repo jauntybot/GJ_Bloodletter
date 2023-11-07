@@ -5,11 +5,17 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-
 public class BloodBasin : Interactable {
 
     public float capacity;
     public float bloodLevel;
+    public bool filled;
+
+    public override void Init() {
+        base.Init();
+        bloodLevel = 0;
+        filled = false;
+    }
 
     protected override void Update() {
         if (bloodletter && !locked && GameManager.instance.gameState == GameManager.GameState.Running) {
@@ -33,7 +39,11 @@ public class BloodBasin : Interactable {
     }
 
     public virtual void BasinFilled() {
+        ExhaustSiteCallback?.Invoke();
         bloodLevel = capacity;
+        locked = true; filled = true;
+        anim.SetBool("Filled", true);
+        DebugUI.instance.textPopUp.DisplayMessage("WELL POISONED.", 3);
     }
 
 }

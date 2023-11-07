@@ -31,7 +31,7 @@ public class PotionSite : HoldInteractable {
         }
     }
 
-    protected override void ExhaustSite() {
+    public override void ExhaustSite() {
         base.ExhaustSite();
 
         bloodletter.infectionLevel *= infectionHealP;
