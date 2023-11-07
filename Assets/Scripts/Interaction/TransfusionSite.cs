@@ -28,8 +28,7 @@ public class TransfusionSite : HoldInteractable {
         if (bloodletter.bloodLevel >= 100)
             DebugUI.instance.textPopUp.DisplayMessage("LET MORE BLOOD FIRST."); 
     }
-    protected override void ExhaustSite()
-    {
+    public override void ExhaustSite() {
         base.ExhaustSite();
         PlaySound(closeSFX);
 

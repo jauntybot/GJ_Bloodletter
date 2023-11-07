@@ -184,7 +184,7 @@ PrefabInstance:
     - target: {fileID: 7994625164610944420, guid: 91fc04320e3c8504f9c5cd7cda515f02,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8
+      value: 1.8000001
       objectReference: {fileID: 0}
     - target: {fileID: 7994625164610944420, guid: 91fc04320e3c8504f9c5cd7cda515f02,
         type: 3}
@@ -275,17 +275,17 @@ PrefabInstance:
     - target: {fileID: 8558229603941195183, guid: b74b4d61641804e4db5f48d28e3ab104,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0075416565
+      value: 0.007575989
       objectReference: {fileID: 0}
     - target: {fileID: 8558229603941195183, guid: b74b4d61641804e4db5f48d28e3ab104,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7050344
+      value: 1.7050501
       objectReference: {fileID: 0}
     - target: {fileID: 8558229603941195183, guid: b74b4d61641804e4db5f48d28e3ab104,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0009765625
+      value: 0.00091552734
       objectReference: {fileID: 0}
     - target: {fileID: 8558229603941195183, guid: b74b4d61641804e4db5f48d28e3ab104,
         type: 3}
@@ -382,6 +382,11 @@ PrefabInstance:
         type: 3}
       propertyPath: footstepAudioSource
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2887416039315855086, guid: 3e545542a8729834da5abe8faedaafab,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.8000001
       objectReference: {fileID: 0}
     - target: {fileID: 3840052362551888005, guid: 3e545542a8729834da5abe8faedaafab,
         type: 3}

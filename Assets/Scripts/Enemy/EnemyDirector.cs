@@ -25,11 +25,13 @@ public class EnemyDirector : MonoBehaviour {
     public float downtimeThreshold;
     [SerializeField] AnimationCurve downtimeCurve;
     
-    public float exitProgress { get { return bloodletter.tollCount / GameManager.instance.exit.cost; }}
+    
 
     public List<Interactable> interactables;
     public float interactedCount;
 
+    public enum POIType { InteractionSite, BloodPool, Player };
+    public POIType currentPOI;
     public Transform poi;
     
     void Awake() {
@@ -71,7 +73,7 @@ public class EnemyDirector : MonoBehaviour {
         downtimeTimer = 0f;
         while (downtimeTimer <= downtimeThreshold) {
             if (!enemy.detecting) {
-                downtimeTimer += Time.deltaTime * downtimeCurve.Evaluate(Vector3.Distance(bloodletter.transform.position, enemy.transform.position)/enemy.detectionCones[2].dist) * 4;
+                downtimeTimer += Time.deltaTime * downtimeCurve.Evaluate(enemy.proximity/enemy.detectionCones[2].dist) * 4;
                 downtime = downtimeTimer/downtimeThreshold * 100;
             }
                 
@@ -84,8 +86,9 @@ public class EnemyDirector : MonoBehaviour {
         interactedCount++;
         hostilityMod = 0.1f + hostilityCurve.Evaluate(interactedCount/interactables.Count);
     }
-    public void UpdatePOI(Vector3 pos) {
+    public void UpdatePOI(Vector3 pos, POIType type) {
         poi.position = pos;
+        currentPOI = type;
     }
 
 

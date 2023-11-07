@@ -64,7 +64,7 @@ public class MoveToPosition : ActionNode
         if (timer < moveDur) {
             timer += Time.deltaTime;
         } else {
-            return State.Success;
+            return State.Failure;
         }
         
         return State.Running;

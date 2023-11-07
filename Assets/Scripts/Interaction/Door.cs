@@ -19,12 +19,14 @@ public class Door : HoldInteractable
             highlight.message = "EXCHANGE BLOOD TO UNLOCK.";
         if (doorType == DoorType.Key)
             highlight.message = "EXCHANGE " + cost + " KEY" + ((cost > 1) ? "S" : "")+ " TO UNLOCK.";
+        if (doorType == DoorType.Well)
+            highlight.message = "POISON ALL WELLS TO ADVANCE.";
     }
 
     public override void Interact() {
         base.Interact();
         if (doorType == DoorType.Free) OpenCloseDoor(!open);
-        else {
+        else if (doorType != DoorType.Well) {
             StartCoroutine(OpenSite());
         }
     }
@@ -35,7 +37,7 @@ public class Door : HoldInteractable
             yield return base.OpenSite();
     }
 
-    protected override void ExhaustSite() {
+    public override void ExhaustSite() {
         switch (doorType) {
             case DoorType.Key:
                 bloodletter.tollCount -= cost;
@@ -45,9 +47,8 @@ public class Door : HoldInteractable
             break;  
         }
         doorType = DoorType.Free;
-        DebugUI.instance.textPopUp.DismissMessage();
+        
         highlight.message = "PRESS 'LMB' TO " + (open ? "CLOSE." : "OPEN.");
-        DebugUI.instance.textPopUp.DisplayMessage(highlight.message);
     }
 
     public void OpenCloseDoor(bool state) {

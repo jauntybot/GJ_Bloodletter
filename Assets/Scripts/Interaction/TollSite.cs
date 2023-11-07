@@ -7,7 +7,7 @@ public class TollSite : HoldInteractable {
     public bool safezoneActive;
     [SerializeField] float safezoneRadius;
 
-    protected override void ExhaustSite() {
+    public override void ExhaustSite() {
         base.ExhaustSite();
         PlaySound(closeSFX);
         bloodletter.tollCount ++;

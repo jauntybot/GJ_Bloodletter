@@ -29,7 +29,7 @@ public class AtmosphereController : MonoBehaviour
     void Update() {
 
         if (enemy.state == EnemyPathfinding.EnemyState.Chasing) {
-            float strength = falloffCurve.Evaluate((falloffDist - Mathf.Clamp(Vector3.Distance(enemy.transform.position, bloodletter.transform.position), 0, falloffDist)) / falloffDist);
+            float strength = falloffCurve.Evaluate((falloffDist - Mathf.Clamp(enemy.proximity, 0, falloffDist)) / falloffDist);
             _amp = effectAmp * strength;
             _freq += Time.deltaTime * effectFreq * strength;
             float sinMod = Mathf.Sin(_freq) * _amp + _amp;
