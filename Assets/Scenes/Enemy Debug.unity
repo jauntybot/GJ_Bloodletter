@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1365231, g: 0.03860324, b: 0.03733522, a: 1}
+  m_IndirectSpecularColor: {r: 0.77868867, g: 0.22019239, b: 0.21295261, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12893,46 +12893,6 @@ PrefabInstance:
         type: 3}
       propertyPath: state
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
-        type: 3}
-      propertyPath: detectionCones.Array.data[0].dist
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
-        type: 3}
-      propertyPath: detectionCones.Array.data[2].dist
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
-        type: 3}
-      propertyPath: detectionCones.Array.data[3].dist
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
-        type: 3}
-      propertyPath: detectionCones.Array.data[0].viewAngle
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
-        type: 3}
-      propertyPath: detectionCones.Array.data[1].viewAngle
-      value: 98
-      objectReference: {fileID: 0}
-    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
-        type: 3}
-      propertyPath: detectionCones.Array.data[2].detectionCeiling
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
-        type: 3}
-      propertyPath: detectionCones.Array.data[3].falloffCurve.m_Curve.Array.data[0].time
-      value: 0.27711487
-      objectReference: {fileID: 0}
-    - target: {fileID: 6771721736012269061, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
-        type: 3}
-      propertyPath: detectionCones.Array.data[3].falloffCurve.m_Curve.Array.data[0].value
-      value: 0.020373844
       objectReference: {fileID: 0}
     - target: {fileID: 8825619218060027128, guid: 46ebc3e09bbf41e46a15d31305e93bd3,
         type: 3}

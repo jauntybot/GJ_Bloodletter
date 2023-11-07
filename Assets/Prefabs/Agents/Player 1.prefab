@@ -375,6 +375,11 @@ PrefabInstance:
       objectReference: {fileID: 7415100406228873278}
     - target: {fileID: 1808239837428549413, guid: 3e545542a8729834da5abe8faedaafab,
         type: 3}
+      propertyPath: expCrouch
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808239837428549413, guid: 3e545542a8729834da5abe8faedaafab,
+        type: 3}
       propertyPath: footstepAudioSource
       value: 
       objectReference: {fileID: 0}

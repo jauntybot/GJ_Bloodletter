@@ -62,21 +62,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: cd9fc342cdfd14dbca7acb6428c2e2ad, type: 2}
+      objectReference: {fileID: 2100000, guid: 89611a3125f9c40849067ec44f4cd85c, type: 2}
     - target: {fileID: 4498246983755006069, guid: b897e256872ac4afc9b71d8b7029eaef,
         type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
-      objectReference: {fileID: 2100000, guid: dafc938728cbf4cb18897867bc67fe9f, type: 2}
-    - target: {fileID: 4498246983755006069, guid: b897e256872ac4afc9b71d8b7029eaef,
-        type: 3}
-      propertyPath: m_Materials.Array.data[4]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7778dc4fa52474c51bf7f78be60270c4, type: 2}
+      objectReference: {fileID: 2100000, guid: 37f9d4b6e5f984b2187597c6345ec6e3, type: 2}
     - target: {fileID: 4595730879837011400, guid: b897e256872ac4afc9b71d8b7029eaef,
         type: 3}
       propertyPath: m_Name
-      value: house2 Variant
+      value: House02_tavern_wood
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
