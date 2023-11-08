@@ -18,7 +18,7 @@ MonoBehaviour:
   properties:
   - _shaderProperty: _Hue
     range: {x: 0, y: 100}
-    threshold: {x: 0.5, y: 1}
+    threshold: {x: 0.9, y: 1}
     curve:
       serializedVersion: 2
       m_Curve:
@@ -45,7 +45,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - _shaderProperty: _Blend
     range: {x: 0, y: 0.1}
-    threshold: {x: 0, y: 0.75}
+    threshold: {x: 0.75, y: 1}
     curve:
       serializedVersion: 2
       m_Curve:
