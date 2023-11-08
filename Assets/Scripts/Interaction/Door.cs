@@ -46,17 +46,14 @@ public class Door : HoldInteractable
                 bloodletter.bloodLevel -= cost;
             break;  
         }
-        doorType = DoorType.Free;
-        
-        highlight.message = "PRESS 'LMB' TO " + (open ? "CLOSE." : "OPEN.");
+        OpenCloseDoor(true);
     }
 
     public void OpenCloseDoor(bool state) {
         anim.SetBool("Open", state);
         PlaySound(state ? openSFX : closeSFX);
         open = state;
-        DebugUI.instance.textPopUp.DismissMessage();
-        highlight.message = "PRESS 'LMB' TO " + (open ? "CLOSE." : "OPEN.");
+        locked = true;
     }
 
 }
