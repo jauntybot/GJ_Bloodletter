@@ -40,6 +40,8 @@ public class BloodBasin : Interactable {
 
     public virtual void BasinFilled() {
         ExhaustSiteCallback?.Invoke();
+        bloodletter.interacting = false;
+        bloodletter.interactingWith = null;
         bloodLevel = capacity;
         locked = true; filled = true;
         anim.SetBool("Filled", true);
