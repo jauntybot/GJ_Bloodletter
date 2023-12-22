@@ -82,7 +82,6 @@ public class HoldInteractable : Interactable {
         locked = true;
         inRange = false; inView = false;
         anim.SetBool("Empty", true);
-        ExhaustSiteCallback?.Invoke();
     }
 
     public virtual void PlaySound(SFX sfx = null) {

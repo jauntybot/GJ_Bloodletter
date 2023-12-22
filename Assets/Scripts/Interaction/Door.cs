@@ -38,6 +38,7 @@ public class Door : HoldInteractable
     }
 
     public override void ExhaustSite() {
+        base.ExhaustSite();
         switch (doorType) {
             case DoorType.Key:
                 bloodletter.tollCount -= cost;
@@ -46,6 +47,8 @@ public class Door : HoldInteractable
                 bloodletter.bloodLevel -= cost;
             break;  
         }
+        bloodletter.interacting = false;
+        bloodletter.interactingWith = null;
         OpenCloseDoor(true);
     }
 
@@ -53,7 +56,6 @@ public class Door : HoldInteractable
         anim.SetBool("Open", state);
         PlaySound(state ? openSFX : closeSFX);
         open = state;
-        locked = true;
     }
 
 }
